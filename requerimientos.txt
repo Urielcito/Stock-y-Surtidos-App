@@ -1,0 +1,21 @@
+Entidades:
+
+- Categoria(id, nombre)
+- Producto (id, nombre_fuente, nombre_categoria, nombre, peso, precio, hay_en_casa, cuanto_tenemos)
+- Fuente (id, nombre, acepta_tarjeta, lista_productos)
+- cuanto_tenemos es un const [muy poco, poco, normal, de sobra]
+
+El programa se va a utilizar para:
+
+- Agregar, modificar o eliminar productos, fuentes, y categorias de producto.
+
+- Almacenar productos en listas por fuente y otra lista que contenga a los productos que tenemos en casa
+
+- Al poder modificar la variable hay_en_casa y cuanto_tenemos podemos realizar un stock
+de los productos que tenemos en casa actualmente, gracias a esto podemos ver mas facilmente que cosas
+nos faltan para ir a comprar.
+
+- Al poder agregar productos a distintas tiendas, algunos productos van a estar duplicados
+porque van a venir de distintas tiendas con distintos precios
+
+- Comparar precios entre distintas tiendas para ver donde conviene mas comprar que cosa
