@@ -77,10 +77,15 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dominio\Categoria.vb" />
     <Compile Include="Dominio\Controladora.vb" />
     <Compile Include="Dominio\Fuente.vb" />
+    <Compile Include="Dominio\CuantoTenemos.vb" />
+    <Compile Include="Dominio\Producto.vb" />
     <Compile Include="Persistencia\Conexion.vb" />
+    <Compile Include="Persistencia\pCategoria.vb" />
     <Compile Include="Persistencia\pFuente.vb" />
+    <Compile Include="Persistencia\pProducto.vb" />
     <Compile Include="Presentacion\Principal.vb">
       <SubType>Form</SubType>
     </Compile>
