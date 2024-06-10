@@ -7,7 +7,7 @@ Public Class pProducto
     Public Function AgregarProducto(ByVal pProducto As Producto) As Boolean
         Dim strInsert As String = ""
         Try
-            strInsert = "insert into producto (id_fuente, id_categoria, nombre, precio, cuanto_tenemos) values ('" & pProducto.fuente.id + 1 & "', '" & pProducto.categoria.id + 1 & "', '" & pProducto.nombre & "', '" & pProducto.precio & "', '" & pProducto.cuanto_tenemos & "');"
+            strInsert = "insert into producto (id_fuente, id_categoria, nombre, precio, cuanto_tenemos) values ('" & pProducto.fuente.id & "', '" & pProducto.categoria.id & "', '" & pProducto.nombre & "', '" & pProducto.precio & "', '" & pProducto.cuanto_tenemos & "');"
             unaconexion.AbrirConexion()
             unaconexion.EjecutarSQL(strInsert)
 
@@ -76,7 +76,7 @@ Public Class pProducto
             dt = unaconexion.TraerDatos(strSelect)
             For i As Integer = 0 To dt.Rows.Count - 1
                 un_producto = New Producto
-
+                un_producto.id = CInt(dt(i).Item("id"))
                 Dim id_fuente = CInt(dt(i).Item("id_fuente"))
                 Dim id_categoria = CInt(dt(i).Item("id_categoria"))
                 un_producto.fuente = New Fuente

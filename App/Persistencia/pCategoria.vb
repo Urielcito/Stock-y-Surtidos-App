@@ -71,6 +71,7 @@
             dt = unaconexion.TraerDatos(strSelect)
             For i As Integer = 0 To dt.Rows.Count - 1
                 una_categoria = New Categoria 'Se construye un objeto vacio de tipo Categoria y se rellena con los datos conseguidos de la base de datos.
+                una_categoria.id = CInt(dt(i).Item("id"))
                 una_categoria.nombre = dt(i).Item("nombre").ToString
                 col_categoria.Add(una_categoria)
             Next

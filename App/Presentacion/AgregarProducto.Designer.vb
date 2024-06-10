@@ -29,10 +29,13 @@ Partial Class AgregarProducto
         Me.lblNombre = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.lblPrecio = New System.Windows.Forms.Label()
-        Me.cmbCuantoTenemos = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAgregar = New System.Windows.Forms.Button()
         Me.txtPrecio = New System.Windows.Forms.TextBox()
+        Me.rbNada = New System.Windows.Forms.RadioButton()
+        Me.rbPoco = New System.Windows.Forms.RadioButton()
+        Me.rbBien = New System.Windows.Forms.RadioButton()
+        Me.rbSobra = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'lblFuente
@@ -98,19 +101,10 @@ Partial Class AgregarProducto
         Me.lblPrecio.TabIndex = 7
         Me.lblPrecio.Text = "Precio"
         '
-        'cmbCuantoTenemos
-        '
-        Me.cmbCuantoTenemos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCuantoTenemos.FormattingEnabled = True
-        Me.cmbCuantoTenemos.Location = New System.Drawing.Point(147, 66)
-        Me.cmbCuantoTenemos.Name = "cmbCuantoTenemos"
-        Me.cmbCuantoTenemos.Size = New System.Drawing.Size(117, 21)
-        Me.cmbCuantoTenemos.TabIndex = 8
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(144, 50)
+        Me.Label1.Location = New System.Drawing.Point(261, 49)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(131, 13)
         Me.Label1.TabIndex = 9
@@ -119,9 +113,9 @@ Partial Class AgregarProducto
         'btnAgregar
         '
         Me.btnAgregar.Enabled = False
-        Me.btnAgregar.Location = New System.Drawing.Point(341, 54)
+        Me.btnAgregar.Location = New System.Drawing.Point(413, 9)
         Me.btnAgregar.Name = "btnAgregar"
-        Me.btnAgregar.Size = New System.Drawing.Size(66, 33)
+        Me.btnAgregar.Size = New System.Drawing.Size(100, 37)
         Me.btnAgregar.TabIndex = 10
         Me.btnAgregar.Text = "Agregar"
         Me.btnAgregar.UseVisualStyleBackColor = True
@@ -133,15 +127,62 @@ Partial Class AgregarProducto
         Me.txtPrecio.Size = New System.Drawing.Size(65, 20)
         Me.txtPrecio.TabIndex = 11
         '
+        'rbNada
+        '
+        Me.rbNada.AutoSize = True
+        Me.rbNada.Location = New System.Drawing.Point(147, 66)
+        Me.rbNada.Name = "rbNada"
+        Me.rbNada.Size = New System.Drawing.Size(55, 17)
+        Me.rbNada.TabIndex = 12
+        Me.rbNada.TabStop = True
+        Me.rbNada.Text = "NADA"
+        Me.rbNada.UseVisualStyleBackColor = True
+        '
+        'rbPoco
+        '
+        Me.rbPoco.AutoSize = True
+        Me.rbPoco.Location = New System.Drawing.Point(239, 66)
+        Me.rbPoco.Name = "rbPoco"
+        Me.rbPoco.Size = New System.Drawing.Size(55, 17)
+        Me.rbPoco.TabIndex = 13
+        Me.rbPoco.TabStop = True
+        Me.rbPoco.Text = "POCO"
+        Me.rbPoco.UseVisualStyleBackColor = True
+        '
+        'rbBien
+        '
+        Me.rbBien.AutoSize = True
+        Me.rbBien.Location = New System.Drawing.Point(342, 66)
+        Me.rbBien.Name = "rbBien"
+        Me.rbBien.Size = New System.Drawing.Size(50, 17)
+        Me.rbBien.TabIndex = 14
+        Me.rbBien.TabStop = True
+        Me.rbBien.Text = "BIEN"
+        Me.rbBien.UseVisualStyleBackColor = True
+        '
+        'rbSobra
+        '
+        Me.rbSobra.AutoSize = True
+        Me.rbSobra.Location = New System.Drawing.Point(433, 66)
+        Me.rbSobra.Name = "rbSobra"
+        Me.rbSobra.Size = New System.Drawing.Size(62, 17)
+        Me.rbSobra.TabIndex = 15
+        Me.rbSobra.TabStop = True
+        Me.rbSobra.Text = "SOBRA"
+        Me.rbSobra.UseVisualStyleBackColor = True
+        '
         'AgregarProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(419, 99)
+        Me.ClientSize = New System.Drawing.Size(525, 96)
+        Me.Controls.Add(Me.rbSobra)
+        Me.Controls.Add(Me.rbBien)
+        Me.Controls.Add(Me.rbPoco)
+        Me.Controls.Add(Me.rbNada)
         Me.Controls.Add(Me.txtPrecio)
         Me.Controls.Add(Me.btnAgregar)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.cmbCuantoTenemos)
         Me.Controls.Add(Me.lblPrecio)
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.lblNombre)
@@ -163,8 +204,11 @@ Partial Class AgregarProducto
     Friend WithEvents lblNombre As Label
     Friend WithEvents txtNombre As TextBox
     Friend WithEvents lblPrecio As Label
-    Friend WithEvents cmbCuantoTenemos As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents btnAgregar As Button
     Friend WithEvents txtPrecio As TextBox
+    Friend WithEvents rbNada As RadioButton
+    Friend WithEvents rbPoco As RadioButton
+    Friend WithEvents rbBien As RadioButton
+    Friend WithEvents rbSobra As RadioButton
 End Class

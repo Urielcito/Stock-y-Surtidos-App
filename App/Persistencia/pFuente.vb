@@ -62,6 +62,7 @@
             dt = unaconexion.TraerDatos(strSelect)
             For i As Integer = 0 To dt.Rows.Count - 1
                 una_fuente = New Fuente 'Se construye un objeto vacio de tipo Fuente y se rellena con los datos conseguidos de la base de datos.
+                una_fuente.id = CInt(dt(i).Item("id"))
                 una_fuente.nombre = dt(i).Item("nombre").ToString
                 una_fuente.aceptan_tarjeta = dt(i).Item("aceptan_tarjeta")
                 una_fuente.telefono = CInt(dt(i).Item("telefono"))

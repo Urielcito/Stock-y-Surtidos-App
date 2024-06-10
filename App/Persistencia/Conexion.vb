@@ -3,8 +3,6 @@ Public Class Conexion
     Private MysqlCommand As New MySqlCommand
     Private conexion As MySqlConnection
     Public Sub AbrirConexion()
-        Dim ip As String
-        Dim user As String
         'ip = InputBox("Escribe la ip del servidor de la base de datos, sea localhost o la ip de un servidor CENTOS", "ip")
         'ip = My.Computer.FileSystem.ReadAllText("C:\CUNT TimeSheet Manager\ipaddress.txt")
         'user = My.Computer.FileSystem.ReadAllText("C:\CUNT TimeSheet Manager\user.txt")
