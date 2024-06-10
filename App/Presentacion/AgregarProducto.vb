@@ -5,7 +5,6 @@ Public Class AgregarProducto
     Dim col_categorias As New ArrayList
     Dim col_prod As New ArrayList
     Dim cantidad = ""
-
     Private Sub limpiarCampos()
         txtNombre.Text = ""
         cmbCategorias.SelectedItem = Nothing
@@ -17,7 +16,6 @@ Public Class AgregarProducto
         col_fuentes = cont.listadofuente
         col_categorias = cont.listadocategoria
         col_prod = cont.listadoproducto
-
 
         Dim bs_fuentes As New BindingSource
         Dim bs_categorias As New BindingSource
