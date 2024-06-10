@@ -9,12 +9,12 @@ Public Class Conexion
         'ip = My.Computer.FileSystem.ReadAllText("C:\CUNT TimeSheet Manager\ipaddress.txt")
         'user = My.Computer.FileSystem.ReadAllText("C:\CUNT TimeSheet Manager\user.txt")
         Try
-            Dim MysqlConnString As String = "server=localhost; port=3306;user id=user;password=kuro234098576;database=stockysurtidosapp;Convert Zero Datetime=True"
+            Dim MysqlConnString As String = "server=localhost; port=3306;user id=root;password=kuro234098576;database=stockysurtidosapp;Convert Zero Datetime=True"
 
             conexion = New MySqlConnection(MysqlConnString)
             conexion.Open()
         Catch ex As MySqlException
-            Throw New Exception("No es posible establecer la conexión.", ex)
+            Throw ex
         End Try
     End Sub
 
@@ -41,6 +41,7 @@ Public Class Conexion
     End Function
 
     Public Function EjecutarSQL(ByVal sentencias As String) As Boolean
+
         Dim result As Boolean = False
         Dim myCommand As MySqlCommand = conexion.CreateCommand()
         Dim myTrans As MySqlTransaction
@@ -57,7 +58,7 @@ Public Class Conexion
         Catch ex As MySqlException
             myTrans.Rollback()
             result = False
-            Throw New Exception("No es posible realizar esta operación. Corrobore los datos.", ex)
+            Throw ex
         End Try
         Return result
     End Function

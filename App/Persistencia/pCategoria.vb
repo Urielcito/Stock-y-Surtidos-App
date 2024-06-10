@@ -1,15 +1,24 @@
 ﻿Public Class pCategoria
     Private unaconexion As New Conexion
+
+    Public Function ReadException(ByVal ex As Exception) As String
+        Dim msg As String = ex.Message
+        If ex.InnerException IsNot Nothing Then
+            msg = msg & vbCrLf & "---------" & vbCrLf & ReadException(ex.InnerException)
+        End If
+        Return msg
+    End Function
+
     Public Function AgregarCategoria(ByVal pcategoria As Categoria) As Boolean 'básicamente el uso de sentencias sql, el programa envía la sentencia sql en forma de string al servidor en el cual está situada nuestra base de datos y esta es ejecutada.
         Dim strInsert As String = ""
         Try
-            strInsert = "insert into categoria (nombre) values ('" & pcategoria.nombre & "');"
+            strInsert = "insert into categoria (nombre) values ('" & pcategoria.nombre & "')"
             unaconexion.AbrirConexion()
             unaconexion.EjecutarSQL(strInsert)
 
             Return True
         Catch ex As Exception
-            Throw ex
+            MessageBox.Show(ReadException(ex))
         Finally
             unaconexion.CerrarConexion()
         End Try
@@ -56,16 +65,16 @@
         Dim strSelect As String
         Dim una_categoria As Categoria
         Dim col_categoria As New ArrayList
-        strSelect = "select * from fuente"
+        strSelect = "select * from categoria"
         Try
             unaconexion.AbrirConexion()
             dt = unaconexion.TraerDatos(strSelect)
             For i As Integer = 0 To dt.Rows.Count - 1
-                una_categoria = New Categoria 'Se construye un objeto vacio de tipo Fuente y se rellena con los datos conseguidos de la base de datos.
+                una_categoria = New Categoria 'Se construye un objeto vacio de tipo Categoria y se rellena con los datos conseguidos de la base de datos.
                 una_categoria.nombre = dt(i).Item("nombre").ToString
                 col_categoria.Add(una_categoria)
             Next
-            Return col_categoria 'La función devuelve la colección de objetos de tipo Fuente, en la cual yacen todos los objetos generados por los datos conseguidos de la base de datos.
+            Return col_categoria 'La función devuelve la colección de objetos de tipo Categoria, en la cual yacen todos los objetos generados por los datos conseguidos de la base de datos.
         Catch ex As Exception
             Throw ex
         Finally

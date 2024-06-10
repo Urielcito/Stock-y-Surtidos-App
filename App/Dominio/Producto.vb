@@ -4,7 +4,6 @@
     Private mcategoria As Categoria
     Private mnombre As String
     Private mprecio As Double
-    Private mhay_en_casa As Boolean
     Private mcuanto_tenemos As String
 
     Public Property id() As Integer
@@ -52,15 +51,6 @@
         End Set
     End Property
 
-    Public Property hay_en_casa() As Boolean
-        Get
-            Return mhay_en_casa
-        End Get
-        Set(value As Boolean)
-            mhay_en_casa = value
-        End Set
-    End Property
-
     Public Property cuanto_tenemos As String
         Get
             Return mcuanto_tenemos
@@ -70,13 +60,12 @@
         End Set
     End Property
 
-    Public Sub New(pid As Integer, pfuente As Fuente, pcategoria As Categoria, pnombre As String, pprecio As Double, phay_en_casa As Boolean, pcuanto_tenemos As String)
+    Public Sub New(pid As Integer, pfuente As Fuente, pcategoria As Categoria, pnombre As String, pprecio As Double, pcuanto_tenemos As String)
         id = pid
         fuente = pfuente
         categoria = pcategoria
         nombre = pnombre
         precio = pprecio
-        hay_en_casa = phay_en_casa
         cuanto_tenemos = pcuanto_tenemos
     End Sub
 
