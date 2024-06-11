@@ -32,6 +32,15 @@
             Me.lstProductos.Items.Add(lista)
         Next
     End Sub
+
+    Private Sub cargarMenuStrips(ByVal col_categorias As ArrayList, ByVal col_fuentes As ArrayList)
+        For Each cat As Categoria In col_categorias
+            Me.menuCategorias.Items.Add(cat.nombre)
+        Next
+        For Each fuente As Fuente In col_fuentes
+            Me.menuFuentes.Items.Add(fuente.nombre)
+        Next
+    End Sub
     Private Sub cargarListas()
 
         col_fuentes = cont.listadofuente
@@ -55,6 +64,8 @@
             .DataSource = bs_categorias
             .SelectedItem = Nothing
         End With
+
+        cargarMenuStrips(col_categorias, col_fuentes)
         cargarListView()
     End Sub
     Private Sub limpiarInformacion()
@@ -196,26 +207,6 @@
         End If
         cargarListView()
     End Sub
-
-    Private Sub lblNombre_MouseEnter(sender As Object, e As EventArgs) Handles lblNombre.MouseEnter
-        lblNombre.BorderStyle = BorderStyle.FixedSingle
-
-
-    End Sub
-
-    Private Sub lblNombre_MouseLeave(sender As Object, e As EventArgs) Handles lblNombre.MouseLeave
-        lblNombre.BorderStyle = BorderStyle.None
-
-    End Sub
-
-    Private Sub lblPrecio_MouseEnter(sender As Object, e As EventArgs) Handles lblPrecio.MouseEnter
-        lblPrecio.BorderStyle = BorderStyle.FixedSingle
-    End Sub
-
-    Private Sub lblPrecio_MouseLeave(sender As Object, e As EventArgs) Handles lblPrecio.MouseLeave
-        lblPrecio.BorderStyle = BorderStyle.None
-    End Sub
-
     Private Sub btnImportante_Click(sender As Object, e As EventArgs) Handles btnImportante.Click
         Dim un_producto = cont.devolverProducto(un_id)
         un_producto.importante = Not un_producto.importante
@@ -258,6 +249,37 @@
         Dim un_producto = cont.devolverProducto(un_id)
         un_producto.cuanto_tenemos = "POCO"
         cont.ModificarProducto(un_id, un_producto)
+        cargarListView()
+    End Sub
+    Private Sub menuFuentes_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuFuentes.ItemClicked
+        Dim el_producto = cont.devolverProducto(un_id)
+        Dim col_fuentes = cont.listadofuente
+        Dim nombre_fuente = e.ClickedItem.ToString()
+        Dim la_fuente As New Fuente()
+        For Each una_fuente As Fuente In col_fuentes
+            If (una_fuente.nombre = nombre_fuente) Then
+                la_fuente = una_fuente
+            End If
+        Next
+        el_producto.fuente = la_fuente
+        cont.ModificarProducto(un_id, el_producto)
+        Me.lblFuente.Text = "Comprado en " & la_fuente.nombre
+        cargarListView()
+    End Sub
+
+    Private Sub menuCategorias_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuCategorias.ItemClicked
+        Dim el_producto = cont.devolverProducto(un_id)
+        Dim col_categorias = cont.listadocategoria
+        Dim nombre_categoria = e.ClickedItem.ToString()
+        Dim la_categoria As New Categoria()
+        For Each una_categoria As Categoria In col_categorias
+            If (una_categoria.nombre = nombre_categoria) Then
+                la_categoria = una_categoria
+            End If
+        Next
+        el_producto.categoria = la_categoria
+        cont.ModificarProducto(un_id, el_producto)
+        Me.lblCategoria.Text = "Categoria: " & la_categoria.nombre
         cargarListView()
     End Sub
 End Class

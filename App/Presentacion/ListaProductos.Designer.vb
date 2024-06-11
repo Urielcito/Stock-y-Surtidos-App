@@ -22,6 +22,7 @@ Partial Class ListaProductos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.cmbFuentes = New System.Windows.Forms.ComboBox()
         Me.cmbCategorias = New System.Windows.Forms.ComboBox()
         Me.lblFuentes = New System.Windows.Forms.Label()
@@ -46,7 +47,9 @@ Partial Class ListaProductos
         Me.rdPoco = New System.Windows.Forms.RadioButton()
         Me.lblCuanto = New System.Windows.Forms.Label()
         Me.lblFuente = New System.Windows.Forms.Label()
+        Me.menuFuentes = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.lblCategoria = New System.Windows.Forms.Label()
+        Me.menuCategorias = New System.Windows.Forms.ContextMenuStrip(Me.components)
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -174,7 +177,7 @@ Partial Class ListaProductos
         Me.btnImportante.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnImportante.Location = New System.Drawing.Point(1136, 346)
         Me.btnImportante.Name = "btnImportante"
-        Me.btnImportante.Size = New System.Drawing.Size(392, 67)
+        Me.btnImportante.Size = New System.Drawing.Size(392, 39)
         Me.btnImportante.TabIndex = 8
         Me.btnImportante.UseVisualStyleBackColor = True
         '
@@ -182,9 +185,9 @@ Partial Class ListaProductos
         '
         Me.btnHay.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnHay.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnHay.Location = New System.Drawing.Point(1136, 419)
+        Me.btnHay.Location = New System.Drawing.Point(1136, 415)
         Me.btnHay.Name = "btnHay"
-        Me.btnHay.Size = New System.Drawing.Size(392, 67)
+        Me.btnHay.Size = New System.Drawing.Size(392, 39)
         Me.btnHay.TabIndex = 9
         Me.btnHay.UseVisualStyleBackColor = True
         '
@@ -214,7 +217,7 @@ Partial Class ListaProductos
         '
         Me.rdSobra.AutoSize = True
         Me.rdSobra.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdSobra.Location = New System.Drawing.Point(1259, 525)
+        Me.rdSobra.Location = New System.Drawing.Point(1259, 495)
         Me.rdSobra.Name = "rdSobra"
         Me.rdSobra.Size = New System.Drawing.Size(89, 24)
         Me.rdSobra.TabIndex = 12
@@ -226,7 +229,7 @@ Partial Class ListaProductos
         '
         Me.rdBien.AutoSize = True
         Me.rdBien.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdBien.Location = New System.Drawing.Point(1259, 555)
+        Me.rdBien.Location = New System.Drawing.Point(1259, 525)
         Me.rdBien.Name = "rdBien"
         Me.rdBien.Size = New System.Drawing.Size(69, 24)
         Me.rdBien.TabIndex = 13
@@ -238,7 +241,7 @@ Partial Class ListaProductos
         '
         Me.rdPoco.AutoSize = True
         Me.rdPoco.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdPoco.Location = New System.Drawing.Point(1259, 583)
+        Me.rdPoco.Location = New System.Drawing.Point(1259, 553)
         Me.rdPoco.Name = "rdPoco"
         Me.rdPoco.Size = New System.Drawing.Size(76, 24)
         Me.rdPoco.TabIndex = 14
@@ -250,7 +253,7 @@ Partial Class ListaProductos
         '
         Me.lblCuanto.AutoSize = True
         Me.lblCuanto.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCuanto.Location = New System.Drawing.Point(1132, 524)
+        Me.lblCuanto.Location = New System.Drawing.Point(1132, 494)
         Me.lblCuanto.Name = "lblCuanto"
         Me.lblCuanto.Size = New System.Drawing.Size(121, 24)
         Me.lblCuanto.TabIndex = 15
@@ -259,6 +262,8 @@ Partial Class ListaProductos
         'lblFuente
         '
         Me.lblFuente.AutoSize = True
+        Me.lblFuente.ContextMenuStrip = Me.menuFuentes
+        Me.lblFuente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblFuente.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFuente.Location = New System.Drawing.Point(1137, 656)
         Me.lblFuente.Name = "lblFuente"
@@ -267,16 +272,31 @@ Partial Class ListaProductos
         Me.lblFuente.Text = "Comprado en"
         Me.lblFuente.UseMnemonic = False
         '
+        'menuFuentes
+        '
+        Me.menuFuentes.AllowMerge = False
+        Me.menuFuentes.Name = "menuFuentes"
+        Me.menuFuentes.Size = New System.Drawing.Size(61, 4)
+        Me.menuFuentes.Text = "Editar Fuente..."
+        '
         'lblCategoria
         '
         Me.lblCategoria.AutoSize = True
+        Me.lblCategoria.ContextMenuStrip = Me.menuCategorias
+        Me.lblCategoria.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblCategoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCategoria.Location = New System.Drawing.Point(1137, 632)
+        Me.lblCategoria.Location = New System.Drawing.Point(1137, 611)
         Me.lblCategoria.Name = "lblCategoria"
         Me.lblCategoria.Size = New System.Drawing.Size(99, 24)
         Me.lblCategoria.TabIndex = 17
         Me.lblCategoria.Text = "Categoria"
         Me.lblCategoria.UseMnemonic = False
+        '
+        'menuCategorias
+        '
+        Me.menuCategorias.Name = "ContextMenuStrip1"
+        Me.menuCategorias.Size = New System.Drawing.Size(61, 4)
+        Me.menuCategorias.Text = "Editar Categoria..."
         '
         'ListaProductos
         '
@@ -334,4 +354,6 @@ Partial Class ListaProductos
     Friend WithEvents lblCuanto As Label
     Friend WithEvents lblFuente As Label
     Friend WithEvents lblCategoria As Label
+    Friend WithEvents menuCategorias As ContextMenuStrip
+    Friend WithEvents menuFuentes As ContextMenuStrip
 End Class
