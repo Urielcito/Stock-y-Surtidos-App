@@ -24,3 +24,9 @@ Lo mismo que la ventana de productos, solo que mas orientado a añadir borrar y 
 
 - ponerle foto a las fuentes y a los productos
 - capacidad de clickear en un boton y que genere un Excel conteniendo: productos que tenemos bien en una columna, otra columna con productos que no tenemos o tenemos poco, una columna con los gastos de cada producto que nos recomienda comprar en los lugares donde sale mas barato, con una columna al lado que especifique de que lugar hay que comprarlo (agrupado por eso) y otra columna que haga lo mismo pero con los productos mas caros, entonces se consigue un presupuesto minimo y presupuesto maximo. Los productos caros obviamente se tienen que conseguir por la comparacion de productos de la misma categoria y no de distinta tienda, a parte de ser distintos productos obviamente
+
+## TO-DO Actual:
+
+- Poder cambiar de fuente y categoria en el listado de productos
+- Investigar y escribir querys SQL que satisfagan las vistas que se deseen conseguir para no hacerlo desde el codigo,
+	por ejemplo: una query por cada forma de ordenar a los productos, una para los productos que no tenemos, otra para los productos que deberiamos comprar (no tenemos + son importantes), e implementarlas en pProducto y Controladora

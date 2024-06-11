@@ -95,6 +95,18 @@
     <Compile Include="Presentacion\AgregarProducto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\ListaFuentes.Designer.vb">
+      <DependentUpon>ListaFuentes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListaFuentes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ListaProductos.Designer.vb">
+      <DependentUpon>ListaProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ListaProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\AgregarProducto.resx">
       <DependentUpon>AgregarProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListaProductos.resx">
+      <DependentUpon>ListaProductos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>

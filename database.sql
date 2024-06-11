@@ -4,7 +4,7 @@ USE `stockysurtidosapp`;
 --
 -- Host: localhost    Database: stockysurtidosapp
 -- ------------------------------------------------------
--- Server version	8.4.0
+-- Server version	8.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -81,12 +81,14 @@ CREATE TABLE `producto` (
   `nombre` varchar(45) DEFAULT NULL,
   `precio` decimal(10,0) DEFAULT NULL,
   `cuanto_tenemos` varchar(45) DEFAULT NULL,
+  `importante` tinyint DEFAULT NULL,
+  `nombre_imagen` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_fuente_idx` (`id_fuente`),
   KEY `id_categoria_idx` (`id_categoria`),
   CONSTRAINT `id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_fuente` FOREIGN KEY (`id_fuente`) REFERENCES `fuente` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +97,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (3,1,22,'Fagar Cola 2L',92,'POCO',1,'imagenes/productos/Fagar 2L.png'),(6,1,25,'DANETTE x4',125,'NADA',0,''),(7,1,23,'Arroz 5kg',429,'BIEN',1,'');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-10  4:11:00
+-- Dump completed on 2024-06-11  3:06:41

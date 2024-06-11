@@ -54,6 +54,7 @@ Public Class Conexion
             myTrans.Commit()
             result = True
         Catch ex As MySqlException
+            MessageBox.Show("Error MySQL: " & ex.Message & "Sentencia que causo el error: " & sentencias)
             myTrans.Rollback()
             result = False
             Throw ex

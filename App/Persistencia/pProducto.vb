@@ -7,13 +7,13 @@ Public Class pProducto
     Public Function AgregarProducto(ByVal pProducto As Producto) As Boolean
         Dim strInsert As String = ""
         Try
-            strInsert = "insert into producto (id_fuente, id_categoria, nombre, precio, cuanto_tenemos) values ('" & pProducto.fuente.id & "', '" & pProducto.categoria.id & "', '" & pProducto.nombre & "', '" & pProducto.precio & "', '" & pProducto.cuanto_tenemos & "');"
+            strInsert = "insert into producto (id_fuente, id_categoria, nombre, precio, cuanto_tenemos, importante, nombre_imagen) values ('" & pProducto.fuente.id & "', '" & pProducto.categoria.id & "', '" & pProducto.nombre & "', '" & pProducto.precio & "', '" & pProducto.cuanto_tenemos & "', '" & -CInt(pProducto.importante) & "', '" & pProducto.nombre_imagen & "');"
             unaconexion.AbrirConexion()
             unaconexion.EjecutarSQL(strInsert)
 
             Return True
         Catch ex As Exception
-            MessageBox.Show(strInsert)
+            MessageBox.Show("Sentencia SQL: " & strInsert & "\nError: " & ex.Message)
             Throw ex
         Finally
             unaconexion.CerrarConexion()
@@ -40,7 +40,7 @@ Public Class pProducto
     Public Function ModificarProducto(ByVal pProd As Producto) As Boolean
         Dim strModify As String = ""
         Try
-            strModify = "UPDATE producto SET id_fuente='" & pProd.fuente.id & "', id_categoria='" & pProd.categoria.id & ", nombre = '" & pProd.nombre & "', precio = '" & pProd.precio & "', hay_en_casa = '" & pProd.cuanto_tenemos & "' WHERE id = " & pProd.id & ";"
+            strModify = "UPDATE producto SET id_fuente='" & pProd.fuente.id & "', id_categoria='" & pProd.categoria.id & "', nombre = '" & pProd.nombre & "', precio = '" & pProd.precio & "', cuanto_tenemos = '" & pProd.cuanto_tenemos & "', importante = '" & -CInt(pProd.importante) & "', nombre_imagen ='" & pProd.nombre_imagen & "' WHERE id = " & pProd.id & ";"
             unaconexion.AbrirConexion()
             unaconexion.EjecutarSQL(strModify)
             Return True
@@ -97,6 +97,8 @@ Public Class pProducto
                 un_producto.nombre = dt(i).Item("nombre")
                 un_producto.precio = CDbl(dt(i).Item("precio"))
                 un_producto.cuanto_tenemos = dt(i).Item("cuanto_tenemos")
+                un_producto.importante = CBool(dt(i).Item("importante"))
+                un_producto.nombre_imagen = dt(i).Item("nombre_imagen")
                 col_producto.Add(un_producto)
             Next
             Return col_producto

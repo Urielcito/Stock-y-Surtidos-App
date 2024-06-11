@@ -77,10 +77,10 @@
 
 
 
-    Public Function AgregarProducto(ByVal una_fuente As Fuente, ByVal una_categoria As Categoria, ByVal un_nombre As String, ByVal un_precio As Double, ByVal un_cuanto_tenemos As String)
+    Public Function AgregarProducto(ByVal una_fuente As Fuente, ByVal una_categoria As Categoria, ByVal un_nombre As String, ByVal un_precio As Double, ByVal un_cuanto_tenemos As String, ByVal un_importante As Boolean, ByVal un_nombre_imagen As String)
         Try
             Dim un_producto As Producto
-            un_producto = New Producto(0, una_fuente, una_categoria, un_nombre, un_precio, un_cuanto_tenemos)
+            un_producto = New Producto(0, una_fuente, una_categoria, un_nombre, un_precio, un_cuanto_tenemos, un_importante, un_nombre_imagen)
             If p_producto.AgregarProducto(un_producto) = True Then
                 MessageBox.Show("Producto añadido con exito")
                 Return True
@@ -101,14 +101,16 @@
         End If
     End Function
 
-    Public Function ModificarProducto(ByVal un_id As Integer, ByVal una_fuente As Fuente, ByVal una_categoria As Categoria, ByVal un_nombre As String, ByVal un_precio As Double, ByVal un_cuanto_tenemos As String)
+    Public Function ModificarProducto(ByVal un_id As Integer, ByVal el_producto As Producto)
         Dim un_producto As New Producto()
         un_producto.id = un_id
-        un_producto.fuente = una_fuente
-        un_producto.categoria = una_categoria
-        un_producto.nombre = un_nombre
-        un_producto.precio = un_precio
-        un_producto.cuanto_tenemos = un_cuanto_tenemos
+        un_producto.fuente = el_producto.fuente
+        un_producto.categoria = el_producto.categoria
+        un_producto.nombre = el_producto.nombre
+        un_producto.precio = el_producto.precio
+        un_producto.cuanto_tenemos = el_producto.cuanto_tenemos
+        un_producto.importante = el_producto.importante
+        un_producto.nombre_imagen = el_producto.nombre_imagen
 
         If p_producto.ModificarProducto(un_producto) = True Then
             Return True
@@ -129,5 +131,16 @@
     Public Function listadoproducto() As ArrayList
         col_producto = p_producto.MostrarProductos
         Return col_producto
+    End Function
+
+    Public Function devolverProducto(ByVal un_id As Integer) As Producto
+        For Each p As Producto In col_producto
+            If (p.id = un_id) Then
+                Return p
+                Exit For
+            End If
+        Next
+        MessageBox.Show("No hay un producto con tal id.")
+        Return Nothing
     End Function
 End Class

@@ -1,14 +1,11 @@
 ﻿Public Class Principal
-    Private cont As New Controladora
-    Private colcat As ArrayList
-    Private colprod As ArrayList
-    Private colfuente As ArrayList
+    Private Sub btnListaProductos_Click(sender As Object, e As EventArgs) Handles btnListaProductos.Click
+        Dim lp As New ListaProductos
+        lp.Show()
+        Me.Hide()
+    End Sub
 
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnAgregarProducto.Click
-        Dim a As New AgregarProducto
-        a.Show()
-
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
     End Sub
 End Class

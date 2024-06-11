@@ -36,103 +36,118 @@ Partial Class AgregarProducto
         Me.rbPoco = New System.Windows.Forms.RadioButton()
         Me.rbBien = New System.Windows.Forms.RadioButton()
         Me.rbSobra = New System.Windows.Forms.RadioButton()
+        Me.chkImportante = New System.Windows.Forms.CheckBox()
+        Me.btnImagen = New System.Windows.Forms.Button()
+        Me.pbImagen = New System.Windows.Forms.PictureBox()
+        CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblFuente
         '
         Me.lblFuente.AutoSize = True
-        Me.lblFuente.Location = New System.Drawing.Point(13, 9)
+        Me.lblFuente.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFuente.Location = New System.Drawing.Point(8, 9)
         Me.lblFuente.Name = "lblFuente"
-        Me.lblFuente.Size = New System.Drawing.Size(40, 13)
+        Me.lblFuente.Size = New System.Drawing.Size(70, 24)
         Me.lblFuente.TabIndex = 0
         Me.lblFuente.Text = "Fuente"
         '
         'cmbFuentes
         '
         Me.cmbFuentes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbFuentes.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbFuentes.FormattingEnabled = True
         Me.cmbFuentes.Items.AddRange(New Object() {""})
-        Me.cmbFuentes.Location = New System.Drawing.Point(16, 25)
+        Me.cmbFuentes.Location = New System.Drawing.Point(12, 36)
         Me.cmbFuentes.Name = "cmbFuentes"
-        Me.cmbFuentes.Size = New System.Drawing.Size(121, 21)
+        Me.cmbFuentes.Size = New System.Drawing.Size(346, 32)
         Me.cmbFuentes.TabIndex = 1
         '
         'lblCategoria
         '
         Me.lblCategoria.AutoSize = True
-        Me.lblCategoria.Location = New System.Drawing.Point(13, 50)
+        Me.lblCategoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCategoria.Location = New System.Drawing.Point(8, 71)
         Me.lblCategoria.Name = "lblCategoria"
-        Me.lblCategoria.Size = New System.Drawing.Size(52, 13)
+        Me.lblCategoria.Size = New System.Drawing.Size(90, 24)
         Me.lblCategoria.TabIndex = 2
         Me.lblCategoria.Text = "Categoria"
         '
         'cmbCategorias
         '
         Me.cmbCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCategorias.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbCategorias.FormattingEnabled = True
         Me.cmbCategorias.Items.AddRange(New Object() {""})
-        Me.cmbCategorias.Location = New System.Drawing.Point(16, 66)
+        Me.cmbCategorias.Location = New System.Drawing.Point(12, 98)
         Me.cmbCategorias.Name = "cmbCategorias"
-        Me.cmbCategorias.Size = New System.Drawing.Size(121, 21)
+        Me.cmbCategorias.Size = New System.Drawing.Size(346, 32)
         Me.cmbCategorias.TabIndex = 3
         '
         'lblNombre
         '
         Me.lblNombre.AutoSize = True
-        Me.lblNombre.Location = New System.Drawing.Point(144, 9)
+        Me.lblNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNombre.Location = New System.Drawing.Point(395, 9)
         Me.lblNombre.Name = "lblNombre"
-        Me.lblNombre.Size = New System.Drawing.Size(44, 13)
+        Me.lblNombre.Size = New System.Drawing.Size(79, 24)
         Me.lblNombre.TabIndex = 4
         Me.lblNombre.Text = "Nombre"
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(147, 26)
+        Me.txtNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNombre.Location = New System.Drawing.Point(399, 36)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(188, 20)
+        Me.txtNombre.Size = New System.Drawing.Size(188, 29)
         Me.txtNombre.TabIndex = 5
         '
         'lblPrecio
         '
         Me.lblPrecio.AutoSize = True
-        Me.lblPrecio.Location = New System.Drawing.Point(338, 9)
+        Me.lblPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrecio.Location = New System.Drawing.Point(395, 71)
         Me.lblPrecio.Name = "lblPrecio"
-        Me.lblPrecio.Size = New System.Drawing.Size(37, 13)
+        Me.lblPrecio.Size = New System.Drawing.Size(64, 24)
         Me.lblPrecio.TabIndex = 7
         Me.lblPrecio.Text = "Precio"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(261, 49)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(12, 140)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(131, 13)
+        Me.Label1.Size = New System.Drawing.Size(229, 24)
         Me.Label1.TabIndex = 9
         Me.Label1.Text = "Cuanto tenemos en casa?"
         '
         'btnAgregar
         '
         Me.btnAgregar.Enabled = False
-        Me.btnAgregar.Location = New System.Drawing.Point(413, 9)
+        Me.btnAgregar.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAgregar.Location = New System.Drawing.Point(602, 33)
         Me.btnAgregar.Name = "btnAgregar"
-        Me.btnAgregar.Size = New System.Drawing.Size(100, 37)
+        Me.btnAgregar.Size = New System.Drawing.Size(116, 94)
         Me.btnAgregar.TabIndex = 10
         Me.btnAgregar.Text = "Agregar"
         Me.btnAgregar.UseVisualStyleBackColor = True
         '
         'txtPrecio
         '
-        Me.txtPrecio.Location = New System.Drawing.Point(342, 26)
+        Me.txtPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPrecio.Location = New System.Drawing.Point(399, 98)
         Me.txtPrecio.Name = "txtPrecio"
-        Me.txtPrecio.Size = New System.Drawing.Size(65, 20)
+        Me.txtPrecio.Size = New System.Drawing.Size(65, 29)
         Me.txtPrecio.TabIndex = 11
         '
         'rbNada
         '
         Me.rbNada.AutoSize = True
-        Me.rbNada.Location = New System.Drawing.Point(147, 66)
+        Me.rbNada.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbNada.Location = New System.Drawing.Point(11, 167)
         Me.rbNada.Name = "rbNada"
-        Me.rbNada.Size = New System.Drawing.Size(55, 17)
+        Me.rbNada.Size = New System.Drawing.Size(81, 28)
         Me.rbNada.TabIndex = 12
         Me.rbNada.TabStop = True
         Me.rbNada.Text = "NADA"
@@ -141,9 +156,10 @@ Partial Class AgregarProducto
         'rbPoco
         '
         Me.rbPoco.AutoSize = True
-        Me.rbPoco.Location = New System.Drawing.Point(239, 66)
+        Me.rbPoco.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbPoco.Location = New System.Drawing.Point(11, 201)
         Me.rbPoco.Name = "rbPoco"
-        Me.rbPoco.Size = New System.Drawing.Size(55, 17)
+        Me.rbPoco.Size = New System.Drawing.Size(83, 28)
         Me.rbPoco.TabIndex = 13
         Me.rbPoco.TabStop = True
         Me.rbPoco.Text = "POCO"
@@ -152,9 +168,10 @@ Partial Class AgregarProducto
         'rbBien
         '
         Me.rbBien.AutoSize = True
-        Me.rbBien.Location = New System.Drawing.Point(342, 66)
+        Me.rbBien.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbBien.Location = New System.Drawing.Point(11, 235)
         Me.rbBien.Name = "rbBien"
-        Me.rbBien.Size = New System.Drawing.Size(50, 17)
+        Me.rbBien.Size = New System.Drawing.Size(71, 28)
         Me.rbBien.TabIndex = 14
         Me.rbBien.TabStop = True
         Me.rbBien.Text = "BIEN"
@@ -163,19 +180,54 @@ Partial Class AgregarProducto
         'rbSobra
         '
         Me.rbSobra.AutoSize = True
-        Me.rbSobra.Location = New System.Drawing.Point(433, 66)
+        Me.rbSobra.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbSobra.Location = New System.Drawing.Point(11, 269)
         Me.rbSobra.Name = "rbSobra"
-        Me.rbSobra.Size = New System.Drawing.Size(62, 17)
+        Me.rbSobra.Size = New System.Drawing.Size(93, 28)
         Me.rbSobra.TabIndex = 15
         Me.rbSobra.TabStop = True
         Me.rbSobra.Text = "SOBRA"
         Me.rbSobra.UseVisualStyleBackColor = True
         '
+        'chkImportante
+        '
+        Me.chkImportante.AutoSize = True
+        Me.chkImportante.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkImportante.Location = New System.Drawing.Point(399, 140)
+        Me.chkImportante.Name = "chkImportante"
+        Me.chkImportante.Size = New System.Drawing.Size(117, 28)
+        Me.chkImportante.TabIndex = 16
+        Me.chkImportante.Text = "Importante"
+        Me.chkImportante.UseVisualStyleBackColor = True
+        '
+        'btnImagen
+        '
+        Me.btnImagen.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnImagen.Location = New System.Drawing.Point(451, 267)
+        Me.btnImagen.Name = "btnImagen"
+        Me.btnImagen.Size = New System.Drawing.Size(116, 30)
+        Me.btnImagen.TabIndex = 17
+        Me.btnImagen.Text = "Examinar..."
+        Me.btnImagen.UseVisualStyleBackColor = True
+        '
+        'pbImagen
+        '
+        Me.pbImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pbImagen.Location = New System.Drawing.Point(573, 167)
+        Me.pbImagen.Name = "pbImagen"
+        Me.pbImagen.Size = New System.Drawing.Size(145, 130)
+        Me.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbImagen.TabIndex = 18
+        Me.pbImagen.TabStop = False
+        '
         'AgregarProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(525, 96)
+        Me.ClientSize = New System.Drawing.Size(733, 309)
+        Me.Controls.Add(Me.pbImagen)
+        Me.Controls.Add(Me.btnImagen)
+        Me.Controls.Add(Me.chkImportante)
         Me.Controls.Add(Me.rbSobra)
         Me.Controls.Add(Me.rbBien)
         Me.Controls.Add(Me.rbPoco)
@@ -192,6 +244,7 @@ Partial Class AgregarProducto
         Me.Controls.Add(Me.lblFuente)
         Me.Name = "AgregarProducto"
         Me.Text = "Stock y Surtidos"
+        CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -211,4 +264,7 @@ Partial Class AgregarProducto
     Friend WithEvents rbPoco As RadioButton
     Friend WithEvents rbBien As RadioButton
     Friend WithEvents rbSobra As RadioButton
+    Friend WithEvents chkImportante As CheckBox
+    Friend WithEvents btnImagen As Button
+    Friend WithEvents pbImagen As PictureBox
 End Class
