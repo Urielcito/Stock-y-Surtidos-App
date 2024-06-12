@@ -20,7 +20,7 @@
         End Try
     End Function
 
-    Public Function BorrarEmpleado(ByVal un_id As Integer) As Boolean
+    Public Function BorrarFuente(ByVal un_id As Integer) As Boolean
         If p_fuente.EliminarFuente(un_id) Then
             Return True
         Else
@@ -34,7 +34,7 @@
         una_fuente.nombre = un_nombre
         una_fuente.aceptan_tarjeta = un_aceptan_tarjeta
         una_fuente.telefono = un_telefono
-        If p_fuente.ModificarFuente(una_fuente) = True Then
+        If p_fuente.ModificarFuente(un_id, una_fuente) = True Then
             Return True
         Else
             Return False
@@ -141,6 +141,27 @@
             End If
         Next
         MessageBox.Show("No hay un producto con tal id.")
+        Return Nothing
+    End Function
+
+    Public Function devolverCantProductosFuente(ByVal la_fuente As Fuente) As Integer
+        Dim cant = 0
+        For Each un_producto As Producto In col_producto
+            If (un_producto.fuente.id = la_fuente.id) Then
+                cant = cant + 1
+            End If
+        Next
+
+        Return cant
+    End Function
+    Public Function devolverFuente(ByVal un_id As Integer) As Fuente
+        For Each una_fuente As Fuente In col_fuente
+            If (una_fuente.id = un_id) Then
+                Return una_fuente
+                Exit For
+            End If
+        Next
+        MessageBox.Show("No hay una fuente con tal id")
         Return Nothing
     End Function
 End Class

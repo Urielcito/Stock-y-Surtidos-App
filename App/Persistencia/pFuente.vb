@@ -3,7 +3,7 @@
     Public Function AgregarFuente(ByVal pfuente As Fuente) As Boolean 'básicamente el uso de sentencias sql, el programa envía la sentencia sql en forma de string al servidor en el cual está situada nuestra base de datos y esta es ejecutada.
         Dim strInsert As String = ""
         Try
-            strInsert = "insert into fuente (nombre, aceptan_tarjeta, telefono) values ('" & pfuente.nombre & "', '" & pfuente.aceptan_tarjeta & "', '" & pfuente.telefono & "');"
+            strInsert = "insert into fuente (nombre, aceptan_tarjeta, telefono) values ('" & pfuente.nombre & "', '" & -CInt(pfuente.aceptan_tarjeta) & "', '" & pfuente.telefono & "');"
             unaconexion.AbrirConexion()
             unaconexion.EjecutarSQL(strInsert)
 
@@ -33,11 +33,11 @@
         Return False
     End Function
 
-    Public Function ModificarFuente(ByVal p_fuente As Fuente) As Boolean
+    Public Function ModificarFuente(ByVal un_id As Integer, ByVal p_fuente As Fuente) As Boolean
         Dim strInsert As String = ""
         Try
 
-            strInsert = "UPDATE fuente SET nombre='" & p_fuente.nombre & "', aceptan_tarjeta='" & p_fuente.aceptan_tarjeta & "', telefono='" & p_fuente.telefono & "' WHERE id=" & p_fuente.id & ";"
+            strInsert = "UPDATE fuente SET nombre='" & p_fuente.nombre & "', aceptan_tarjeta='" & -CInt(p_fuente.aceptan_tarjeta) & "', telefono='" & p_fuente.telefono & "' WHERE id=" & un_id & ";"
             unaconexion.AbrirConexion()
             unaconexion.EjecutarSQL(strInsert)
             Return True
@@ -64,7 +64,7 @@
                 una_fuente = New Fuente 'Se construye un objeto vacio de tipo Fuente y se rellena con los datos conseguidos de la base de datos.
                 una_fuente.id = CInt(dt(i).Item("id"))
                 una_fuente.nombre = dt(i).Item("nombre").ToString
-                una_fuente.aceptan_tarjeta = dt(i).Item("aceptan_tarjeta")
+                una_fuente.aceptan_tarjeta = CBool(dt(i).Item("aceptan_tarjeta"))
                 una_fuente.telefono = CInt(dt(i).Item("telefono"))
                 col_fuente.Add(una_fuente)
             Next

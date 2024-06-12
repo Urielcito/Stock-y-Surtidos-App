@@ -5,7 +5,9 @@
         Me.Hide()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+    Private Sub btnListaFuentes_Click(sender As Object, e As EventArgs) Handles btnListaFuentes.Click
+        Dim lf As New ListaFuentes
+        lf.Show()
+        Me.Hide()
     End Sub
 End Class

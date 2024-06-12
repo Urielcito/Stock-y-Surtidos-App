@@ -9,6 +9,7 @@ Public Class AgregarProducto
     Dim col_prod As New ArrayList
     Dim cantidad = ""
     Private Sub limpiarCampos()
+        pbImagen.Image = Nothing
         txtNombre.Text = ""
         cmbCategorias.SelectedItem = Nothing
         cmbFuentes.SelectedItem = Nothing
@@ -47,16 +48,13 @@ Public Class AgregarProducto
 
     Private Sub agregarProducto(ByVal una_fuente As Fuente, ByVal una_categoria As Categoria, ByVal nombre As String, ByVal precio As String, ByVal cuanto_tenemos As String, ByVal importante As Boolean, ByVal nombre_imagen As String)
         cont.AgregarProducto(una_fuente, una_categoria, nombre, CDbl(precio), cuanto_tenemos, chkImportante.Checked, nombre_imagen)
+        Me.Dispose()
     End Sub
 
     Private Sub AgregarProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cargarListas()
         cmbFuentes.SelectedItem = Nothing
         cmbCategorias.SelectedItem = Nothing
-    End Sub
-
-    Private Sub AgregarProducto_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Me.Dispose()
     End Sub
 
     Private Sub chequearCampos()
@@ -170,7 +168,7 @@ Public Class AgregarProducto
     Private Sub btnImagen_Click(sender As Object, e As EventArgs) Handles btnImagen.Click
         Dim lector As New OpenFileDialog()
         lector.Title = "Seleccione una imagen"
-        lector.Filter = "Imagen|*.png|*.jpg|*.jpeg"
+        lector.Filter = "Imagen PNG|*.png| Imagen JPG|*.jpg| Imagen JPEG|*.jpeg"
         Dim ruta_imagen = ""
         If (lector.ShowDialog <> DialogResult.Cancel) Then
             Dim ext = extraerExtension(lector.FileName)
@@ -185,4 +183,8 @@ Public Class AgregarProducto
         End If
 
     End Sub
+
+    Public Function productoCreado() As Producto
+
+    End Function
 End Class

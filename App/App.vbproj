@@ -140,6 +140,9 @@
     <EmbeddedResource Include="Presentacion\AgregarProducto.resx">
       <DependentUpon>AgregarProducto.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ListaFuentes.resx">
+      <DependentUpon>ListaFuentes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ListaProductos.resx">
       <DependentUpon>ListaProductos.vb</DependentUpon>
     </EmbeddedResource>

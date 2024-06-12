@@ -11,9 +11,9 @@
         ap.Show()
     End Sub
 
-    Private Sub cargarListView()
+    Public Sub cargarListView()
         Me.lstProductos.Items.Clear()
-        Dim col_productos = cont.listadoproducto
+        col_productos = cont.listadoproducto
         Dim lista As New ListViewItem
         For Each p As Producto In col_productos
             Dim strImportante As String
@@ -52,6 +52,8 @@
 
         bs_fuentes.DataSource = col_fuentes
         bs_categorias.DataSource = col_categorias
+        cmbFuentes.SelectedItem = Nothing
+        cmbCategorias.SelectedItem = Nothing
         bs_categorias.RemoveAt(0)
         With cmbFuentes
             .DisplayMember = "nombre"
@@ -61,6 +63,7 @@
 
         With cmbCategorias
             .DisplayMember = "nombre"
+
             .DataSource = bs_categorias
             .SelectedItem = Nothing
         End With
@@ -105,7 +108,7 @@
     End Sub
 
     Private Sub btnRefrescar_Click(sender As Object, e As EventArgs) Handles btnRefrescar.Click
-        cargarListas()
+        cargarListView()
     End Sub
 
     Private Sub cambiarBtnHay(ByVal hay As String, ByVal importante As Boolean)
@@ -177,10 +180,13 @@
                 hayProducto = False
             End If
             visibilidadInformacion(True, hayProducto)
+        Else
+            visibilidadInformacion(False, False)
         End If
     End Sub
 
     Private Sub lblNombre_Click(sender As Object, e As EventArgs) Handles lblNombre.Click
+
         Dim un_producto = cont.devolverProducto(un_id)
 
 
@@ -281,5 +287,63 @@
         cont.ModificarProducto(un_id, el_producto)
         Me.lblCategoria.Text = "Categoria: " & la_categoria.nombre
         cargarListView()
+    End Sub
+
+    Private Sub ListaProductos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dim princi As New Principal
+        princi.Visible = True
+    End Sub
+
+    Private Sub eliminarProducto_Click(sender As Object, e As EventArgs) Handles eliminarProducto.Click
+        Dim eliminar As DialogResult = MessageBox.Show("Estas seguro?", "Eliminar producto", MessageBoxButtons.YesNo)
+        If (eliminar = DialogResult.Yes) Then
+            cont.BorrarProducto(un_id)
+            cargarListView()
+            visibilidadInformacion(False, False)
+        End If
+    End Sub
+
+
+
+    Private Sub ListaProductos_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        cargarListView()
+    End Sub
+
+    Private Function extraerExtension(ByVal ruta_archivo As String) As String
+        Dim extension = ""
+        Dim c_anterior As Char
+        For Each c As Char In ruta_archivo
+            If (c_anterior = ".") Then
+                extension = ""
+            End If
+            extension = extension & "" & c
+            c_anterior = c
+        Next
+        Return extension
+    End Function
+
+    Private Sub cambiarImagen_Click(sender As Object, e As EventArgs) Handles cambiarImagen.Click
+        Dim el_producto = cont.devolverProducto(un_id)
+        Dim lector As New OpenFileDialog()
+        lector.Title = "Seleccione una imagen"
+        lector.Filter = "Imagen PNG|*.png| Imagen JPG|*.jpg| Imagen JPEG|*.jpeg"
+        Dim ruta_imagen = ""
+        If (lector.ShowDialog <> DialogResult.Cancel) Then
+            Dim ext = extraerExtension(lector.FileName)
+            If (System.IO.Directory.Exists("imagenes/productos/")) Then
+                System.IO.Directory.CreateDirectory("imagenes/productos/")
+            End If
+
+            ruta_imagen = "imagenes/productos/" & el_producto.nombre & "." & ext
+            If (System.IO.File.Exists(ruta_imagen)) Then
+                System.IO.File.Delete(ruta_imagen)
+            End If
+            FileSystem.FileCopy(lector.FileName, ruta_imagen)
+                pbImagen.SizeMode = PictureBoxSizeMode.Zoom
+            pbImagen.ImageLocation = ruta_imagen
+            el_producto.nombre_imagen = ruta_imagen
+            cont.ModificarProducto(un_id, el_producto)
+            cargarListView()
+        End If
     End Sub
 End Class

@@ -24,7 +24,6 @@ Partial Class Principal
     Private Sub InitializeComponent()
         Me.btnListaProductos = New System.Windows.Forms.Button()
         Me.btnListaFuentes = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnListaProductos
@@ -47,24 +46,15 @@ Partial Class Principal
         Me.btnListaFuentes.Text = "LISTA DE FUENTES"
         Me.btnListaFuentes.UseVisualStyleBackColor = True
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(428, 285)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(1584, 861)
         Me.Controls.Add(Me.btnListaFuentes)
         Me.Controls.Add(Me.btnListaProductos)
         Me.Name = "Principal"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock y Surtidos"
         Me.ResumeLayout(False)
 
@@ -72,5 +62,4 @@ Partial Class Principal
 
     Friend WithEvents btnListaProductos As Button
     Friend WithEvents btnListaFuentes As Button
-    Friend WithEvents Button1 As Button
 End Class

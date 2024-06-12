@@ -36,8 +36,12 @@ Partial Class ListaProductos
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.menuProducto = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.eliminarProducto = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnRefrescar = New System.Windows.Forms.Button()
         Me.pbImagen = New System.Windows.Forms.PictureBox()
+        Me.menuImagen = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.cambiarImagen = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnImportante = New System.Windows.Forms.Button()
         Me.btnHay = New System.Windows.Forms.Button()
         Me.lblNombre = New System.Windows.Forms.Label()
@@ -50,7 +54,10 @@ Partial Class ListaProductos
         Me.menuFuentes = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.lblCategoria = New System.Windows.Forms.Label()
         Me.menuCategorias = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.tooltip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.menuProducto.SuspendLayout()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.menuImagen.SuspendLayout()
         Me.SuspendLayout()
         '
         'cmbFuentes
@@ -104,13 +111,14 @@ Partial Class ListaProductos
         'lstProductos
         '
         Me.lstProductos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7})
+        Me.lstProductos.ContextMenuStrip = Me.menuProducto
         Me.lstProductos.FullRowSelect = True
         Me.lstProductos.GridLines = True
         Me.lstProductos.HideSelection = False
         Me.lstProductos.Location = New System.Drawing.Point(228, 55)
         Me.lstProductos.MultiSelect = False
         Me.lstProductos.Name = "lstProductos"
-        Me.lstProductos.Size = New System.Drawing.Size(901, 625)
+        Me.lstProductos.Size = New System.Drawing.Size(943, 794)
         Me.lstProductos.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.lstProductos.TabIndex = 5
         Me.lstProductos.UseCompatibleStateImageBehavior = False
@@ -151,6 +159,19 @@ Partial Class ListaProductos
         Me.ColumnHeader7.Text = "Cuanto hay"
         Me.ColumnHeader7.Width = 76
         '
+        'menuProducto
+        '
+        Me.menuProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.eliminarProducto})
+        Me.menuProducto.Name = "menuProducto"
+        Me.menuProducto.Size = New System.Drawing.Size(118, 26)
+        Me.menuProducto.Text = "Eliminar Producto"
+        '
+        'eliminarProducto
+        '
+        Me.eliminarProducto.Name = "eliminarProducto"
+        Me.eliminarProducto.Size = New System.Drawing.Size(117, 22)
+        Me.eliminarProducto.Text = "Eliminar"
+        '
         'btnRefrescar
         '
         Me.btnRefrescar.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -164,31 +185,46 @@ Partial Class ListaProductos
         'pbImagen
         '
         Me.pbImagen.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.pbImagen.Location = New System.Drawing.Point(1136, 55)
+        Me.pbImagen.ContextMenuStrip = Me.menuImagen
+        Me.pbImagen.Location = New System.Drawing.Point(1181, 55)
         Me.pbImagen.Name = "pbImagen"
         Me.pbImagen.Size = New System.Drawing.Size(392, 241)
         Me.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbImagen.TabIndex = 7
         Me.pbImagen.TabStop = False
         '
+        'menuImagen
+        '
+        Me.menuImagen.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cambiarImagen})
+        Me.menuImagen.Name = "menuImagen"
+        Me.menuImagen.Size = New System.Drawing.Size(172, 26)
+        '
+        'cambiarImagen
+        '
+        Me.cambiarImagen.Name = "cambiarImagen"
+        Me.cambiarImagen.Size = New System.Drawing.Size(171, 22)
+        Me.cambiarImagen.Text = "Cambiar imagen..."
+        '
         'btnImportante
         '
         Me.btnImportante.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnImportante.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnImportante.Location = New System.Drawing.Point(1136, 346)
+        Me.btnImportante.Location = New System.Drawing.Point(1180, 371)
         Me.btnImportante.Name = "btnImportante"
-        Me.btnImportante.Size = New System.Drawing.Size(392, 39)
+        Me.btnImportante.Size = New System.Drawing.Size(392, 62)
         Me.btnImportante.TabIndex = 8
+        Me.tooltip1.SetToolTip(Me.btnImportante, "Click para cambiar importancia")
         Me.btnImportante.UseVisualStyleBackColor = True
         '
         'btnHay
         '
         Me.btnHay.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnHay.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnHay.Location = New System.Drawing.Point(1136, 415)
+        Me.btnHay.Location = New System.Drawing.Point(1181, 471)
         Me.btnHay.Name = "btnHay"
-        Me.btnHay.Size = New System.Drawing.Size(392, 39)
+        Me.btnHay.Size = New System.Drawing.Size(392, 62)
         Me.btnHay.TabIndex = 9
+        Me.tooltip1.SetToolTip(Me.btnHay, "Click para marcar si hay o no del producto en casa")
         Me.btnHay.UseVisualStyleBackColor = True
         '
         'lblNombre
@@ -196,7 +232,7 @@ Partial Class ListaProductos
         Me.lblNombre.AutoSize = True
         Me.lblNombre.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNombre.Location = New System.Drawing.Point(1137, 316)
+        Me.lblNombre.Location = New System.Drawing.Point(1182, 316)
         Me.lblNombre.Name = "lblNombre"
         Me.lblNombre.Size = New System.Drawing.Size(72, 24)
         Me.lblNombre.TabIndex = 10
@@ -207,7 +243,7 @@ Partial Class ListaProductos
         Me.lblPrecio.AutoSize = True
         Me.lblPrecio.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPrecio.Location = New System.Drawing.Point(1409, 303)
+        Me.lblPrecio.Location = New System.Drawing.Point(1454, 303)
         Me.lblPrecio.Name = "lblPrecio"
         Me.lblPrecio.Size = New System.Drawing.Size(119, 37)
         Me.lblPrecio.TabIndex = 11
@@ -217,7 +253,7 @@ Partial Class ListaProductos
         '
         Me.rdSobra.AutoSize = True
         Me.rdSobra.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdSobra.Location = New System.Drawing.Point(1259, 495)
+        Me.rdSobra.Location = New System.Drawing.Point(1304, 576)
         Me.rdSobra.Name = "rdSobra"
         Me.rdSobra.Size = New System.Drawing.Size(89, 24)
         Me.rdSobra.TabIndex = 12
@@ -229,7 +265,7 @@ Partial Class ListaProductos
         '
         Me.rdBien.AutoSize = True
         Me.rdBien.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdBien.Location = New System.Drawing.Point(1259, 525)
+        Me.rdBien.Location = New System.Drawing.Point(1304, 606)
         Me.rdBien.Name = "rdBien"
         Me.rdBien.Size = New System.Drawing.Size(69, 24)
         Me.rdBien.TabIndex = 13
@@ -241,7 +277,7 @@ Partial Class ListaProductos
         '
         Me.rdPoco.AutoSize = True
         Me.rdPoco.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rdPoco.Location = New System.Drawing.Point(1259, 553)
+        Me.rdPoco.Location = New System.Drawing.Point(1304, 634)
         Me.rdPoco.Name = "rdPoco"
         Me.rdPoco.Size = New System.Drawing.Size(76, 24)
         Me.rdPoco.TabIndex = 14
@@ -253,7 +289,7 @@ Partial Class ListaProductos
         '
         Me.lblCuanto.AutoSize = True
         Me.lblCuanto.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCuanto.Location = New System.Drawing.Point(1132, 494)
+        Me.lblCuanto.Location = New System.Drawing.Point(1177, 575)
         Me.lblCuanto.Name = "lblCuanto"
         Me.lblCuanto.Size = New System.Drawing.Size(121, 24)
         Me.lblCuanto.TabIndex = 15
@@ -265,11 +301,12 @@ Partial Class ListaProductos
         Me.lblFuente.ContextMenuStrip = Me.menuFuentes
         Me.lblFuente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblFuente.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFuente.Location = New System.Drawing.Point(1137, 656)
+        Me.lblFuente.Location = New System.Drawing.Point(1177, 825)
         Me.lblFuente.Name = "lblFuente"
         Me.lblFuente.Size = New System.Drawing.Size(137, 24)
         Me.lblFuente.TabIndex = 16
         Me.lblFuente.Text = "Comprado en"
+        Me.tooltip1.SetToolTip(Me.lblFuente, "Click derecho para cambiar fuente")
         Me.lblFuente.UseMnemonic = False
         '
         'menuFuentes
@@ -285,11 +322,12 @@ Partial Class ListaProductos
         Me.lblCategoria.ContextMenuStrip = Me.menuCategorias
         Me.lblCategoria.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblCategoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCategoria.Location = New System.Drawing.Point(1137, 611)
+        Me.lblCategoria.Location = New System.Drawing.Point(1177, 770)
         Me.lblCategoria.Name = "lblCategoria"
         Me.lblCategoria.Size = New System.Drawing.Size(99, 24)
         Me.lblCategoria.TabIndex = 17
         Me.lblCategoria.Text = "Categoria"
+        Me.tooltip1.SetToolTip(Me.lblCategoria, "Click derecho para cambiar categoria")
         Me.lblCategoria.UseMnemonic = False
         '
         'menuCategorias
@@ -298,11 +336,17 @@ Partial Class ListaProductos
         Me.menuCategorias.Size = New System.Drawing.Size(61, 4)
         Me.menuCategorias.Text = "Editar Categoria..."
         '
+        'tooltip1
+        '
+        Me.tooltip1.AutoPopDelay = 5000
+        Me.tooltip1.InitialDelay = 250
+        Me.tooltip1.ReshowDelay = 100
+        '
         'ListaProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1540, 692)
+        Me.ClientSize = New System.Drawing.Size(1584, 861)
         Me.Controls.Add(Me.lblCategoria)
         Me.Controls.Add(Me.lblFuente)
         Me.Controls.Add(Me.lblCuanto)
@@ -322,8 +366,11 @@ Partial Class ListaProductos
         Me.Controls.Add(Me.cmbCategorias)
         Me.Controls.Add(Me.cmbFuentes)
         Me.Name = "ListaProductos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ListaProductos"
+        Me.menuProducto.ResumeLayout(False)
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.menuImagen.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -356,4 +403,9 @@ Partial Class ListaProductos
     Friend WithEvents lblCategoria As Label
     Friend WithEvents menuCategorias As ContextMenuStrip
     Friend WithEvents menuFuentes As ContextMenuStrip
+    Friend WithEvents menuProducto As ContextMenuStrip
+    Friend WithEvents eliminarProducto As ToolStripMenuItem
+    Friend WithEvents menuImagen As ContextMenuStrip
+    Friend WithEvents cambiarImagen As ToolStripMenuItem
+    Friend WithEvents tooltip1 As ToolTip
 End Class
