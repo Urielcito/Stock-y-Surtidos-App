@@ -54,7 +54,7 @@ CREATE TABLE `fuente` (
   `aceptan_tarjeta` tinyint DEFAULT NULL,
   `telefono` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `fuente` (
 
 LOCK TABLES `fuente` WRITE;
 /*!40000 ALTER TABLE `fuente` DISABLE KEYS */;
-INSERT INTO `fuente` VALUES (1,'Economico',1,45227298);
+INSERT INTO `fuente` VALUES (1,'El Economico',1,45227298),(2,'La pañalera',0,45227418),(4,'Ta-Ta',0,92953181),(5,'Micro Macro Tigre 1',1,45225084),(6,'Super USA',1,45228422);
 /*!40000 ALTER TABLE `fuente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ CREATE TABLE `producto` (
   KEY `id_categoria_idx` (`id_categoria`),
   CONSTRAINT `id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_fuente` FOREIGN KEY (`id_fuente`) REFERENCES `fuente` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (3,1,22,'Fagar Cola 2L',92,'POCO',1,'imagenes/productos/Fagar 2L.png'),(6,1,25,'DANETTE x4',125,'NADA',0,''),(7,1,23,'Arroz 5kg',429,'BIEN',1,'');
+INSERT INTO `producto` VALUES (20,1,23,'VIENAS CORTAS X4',64,'NADA',0,'');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-11  3:06:41
+-- Dump completed on 2024-06-12  3:45:16
