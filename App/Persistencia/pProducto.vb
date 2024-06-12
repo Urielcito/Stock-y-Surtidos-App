@@ -4,6 +4,7 @@ Imports MySql.Data.MySqlClient
 Public Class pProducto
     Private unaconexion As New Conexion
 
+    'FUNCIONES ABM
     Public Function AgregarProducto(ByVal pProducto As Producto) As Boolean
         Dim strInsert As String = ""
         Try
@@ -108,4 +109,6 @@ Public Class pProducto
             unaconexion.CerrarConexion()
         End Try
     End Function
+
+    'FUNCIONES DE LAS DISTINTAS VISTAS
 End Class

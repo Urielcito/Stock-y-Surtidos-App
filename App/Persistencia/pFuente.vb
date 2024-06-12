@@ -1,5 +1,6 @@
 ﻿Public Class pFuente 'USAR DE REFERENCIA PARA LAS DEMAS CLASES de PERSISTENCIA
     Private unaconexion As New Conexion
+    'FUNCIONES ABM
     Public Function AgregarFuente(ByVal pfuente As Fuente) As Boolean 'básicamente el uso de sentencias sql, el programa envía la sentencia sql en forma de string al servidor en el cual está situada nuestra base de datos y esta es ejecutada.
         Dim strInsert As String = ""
         Try

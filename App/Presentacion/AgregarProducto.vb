@@ -8,7 +8,12 @@ Public Class AgregarProducto
     Dim col_categorias As New ArrayList
     Dim col_prod As New ArrayList
     Dim cantidad = ""
-    Private Sub limpiarCampos()
+
+
+
+    'Campos o Datos:'
+
+    Private Sub limpiarCampos() 'Campos o Datos
         pbImagen.Image = Nothing
         txtNombre.Text = ""
         cmbCategorias.SelectedItem = Nothing
@@ -16,7 +21,7 @@ Public Class AgregarProducto
         txtPrecio.Text = ""
 
     End Sub
-    Private Sub cargarListas()
+    Private Sub cargarListas() 'Campos o Datos
         col_fuentes = cont.listadofuente
         col_categorias = cont.listadocategoria
         col_prod = cont.listadoproducto
@@ -39,25 +44,15 @@ Public Class AgregarProducto
             .DataSource = bs_categorias
             .SelectedItem = Nothing
         End With
-
-
-    End Sub
-    Private Sub nuevaCategoria(ByVal nombre As String)
-        cont.AgregarCategoria(nombre)
     End Sub
 
-    Private Sub agregarProducto(ByVal una_fuente As Fuente, ByVal una_categoria As Categoria, ByVal nombre As String, ByVal precio As String, ByVal cuanto_tenemos As String, ByVal importante As Boolean, ByVal nombre_imagen As String)
-        cont.AgregarProducto(una_fuente, una_categoria, nombre, CDbl(precio), cuanto_tenemos, chkImportante.Checked, nombre_imagen)
-        Me.Dispose()
-    End Sub
-
-    Private Sub AgregarProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub AgregarProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Campos o Datos
         cargarListas()
         cmbFuentes.SelectedItem = Nothing
         cmbCategorias.SelectedItem = Nothing
     End Sub
 
-    Private Sub chequearCampos()
+    Private Sub chequearCampos() 'Campos o Datos
         Dim d As Double
         Dim combosRellenados = cmbCategorias.Text <> "" And cmbFuentes.Text <> ""
         Dim textosRellenados = txtNombre.Text <> "" And Double.TryParse(txtPrecio.Text, d) And cantidad <> "" And chequearRoundButtons()
@@ -71,14 +66,46 @@ Public Class AgregarProducto
         End If
     End Sub
 
-    Private Function chequearRoundButtons() As Boolean
+    Private Function chequearRoundButtons() As Boolean 'Campos o Datos
         Return rbNada.Checked Or rbPoco.Checked Or rbBien.Checked Or rbSobra.Checked
     End Function
-    Private Sub cmbCuantoTenemos_SelectedIndexChanged(sender As Object, e As EventArgs)
+    Private Sub cmbCuantoTenemos_SelectedIndexChanged(sender As Object, e As EventArgs) 'Campos o Datos
         chequearCampos()
     End Sub
 
-    Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
+    Private Sub rbNada_CheckedChanged(sender As Object, e As EventArgs) Handles rbNada.CheckedChanged 'Campos o Datos
+        chequearCampos()
+        cantidad = "NADA"
+    End Sub
+
+    Private Sub rbPoco_CheckedChanged(sender As Object, e As EventArgs) Handles rbPoco.CheckedChanged 'Campos o Datos
+        chequearCampos()
+        cantidad = "POCO"
+    End Sub
+
+    Private Sub rbBien_CheckedChanged(sender As Object, e As EventArgs) Handles rbBien.CheckedChanged 'Campos o Datos
+        chequearCampos()
+        cantidad = "BIEN"
+    End Sub
+
+    Private Sub rbSobra_CheckedChanged(sender As Object, e As EventArgs) Handles rbSobra.CheckedChanged 'Campos o Datos
+        chequearCampos()
+        cantidad = "SOBRA"
+    End Sub
+
+
+
+    'ABM:'
+
+    Private Sub nuevaCategoria(ByVal nombre As String) 'Agregar categoria
+        cont.AgregarCategoria(nombre)
+    End Sub
+
+    Private Sub agregarProducto(ByVal una_fuente As Fuente, ByVal una_categoria As Categoria, ByVal nombre As String, ByVal precio As String, ByVal cuanto_tenemos As String, ByVal importante As Boolean, ByVal nombre_imagen As String) 'Agregar producto segundo paso
+        cont.AgregarProducto(una_fuente, una_categoria, nombre, CDbl(precio), cuanto_tenemos, chkImportante.Checked, nombre_imagen)
+        Me.Dispose()
+    End Sub
+    Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click 'Agregar producto primer paso
         Dim ruta_imagen = pbImagen.ImageLocation
         Dim la_fuente = cmbFuentes.SelectedItem
         Dim la_categoria = cmbCategorias.SelectedItem
@@ -86,31 +113,9 @@ Public Class AgregarProducto
         limpiarCampos()
     End Sub
 
-    Private Sub cmbCategorias_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCategorias.SelectedIndexChanged
-        chequearCampos()
-    End Sub
 
-    Private Sub cmbFuentes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFuentes.SelectedIndexChanged
-        chequearCampos()
-    End Sub
 
-    Private Sub numPrecio_ValueChanged(sender As Object, e As EventArgs)
-        chequearCampos()
-    End Sub
-
-    Private Sub txtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
-        chequearCampos()
-    End Sub
-
-    Private Sub numPrecio_KeyPress(sender As Object, e As KeyPressEventArgs)
-        chequearCampos()
-    End Sub
-
-    Private Sub txtPrecio_TextChanged(sender As Object, e As EventArgs) Handles txtPrecio.TextChanged
-        chequearCampos()
-    End Sub
-
-    Private Sub cmbCategorias_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbCategorias.SelectionChangeCommitted
+    Private Sub cmbCategorias_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbCategorias.SelectionChangeCommitted 'Crear nueva categoria
         If (cmbCategorias.SelectedIndex = 0) Then
             cmbCategorias.SelectedItem = Nothing
             Dim existe = False
@@ -132,40 +137,7 @@ Public Class AgregarProducto
         End If
     End Sub
 
-    Private Sub rbNada_CheckedChanged(sender As Object, e As EventArgs) Handles rbNada.CheckedChanged
-        chequearCampos()
-        cantidad = "NADA"
-    End Sub
-
-    Private Sub rbPoco_CheckedChanged(sender As Object, e As EventArgs) Handles rbPoco.CheckedChanged
-        chequearCampos()
-        cantidad = "POCO"
-    End Sub
-
-    Private Sub rbBien_CheckedChanged(sender As Object, e As EventArgs) Handles rbBien.CheckedChanged
-        chequearCampos()
-        cantidad = "BIEN"
-    End Sub
-
-    Private Sub rbSobra_CheckedChanged(sender As Object, e As EventArgs) Handles rbSobra.CheckedChanged
-        chequearCampos()
-        cantidad = "SOBRA"
-    End Sub
-
-    Private Function extraerExtension(ByVal ruta_archivo As String) As String
-        Dim extension = ""
-        Dim c_anterior As Char
-        For Each c As Char In ruta_archivo
-            If (c_anterior = ".") Then
-                extension = ""
-            End If
-            extension = extension & "" & c
-            c_anterior = c
-        Next
-        Return extension
-    End Function
-
-    Private Sub btnImagen_Click(sender As Object, e As EventArgs) Handles btnImagen.Click
+    Private Sub btnImagen_Click(sender As Object, e As EventArgs) Handles btnImagen.Click 'Seleccionar imagen del producto
         Dim lector As New OpenFileDialog()
         lector.Title = "Seleccione una imagen"
         lector.Filter = "Imagen PNG|*.png| Imagen JPG|*.jpg| Imagen JPEG|*.jpeg"
@@ -184,7 +156,48 @@ Public Class AgregarProducto
 
     End Sub
 
-    Public Function productoCreado() As Producto
 
+
+    'UPDATERS:'
+
+    Private Sub cmbCategorias_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCategorias.SelectedIndexChanged 'UPDATERS
+        chequearCampos()
+    End Sub
+
+    Private Sub cmbFuentes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFuentes.SelectedIndexChanged 'UPDATERS
+        chequearCampos()
+    End Sub
+
+    Private Sub numPrecio_ValueChanged(sender As Object, e As EventArgs) 'UPDATERS
+        chequearCampos()
+    End Sub
+
+    Private Sub txtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged 'UPDATERS
+        chequearCampos()
+    End Sub
+
+    Private Sub numPrecio_KeyPress(sender As Object, e As KeyPressEventArgs) 'UPDATERS
+        chequearCampos()
+    End Sub
+
+    Private Sub txtPrecio_TextChanged(sender As Object, e As EventArgs) Handles txtPrecio.TextChanged 'UPDATERS
+        chequearCampos()
+    End Sub
+
+
+
+    'Utilidades:'
+
+    Private Function extraerExtension(ByVal ruta_archivo As String) As String 'Utilidades
+        Dim extension = ""
+        Dim c_anterior As Char
+        For Each c As Char In ruta_archivo
+            If (c_anterior = ".") Then
+                extension = ""
+            End If
+            extension = extension & "" & c
+            c_anterior = c
+        Next
+        Return extension
     End Function
 End Class

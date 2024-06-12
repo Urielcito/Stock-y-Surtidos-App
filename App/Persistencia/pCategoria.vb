@@ -1,6 +1,7 @@
 ﻿Public Class pCategoria
     Private unaconexion As New Conexion
 
+    'FUNCIONES ABM
     Public Function ReadException(ByVal ex As Exception) As String
         Dim msg As String = ex.Message
         If ex.InnerException IsNot Nothing Then

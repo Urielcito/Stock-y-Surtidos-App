@@ -38,7 +38,6 @@ Partial Class ListaProductos
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.menuProducto = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.eliminarProducto = New System.Windows.Forms.ToolStripMenuItem()
-        Me.btnRefrescar = New System.Windows.Forms.Button()
         Me.pbImagen = New System.Windows.Forms.PictureBox()
         Me.menuImagen = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.cambiarImagen = New System.Windows.Forms.ToolStripMenuItem()
@@ -115,10 +114,10 @@ Partial Class ListaProductos
         Me.lstProductos.FullRowSelect = True
         Me.lstProductos.GridLines = True
         Me.lstProductos.HideSelection = False
-        Me.lstProductos.Location = New System.Drawing.Point(228, 55)
+        Me.lstProductos.Location = New System.Drawing.Point(228, 12)
         Me.lstProductos.MultiSelect = False
         Me.lstProductos.Name = "lstProductos"
-        Me.lstProductos.Size = New System.Drawing.Size(943, 794)
+        Me.lstProductos.Size = New System.Drawing.Size(943, 837)
         Me.lstProductos.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.lstProductos.TabIndex = 5
         Me.lstProductos.UseCompatibleStateImageBehavior = False
@@ -157,7 +156,7 @@ Partial Class ListaProductos
         'ColumnHeader7
         '
         Me.ColumnHeader7.Text = "Cuanto hay"
-        Me.ColumnHeader7.Width = 76
+        Me.ColumnHeader7.Width = 117
         '
         'menuProducto
         '
@@ -171,16 +170,6 @@ Partial Class ListaProductos
         Me.eliminarProducto.Name = "eliminarProducto"
         Me.eliminarProducto.Size = New System.Drawing.Size(117, 22)
         Me.eliminarProducto.Text = "Eliminar"
-        '
-        'btnRefrescar
-        '
-        Me.btnRefrescar.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRefrescar.Location = New System.Drawing.Point(228, 10)
-        Me.btnRefrescar.Name = "btnRefrescar"
-        Me.btnRefrescar.Size = New System.Drawing.Size(145, 39)
-        Me.btnRefrescar.TabIndex = 6
-        Me.btnRefrescar.Text = "Refrescar lista"
-        Me.btnRefrescar.UseVisualStyleBackColor = True
         '
         'pbImagen
         '
@@ -358,7 +347,6 @@ Partial Class ListaProductos
         Me.Controls.Add(Me.btnHay)
         Me.Controls.Add(Me.btnImportante)
         Me.Controls.Add(Me.pbImagen)
-        Me.Controls.Add(Me.btnRefrescar)
         Me.Controls.Add(Me.lstProductos)
         Me.Controls.Add(Me.btnAgregarProducto)
         Me.Controls.Add(Me.lblCategorias)
@@ -389,7 +377,6 @@ Partial Class ListaProductos
     Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents ColumnHeader6 As ColumnHeader
     Friend WithEvents ColumnHeader7 As ColumnHeader
-    Friend WithEvents btnRefrescar As Button
     Friend WithEvents pbImagen As PictureBox
     Friend WithEvents btnImportante As Button
     Friend WithEvents btnHay As Button

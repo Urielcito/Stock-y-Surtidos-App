@@ -4,7 +4,10 @@
     Dim col_fuentes As New ArrayList
     Dim id_fuente As Integer
 
-    Private Sub cargarListView(ByVal col_fuentes As ArrayList)
+
+
+    'Campos o Datos
+    Private Sub cargarListView(ByVal col_fuentes As ArrayList) 'Actualiza la lista de fuentes
         Me.lstFuentes.Items.Clear()
         Dim lista As ListViewItem
         For Each una_fuente As Fuente In col_fuentes
@@ -19,14 +22,16 @@
             Me.lstFuentes.Items.Add(lista)
         Next
     End Sub
-    Private Sub cargarListas()
+
+    Private Sub cargarListas() 'Rellena los binding sources
         Dim bs_fuentes As New BindingSource
         col_fuentes = cont.listadofuente
         bs_fuentes.DataSource = col_fuentes
         cargarListView(col_fuentes)
     End Sub
 
-    Private Sub lstFuentes_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstFuentes.ItemSelectionChanged
+    'Utilidades
+    Private Sub lstFuentes_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstFuentes.ItemSelectionChanged 'Despliega la informacion de una fuente
         If lstFuentes.SelectedItems.Count > 0 Then
             id_fuente = lstFuentes.SelectedItems(0).Text
         End If
@@ -35,9 +40,5 @@
         'lblAceptan_tarjeta.Text = lstFuentes.SelectedItems(2).Text & " aceptan tarjeta."
         'lblTelefono.Text = "Telefono: " & la_fuente.telefono
         'lblCant.Text = cont.devolverCantProductosFuente(la_fuente) & " Productos."
-
-
     End Sub
-
-
 End Class

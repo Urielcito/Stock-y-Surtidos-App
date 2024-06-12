@@ -6,12 +6,32 @@
     Dim un_id As Integer 'ID DEL PRODUCTO USADA POR TODO EL FORMULARIO
 
 
-    Private Sub btnAgregarProducto_Click(sender As Object, e As EventArgs) Handles btnAgregarProducto.Click
+
+    'Formulario 
+    Private Sub ListaProductos_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Lo que sucede al cargar el formulario
+        visibilidadInformacion(False, False)
+        cargarListas()
+        cmbFuentes.SelectedItem = Nothing
+        cmbCategorias.SelectedItem = Nothing
+    End Sub
+
+    Private Sub btnAgregarProducto_Click(sender As Object, e As EventArgs) Handles btnAgregarProducto.Click 'Abre la ventana para agregar un producto
         Dim ap As New AgregarProducto
         ap.Show()
     End Sub
 
-    Public Sub cargarListView()
+    Private Sub ListaProductos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed 'Cuando cerramos esta ventana, muestra la ventana Principal
+        Dim princi As New Principal
+        princi.Visible = True
+    End Sub
+
+
+
+    'Campos o Datos
+    Private Sub ListaProductos_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated 'Campos o Datos, Actualiza la lista de productos cuando se abre la ventana del programa
+        cargarListView()
+    End Sub
+    Public Sub cargarListView() 'Limpia el listado de productos y lo vuelve a rellenar con informacion actualizada
         Me.lstProductos.Items.Clear()
         col_productos = cont.listadoproducto
         Dim lista As New ListViewItem
@@ -33,7 +53,7 @@
         Next
     End Sub
 
-    Private Sub cargarMenuStrips(ByVal col_categorias As ArrayList, ByVal col_fuentes As ArrayList)
+    Private Sub cargarMenuStrips(ByVal col_categorias As ArrayList, ByVal col_fuentes As ArrayList) 'Rellena los menu strips con las listas de la controladora
         For Each cat As Categoria In col_categorias
             Me.menuCategorias.Items.Add(cat.nombre)
         Next
@@ -41,15 +61,13 @@
             Me.menuFuentes.Items.Add(fuente.nombre)
         Next
     End Sub
-    Private Sub cargarListas()
 
+    Private Sub cargarListas() 'Rellena las listas que usan los combo boxes y tambien los menu strips con las listas de la controladora
         col_fuentes = cont.listadofuente
         col_categorias = cont.listadocategoria
         col_productos = cont.listadoproducto
-
         Dim bs_fuentes As New BindingSource
         Dim bs_categorias As New BindingSource
-
         bs_fuentes.DataSource = col_fuentes
         bs_categorias.DataSource = col_categorias
         cmbFuentes.SelectedItem = Nothing
@@ -60,58 +78,16 @@
             .DataSource = bs_fuentes
             .SelectedItem = Nothing
         End With
-
         With cmbCategorias
             .DisplayMember = "nombre"
-
             .DataSource = bs_categorias
             .SelectedItem = Nothing
         End With
-
         cargarMenuStrips(col_categorias, col_fuentes)
         cargarListView()
     End Sub
-    Private Sub limpiarInformacion()
-        lblNombre.Text = ""
-        lblPrecio.Text = ""
-        lblFuente.Text = ""
-        lblCategoria.Text = ""
-        rdSobra.Checked = False
-        rdBien.Checked = False
-        rdPoco.Checked = False
 
-
-    End Sub
-
-    Private Sub visibilidadRadioButtons(ByVal b As Boolean)
-        lblCuanto.Visible = b
-        rdSobra.Visible = b
-        rdBien.Visible = b
-        rdPoco.Visible = b
-    End Sub
-    Private Sub visibilidadInformacion(ByVal b As Boolean, ByVal hayProducto As Boolean)
-        pbImagen.Visible = b
-        lblNombre.Visible = b
-        lblPrecio.Visible = b
-        lblCuanto.Visible = b
-        lblFuente.Visible = b
-        lblCategoria.Visible = b
-        visibilidadRadioButtons(hayProducto)
-        btnImportante.Visible = b
-        btnHay.Visible = b
-    End Sub
-    Private Sub ListaProductos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        visibilidadInformacion(False, False)
-        cargarListas()
-        cmbFuentes.SelectedItem = Nothing
-        cmbCategorias.SelectedItem = Nothing
-    End Sub
-
-    Private Sub btnRefrescar_Click(sender As Object, e As EventArgs) Handles btnRefrescar.Click
-        cargarListView()
-    End Sub
-
-    Private Sub cambiarBtnHay(ByVal hay As String, ByVal importante As Boolean)
+    Private Sub cambiarBtnHay(ByVal hay As String, ByVal importante As Boolean) 'Cambia el color y el texto del boton encargado de la existencia del producto en la casa
         If (hay = "NADA") Then
             If (importante) Then
                 btnHay.BackColor = Color.Red
@@ -125,7 +101,7 @@
         End If
     End Sub
 
-    Private Sub cambiarBtnImportante(ByVal importante As Boolean)
+    Private Sub cambiarBtnImportante(ByVal importante As Boolean) 'Cambia el color y texto del boton encargado de la Importancia del producto
         With btnImportante
             If (importante) Then
                 .BackColor = Color.Red
@@ -135,15 +111,14 @@
                 .Text = "No importante"
             End If
         End With
-
     End Sub
-    Private Sub chequearRadioButtons(ByVal cuanto_tenemos As String)
+
+    Private Sub chequearRadioButtons(ByVal cuanto_tenemos As String) 'Chequea uno de los radio buttons dependiendo de la variable cuanto_tenemos del producto
         rdSobra.Checked = False
         rdBien.Checked = False
         rdPoco.Checked = False
         Select Case cuanto_tenemos
             Case "NADA"
-
             Case "POCO"
                 rdPoco.Checked = True
             Case "BIEN"
@@ -152,21 +127,16 @@
                 rdBien.Checked = True
         End Select
     End Sub
-    Private Sub lstProductos_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstProductos.ItemSelectionChanged
 
-
+    Private Sub lstProductos_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstProductos.ItemSelectionChanged 'Despliega la informacion del producto seleccionado
         If lstProductos.SelectedItems.Count > 0 Then
-
             un_id = lstProductos.SelectedItems(0).Text
             Dim un_producto = cont.devolverProducto(un_id)
             lblNombre.Text = un_producto.nombre
             lblPrecio.Text = "$ " & un_producto.precio
             lblFuente.Text = "Se compra en: " & un_producto.fuente.nombre
             lblCategoria.Text = "Categoria: " & un_producto.categoria.nombre
-
-
             chequearRadioButtons(un_producto.cuanto_tenemos)
-
             cambiarBtnHay(un_producto.cuanto_tenemos, un_producto.importante)
             cambiarBtnImportante(un_producto.importante)
             Dim ruta = un_producto.nombre_imagen
@@ -185,11 +155,11 @@
         End If
     End Sub
 
-    Private Sub lblNombre_Click(sender As Object, e As EventArgs) Handles lblNombre.Click
 
+
+    'ABM
+    Private Sub lblNombre_Click(sender As Object, e As EventArgs) Handles lblNombre.Click 'Modifica el nombre del producto seleccionado
         Dim un_producto = cont.devolverProducto(un_id)
-
-
         Dim nuevo_nombre = InputBox("Ingrese el nuevo nombre del producto: ", "Nuevo nombre", un_producto.nombre)
         un_producto.nombre = nuevo_nombre
         If (cont.ModificarProducto(un_id, un_producto)) Then
@@ -198,10 +168,9 @@
         cargarListView()
     End Sub
 
-    Private Sub lblPrecio_Click(sender As Object, e As EventArgs) Handles lblPrecio.Click
+    Private Sub lblPrecio_Click(sender As Object, e As EventArgs) Handles lblPrecio.Click 'Modifica el precio del producto seleccionado
         Dim un_producto = cont.devolverProducto(un_id)
         Dim d As Double
-
         Dim nuevo_precio As Double = InputBox("Ingrese el nuevo precio del producto: ", "Nuevo precio", un_producto.precio)
         If (Double.TryParse(nuevo_precio, d)) Then
             un_producto.precio = nuevo_precio
@@ -213,7 +182,8 @@
         End If
         cargarListView()
     End Sub
-    Private Sub btnImportante_Click(sender As Object, e As EventArgs) Handles btnImportante.Click
+
+    Private Sub btnImportante_Click(sender As Object, e As EventArgs) Handles btnImportante.Click 'Modifica la importancia del producto seleccionado
         Dim un_producto = cont.devolverProducto(un_id)
         un_producto.importante = Not un_producto.importante
         cont.ModificarProducto(un_id, un_producto)
@@ -222,7 +192,7 @@
         cargarListView()
     End Sub
 
-    Private Sub btnHay_Click(sender As Object, e As EventArgs) Handles btnHay.Click
+    Private Sub btnHay_Click(sender As Object, e As EventArgs) Handles btnHay.Click 'Modifica la variable cuanto_tenemos del producto seleccionado y la deja en BIEN o en NADA
         Dim un_producto = cont.devolverProducto(un_id)
         If (un_producto.cuanto_tenemos = "NADA") Then
             un_producto.cuanto_tenemos = "BIEN"
@@ -237,27 +207,28 @@
         cargarListView()
     End Sub
 
-    Private Sub rdSobra_Click(sender As Object, e As EventArgs) Handles rdSobra.Click
+    Private Sub rdSobra_Click(sender As Object, e As EventArgs) Handles rdSobra.Click 'Modifica la variable cuanto_tenemos del producto seleccionado y la deja en SOBRA
         Dim un_producto = cont.devolverProducto(un_id)
         un_producto.cuanto_tenemos = "SOBRA"
         cont.ModificarProducto(un_id, un_producto)
         cargarListView()
     End Sub
 
-    Private Sub rdBien_Click(sender As Object, e As EventArgs) Handles rdBien.Click
+    Private Sub rdBien_Click(sender As Object, e As EventArgs) Handles rdBien.Click 'Modifica la variable cuanto_tenemos del producto seleccionado y la deja en BIEN
         Dim un_producto = cont.devolverProducto(un_id)
         un_producto.cuanto_tenemos = "BIEN"
         cont.ModificarProducto(un_id, un_producto)
         cargarListView()
     End Sub
 
-    Private Sub rdPoco_Click(sender As Object, e As EventArgs) Handles rdPoco.Click
+    Private Sub rdPoco_Click(sender As Object, e As EventArgs) Handles rdPoco.Click 'Modifica la variable cuanto_tenemos del producto seleccionado y la deja en POCO
         Dim un_producto = cont.devolverProducto(un_id)
         un_producto.cuanto_tenemos = "POCO"
         cont.ModificarProducto(un_id, un_producto)
         cargarListView()
     End Sub
-    Private Sub menuFuentes_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuFuentes.ItemClicked
+
+    Private Sub menuFuentes_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuFuentes.ItemClicked 'Modifica la fuente del producto seleccionado
         Dim el_producto = cont.devolverProducto(un_id)
         Dim col_fuentes = cont.listadofuente
         Dim nombre_fuente = e.ClickedItem.ToString()
@@ -273,7 +244,7 @@
         cargarListView()
     End Sub
 
-    Private Sub menuCategorias_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuCategorias.ItemClicked
+    Private Sub menuCategorias_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuCategorias.ItemClicked 'Modifica la categoria del producto seleccionado
         Dim el_producto = cont.devolverProducto(un_id)
         Dim col_categorias = cont.listadocategoria
         Dim nombre_categoria = e.ClickedItem.ToString()
@@ -289,12 +260,7 @@
         cargarListView()
     End Sub
 
-    Private Sub ListaProductos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Dim princi As New Principal
-        princi.Visible = True
-    End Sub
-
-    Private Sub eliminarProducto_Click(sender As Object, e As EventArgs) Handles eliminarProducto.Click
+    Private Sub eliminarProducto_Click(sender As Object, e As EventArgs) Handles eliminarProducto.Click 'Elimina el producto seleccionado
         Dim eliminar As DialogResult = MessageBox.Show("Estas seguro?", "Eliminar producto", MessageBoxButtons.YesNo)
         If (eliminar = DialogResult.Yes) Then
             cont.BorrarProducto(un_id)
@@ -303,13 +269,34 @@
         End If
     End Sub
 
-
-
-    Private Sub ListaProductos_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
-        cargarListView()
+    Private Sub cambiarImagen_Click(sender As Object, e As EventArgs) Handles cambiarImagen.Click 'ABM, Modificar imagen del producto
+        Dim el_producto = cont.devolverProducto(un_id)
+        Dim lector As New OpenFileDialog()
+        lector.Title = "Seleccione una imagen"
+        lector.Filter = "Imagen PNG|*.png| Imagen JPG|*.jpg| Imagen JPEG|*.jpeg"
+        Dim ruta_imagen = ""
+        If (lector.ShowDialog <> DialogResult.Cancel) Then
+            Dim ext = extraerExtension(lector.FileName)
+            If (System.IO.Directory.Exists("imagenes/productos/")) Then
+                System.IO.Directory.CreateDirectory("imagenes/productos/")
+            End If
+            ruta_imagen = "imagenes/productos/" & el_producto.nombre & "." & ext
+            If (System.IO.File.Exists(ruta_imagen)) Then
+                System.IO.File.Delete(ruta_imagen)
+            End If
+            FileSystem.FileCopy(lector.FileName, ruta_imagen)
+            pbImagen.SizeMode = PictureBoxSizeMode.Zoom
+            pbImagen.ImageLocation = ruta_imagen
+            el_producto.nombre_imagen = ruta_imagen
+            cont.ModificarProducto(un_id, el_producto)
+            cargarListView()
+        End If
     End Sub
 
-    Private Function extraerExtension(ByVal ruta_archivo As String) As String
+
+
+    'Utilidades
+    Private Function extraerExtension(ByVal ruta_archivo As String) As String 'Extrae la extension de un archivo dada su ruta
         Dim extension = ""
         Dim c_anterior As Char
         For Each c As Char In ruta_archivo
@@ -322,28 +309,32 @@
         Return extension
     End Function
 
-    Private Sub cambiarImagen_Click(sender As Object, e As EventArgs) Handles cambiarImagen.Click
-        Dim el_producto = cont.devolverProducto(un_id)
-        Dim lector As New OpenFileDialog()
-        lector.Title = "Seleccione una imagen"
-        lector.Filter = "Imagen PNG|*.png| Imagen JPG|*.jpg| Imagen JPEG|*.jpeg"
-        Dim ruta_imagen = ""
-        If (lector.ShowDialog <> DialogResult.Cancel) Then
-            Dim ext = extraerExtension(lector.FileName)
-            If (System.IO.Directory.Exists("imagenes/productos/")) Then
-                System.IO.Directory.CreateDirectory("imagenes/productos/")
-            End If
+    Private Sub limpiarInformacion() 'Vacia toda la informacion desplegada y desmarca cualquiera de los radio buttons
+        lblNombre.Text = ""
+        lblPrecio.Text = ""
+        lblFuente.Text = ""
+        lblCategoria.Text = ""
+        rdSobra.Checked = False
+        rdBien.Checked = False
+        rdPoco.Checked = False
+    End Sub
 
-            ruta_imagen = "imagenes/productos/" & el_producto.nombre & "." & ext
-            If (System.IO.File.Exists(ruta_imagen)) Then
-                System.IO.File.Delete(ruta_imagen)
-            End If
-            FileSystem.FileCopy(lector.FileName, ruta_imagen)
-                pbImagen.SizeMode = PictureBoxSizeMode.Zoom
-            pbImagen.ImageLocation = ruta_imagen
-            el_producto.nombre_imagen = ruta_imagen
-            cont.ModificarProducto(un_id, el_producto)
-            cargarListView()
-        End If
+    Private Sub visibilidadRadioButtons(ByVal b As Boolean) 'Cambia la visibilidad de los radio buttons
+        lblCuanto.Visible = b
+        rdSobra.Visible = b
+        rdBien.Visible = b
+        rdPoco.Visible = b
+    End Sub
+
+    Private Sub visibilidadInformacion(ByVal b As Boolean, ByVal hayProducto As Boolean) 'Cambia la visibilidad de toda la informacion desplegada
+        pbImagen.Visible = b
+        lblNombre.Visible = b
+        lblPrecio.Visible = b
+        lblCuanto.Visible = b
+        lblFuente.Visible = b
+        lblCategoria.Visible = b
+        visibilidadRadioButtons(hayProducto)
+        btnImportante.Visible = b
+        btnHay.Visible = b
     End Sub
 End Class
