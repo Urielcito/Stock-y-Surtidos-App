@@ -99,7 +99,7 @@ Partial Class AgregarProducto
         Me.txtNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombre.Location = New System.Drawing.Point(399, 36)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(188, 29)
+        Me.txtNombre.Size = New System.Drawing.Size(356, 29)
         Me.txtNombre.TabIndex = 5
         '
         'lblPrecio
@@ -126,7 +126,7 @@ Partial Class AgregarProducto
         '
         Me.btnAgregar.Enabled = False
         Me.btnAgregar.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAgregar.Location = New System.Drawing.Point(602, 33)
+        Me.btnAgregar.Location = New System.Drawing.Point(761, 33)
         Me.btnAgregar.Name = "btnAgregar"
         Me.btnAgregar.Size = New System.Drawing.Size(116, 94)
         Me.btnAgregar.TabIndex = 10
@@ -203,7 +203,7 @@ Partial Class AgregarProducto
         'btnImagen
         '
         Me.btnImagen.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnImagen.Location = New System.Drawing.Point(451, 267)
+        Me.btnImagen.Location = New System.Drawing.Point(610, 267)
         Me.btnImagen.Name = "btnImagen"
         Me.btnImagen.Size = New System.Drawing.Size(116, 30)
         Me.btnImagen.TabIndex = 17
@@ -213,7 +213,7 @@ Partial Class AgregarProducto
         'pbImagen
         '
         Me.pbImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbImagen.Location = New System.Drawing.Point(573, 167)
+        Me.pbImagen.Location = New System.Drawing.Point(732, 167)
         Me.pbImagen.Name = "pbImagen"
         Me.pbImagen.Size = New System.Drawing.Size(145, 130)
         Me.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -224,7 +224,7 @@ Partial Class AgregarProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(733, 309)
+        Me.ClientSize = New System.Drawing.Size(889, 309)
         Me.Controls.Add(Me.pbImagen)
         Me.Controls.Add(Me.btnImagen)
         Me.Controls.Add(Me.chkImportante)
@@ -243,6 +243,7 @@ Partial Class AgregarProducto
         Me.Controls.Add(Me.cmbFuentes)
         Me.Controls.Add(Me.lblFuente)
         Me.Name = "AgregarProducto"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock y Surtidos"
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

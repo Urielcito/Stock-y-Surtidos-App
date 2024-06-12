@@ -71,12 +71,7 @@
     End Function
 
     'FUNCIONES DE MODIFICACION DE OBJETO
-    Public Function ModificarFuente(ByVal un_id As Integer, ByVal un_nombre As String, ByVal un_aceptan_tarjeta As Boolean, ByVal un_telefono As Integer)
-        Dim una_fuente As New Fuente()
-        una_fuente.id = un_id
-        una_fuente.nombre = un_nombre
-        una_fuente.aceptan_tarjeta = un_aceptan_tarjeta
-        una_fuente.telefono = un_telefono
+    Public Function ModificarFuente(ByVal un_id, ByVal una_fuente)
         If p_fuente.ModificarFuente(un_id, una_fuente) = True Then
             Return True
         Else
@@ -159,9 +154,9 @@
         Return Nothing
     End Function
 
-    Public Function devolverCantProductosFuente(ByVal la_fuente As Fuente) As Integer
+    Public Function devolverCantProductosFuente(ByVal la_fuente As Fuente, ByVal col_productos As ArrayList) As Integer
         Dim cant = 0
-        For Each un_producto As Producto In col_producto
+        For Each un_producto As Producto In col_productos
             If (un_producto.fuente.id = la_fuente.id) Then
                 cant = cant + 1
             End If

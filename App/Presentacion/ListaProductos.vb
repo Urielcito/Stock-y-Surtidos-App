@@ -261,7 +261,7 @@
     End Sub
 
     Private Sub eliminarProducto_Click(sender As Object, e As EventArgs) Handles eliminarProducto.Click 'Elimina el producto seleccionado
-        Dim eliminar As DialogResult = MessageBox.Show("Estas seguro?", "Eliminar producto", MessageBoxButtons.YesNo)
+        Dim eliminar As DialogResult = MessageBox.Show("Estas seguro/a de que quieres eliminar este producto?", "Eliminar producto", MessageBoxButtons.YesNo)
         If (eliminar = DialogResult.Yes) Then
             cont.BorrarProducto(un_id)
             cargarListView()

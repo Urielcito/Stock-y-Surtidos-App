@@ -109,15 +109,18 @@ Partial Class ListaProductos
         '
         'lstProductos
         '
+        Me.lstProductos.Alignment = System.Windows.Forms.ListViewAlignment.Left
         Me.lstProductos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7})
         Me.lstProductos.ContextMenuStrip = Me.menuProducto
+        Me.lstProductos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstProductos.FullRowSelect = True
         Me.lstProductos.GridLines = True
+        Me.lstProductos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.lstProductos.HideSelection = False
-        Me.lstProductos.Location = New System.Drawing.Point(228, 12)
+        Me.lstProductos.Location = New System.Drawing.Point(231, 12)
         Me.lstProductos.MultiSelect = False
         Me.lstProductos.Name = "lstProductos"
-        Me.lstProductos.Size = New System.Drawing.Size(943, 837)
+        Me.lstProductos.Size = New System.Drawing.Size(940, 837)
         Me.lstProductos.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.lstProductos.TabIndex = 5
         Me.lstProductos.UseCompatibleStateImageBehavior = False
@@ -126,7 +129,7 @@ Partial Class ListaProductos
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "ID"
-        Me.ColumnHeader1.Width = 42
+        Me.ColumnHeader1.Width = 0
         '
         'ColumnHeader2
         '
@@ -141,22 +144,22 @@ Partial Class ListaProductos
         'ColumnHeader4
         '
         Me.ColumnHeader4.Text = "Categoria"
-        Me.ColumnHeader4.Width = 143
+        Me.ColumnHeader4.Width = 186
         '
         'ColumnHeader5
         '
         Me.ColumnHeader5.Text = "Precio"
-        Me.ColumnHeader5.Width = 75
+        Me.ColumnHeader5.Width = 57
         '
         'ColumnHeader6
         '
         Me.ColumnHeader6.Text = "Importancia"
-        Me.ColumnHeader6.Width = 107
+        Me.ColumnHeader6.Width = 139
         '
         'ColumnHeader7
         '
         Me.ColumnHeader7.Text = "Cuanto hay"
-        Me.ColumnHeader7.Width = 117
+        Me.ColumnHeader7.Width = 95
         '
         'menuProducto
         '
