@@ -31,12 +31,12 @@ TO-DO: Se pueden ver, agregar, modificar y eliminar Fuentes, una Fuente represen
 # Futuro:
 
 ## Agregar tres entidades nuevas 
-	### - Lista de compras (1 unico registro en la base de datos, siendo constantemente modificado, atributos: los productos)
-	### - Surtido realizado (una lista de compras y una fecha)
+- Lista de compras (1 unico registro en la base de datos, siendo constantemente modificado, atributos: los productos)
+- Surtido realizado (una lista de compras y una fecha)
 	
 ## Funcionalidades:
-	### - Para cada producto el cual aparezca en minimo 2 surtidos, calcular la duracion entre una compra y otra, sumarla con el resto de duraciones calculadas en caso de ser mas de una y calcular una duracion promedio.
-	### - Mostrar en la pantalla principal los productos que estan cerca del fin de su duracion en rojo, como una prediccion de que se esta por acabar, que diga, por ejemplo: Probablemente se acaben: y abajo la lista de productos
+- Para cada producto el cual aparezca en minimo 2 surtidos, calcular la duracion entre una compra y otra, sumarla con el resto de duraciones calculadas en caso de ser mas de una y calcular una duracion promedio.
+- Mostrar en la pantalla principal los productos que estan cerca del fin de su duracion en rojo, como una prediccion de que se esta por acabar, que diga, por ejemplo: Probablemente se acaben: y abajo la lista de productos
 
 	
 	
