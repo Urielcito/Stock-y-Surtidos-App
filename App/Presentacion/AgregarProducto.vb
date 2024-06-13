@@ -200,4 +200,20 @@ Public Class AgregarProducto
         Next
         Return extension
     End Function
+
+    Private Sub rbNada_MouseClick(sender As Object, e As MouseEventArgs) Handles rbNada.MouseClick
+        chequearCampos()
+    End Sub
+
+    Private Sub rbPoco_MouseClick(sender As Object, e As MouseEventArgs) Handles rbPoco.MouseClick
+        chequearCampos()
+    End Sub
+
+    Private Sub rbBien_MouseClick(sender As Object, e As MouseEventArgs) Handles rbBien.MouseClick
+        chequearCampos()
+    End Sub
+
+    Private Sub rbSobra_MouseClick(sender As Object, e As MouseEventArgs) Handles rbSobra.MouseClick
+        chequearCampos()
+    End Sub
 End Class
