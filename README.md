@@ -1,8 +1,6 @@
 # Stock-y-Surtidos-App
 
 ## Para no olvidarme:
-
-- Hacer que cuando modifique un producto chequee si hay uno con el mismo nombre en otra fuente y modificarlo tambien.
 - Al listar los productos con el filtro "que_comprar" ignorar los duplicados y mostrar solo el mas barato de los que haya.
 ## Ventanas
 

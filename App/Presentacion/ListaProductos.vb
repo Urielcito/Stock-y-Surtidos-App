@@ -161,9 +161,10 @@
     'ABM
     Private Sub lblNombre_Click(sender As Object, e As EventArgs) Handles lblNombre.Click 'Modifica el nombre del producto seleccionado
         Dim un_producto = cont.devolverProducto(un_id)
+        Dim nombre_original = un_producto.nombre
         Dim nuevo_nombre = InputBox("Ingrese el nuevo nombre del producto: ", "Nuevo nombre", un_producto.nombre)
         un_producto.nombre = nuevo_nombre
-        If (cont.ModificarProducto(un_id, un_producto)) Then
+        If (cont.ModificarNombreProducto(un_id, un_producto, nombre_original)) Then
             lblNombre.Text = nuevo_nombre
         End If
         cargarListView()

@@ -40,6 +40,15 @@
                 MessageBox.Show("Producto añadido con exito")
                 Return True
             End If
+            Dim col_productos_actualizada = Me.listadoproducto
+            For Each otro_producto As Producto In col_productos_actualizada
+                If (otro_producto.nombre = un_producto.nombre) Then
+                    un_producto.id = otro_producto.id
+                    un_producto.precio = otro_producto.precio
+                    un_producto.fuente = otro_producto.fuente
+                    p_producto.ModificarProducto(un_producto)
+                End If
+            Next
         Catch ex As Exception
             MessageBox.Show("Hubo un error al añadir el producto")
             Return False
@@ -99,11 +108,46 @@
         un_producto.importante = el_producto.importante
         un_producto.nombre_imagen = el_producto.nombre_imagen
 
-        If p_producto.ModificarProducto(un_producto) = True Then
-            Return True
-        Else
-            Return False
-        End If
+        Dim salio_bien = True
+        salio_bien = p_producto.ModificarProducto(un_producto)
+        Dim col_productos_actualizada = Me.listadoproducto
+        For Each otro_producto As Producto In col_productos_actualizada
+            If (otro_producto.nombre = un_producto.nombre) Then
+                un_producto.precio = otro_producto.precio
+                un_producto.id = otro_producto.id
+                un_producto.fuente = otro_producto.fuente
+                otro_producto = un_producto
+                salio_bien = p_producto.ModificarProducto(un_producto)
+            End If
+        Next
+        Return salio_bien
+    End Function
+
+    Public Function ModificarNombreProducto(ByVal un_id As Integer, ByVal el_producto As Producto, ByVal nombre_original As String)
+        Dim un_producto As New Producto()
+        un_producto.id = un_id
+        un_producto.fuente = el_producto.fuente
+        un_producto.categoria = el_producto.categoria
+        un_producto.nombre = el_producto.nombre
+        un_producto.precio = el_producto.precio
+        un_producto.cuanto_tenemos = el_producto.cuanto_tenemos
+        un_producto.importante = el_producto.importante
+        un_producto.nombre_imagen = el_producto.nombre_imagen
+
+        Dim salio_bien = True
+        salio_bien = p_producto.ModificarProducto(un_producto)
+        Dim col_productos_actualizada = Me.listadoproducto
+        For Each otro_producto As Producto In col_productos_actualizada
+            If (otro_producto.nombre = nombre_original) Then
+                un_producto.precio = otro_producto.precio
+                un_producto.id = otro_producto.id
+                un_producto.fuente = otro_producto.fuente
+                otro_producto = un_producto
+                salio_bien = p_producto.ModificarProducto(un_producto)
+            End If
+
+        Next
+        Return salio_bien
     End Function
 
     'FUNCIONES PARA LISTAR LOS OBJETOS PROVENIENTES DIRECTAMENTE DESDE LA BASE DE DATOS
