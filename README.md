@@ -1,7 +1,8 @@
 # Stock-y-Surtidos-App
 
 ## Para no olvidarme:
-- Al listar los productos con el filtro "que_comprar" ignorar los duplicados y mostrar solo el mas barato de los que haya.
+- Implementar ese listado sin implementar
+
 ## Ventanas
 
 ### Principal
