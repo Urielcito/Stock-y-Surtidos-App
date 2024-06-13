@@ -166,6 +166,9 @@
     End Function
 
     'FUNCIONES QUE TRAEN LAS VISTAS DE LA BASE DE DATOS PARA REALIZAR LISTAS PERSONALIZADAS DE DISTINTOS OBJETOS
-
+    Public Function queProductosComprar() As ArrayList
+        Dim col_vista = p_producto.queComprar()
+        Return col_vista
+    End Function
 
 End Class

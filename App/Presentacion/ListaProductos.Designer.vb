@@ -54,6 +54,8 @@ Partial Class ListaProductos
         Me.lblCategoria = New System.Windows.Forms.Label()
         Me.menuCategorias = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.tooltip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnQueComprar = New System.Windows.Forms.Button()
+        Me.btnReiniciarFiltros = New System.Windows.Forms.Button()
         Me.menuProducto.SuspendLayout()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menuImagen.SuspendLayout()
@@ -117,10 +119,10 @@ Partial Class ListaProductos
         Me.lstProductos.GridLines = True
         Me.lstProductos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.lstProductos.HideSelection = False
-        Me.lstProductos.Location = New System.Drawing.Point(231, 12)
+        Me.lstProductos.Location = New System.Drawing.Point(231, 55)
         Me.lstProductos.MultiSelect = False
         Me.lstProductos.Name = "lstProductos"
-        Me.lstProductos.Size = New System.Drawing.Size(940, 837)
+        Me.lstProductos.Size = New System.Drawing.Size(940, 794)
         Me.lstProductos.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.lstProductos.TabIndex = 5
         Me.lstProductos.UseCompatibleStateImageBehavior = False
@@ -334,11 +336,33 @@ Partial Class ListaProductos
         Me.tooltip1.InitialDelay = 250
         Me.tooltip1.ReshowDelay = 100
         '
+        'btnQueComprar
+        '
+        Me.btnQueComprar.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnQueComprar.Location = New System.Drawing.Point(16, 302)
+        Me.btnQueComprar.Name = "btnQueComprar"
+        Me.btnQueComprar.Size = New System.Drawing.Size(197, 66)
+        Me.btnQueComprar.TabIndex = 18
+        Me.btnQueComprar.Text = "Que deberiamos comprar?"
+        Me.btnQueComprar.UseVisualStyleBackColor = True
+        '
+        'btnReiniciarFiltros
+        '
+        Me.btnReiniciarFiltros.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnReiniciarFiltros.Location = New System.Drawing.Point(231, 12)
+        Me.btnReiniciarFiltros.Name = "btnReiniciarFiltros"
+        Me.btnReiniciarFiltros.Size = New System.Drawing.Size(197, 37)
+        Me.btnReiniciarFiltros.TabIndex = 19
+        Me.btnReiniciarFiltros.Text = "Reiniciar filtros"
+        Me.btnReiniciarFiltros.UseVisualStyleBackColor = True
+        '
         'ListaProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1584, 861)
+        Me.Controls.Add(Me.btnReiniciarFiltros)
+        Me.Controls.Add(Me.btnQueComprar)
         Me.Controls.Add(Me.lblCategoria)
         Me.Controls.Add(Me.lblFuente)
         Me.Controls.Add(Me.lblCuanto)
@@ -398,4 +422,6 @@ Partial Class ListaProductos
     Friend WithEvents menuImagen As ContextMenuStrip
     Friend WithEvents cambiarImagen As ToolStripMenuItem
     Friend WithEvents tooltip1 As ToolTip
+    Friend WithEvents btnQueComprar As Button
+    Friend WithEvents btnReiniciarFiltros As Button
 End Class

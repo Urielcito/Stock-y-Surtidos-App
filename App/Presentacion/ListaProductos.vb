@@ -1,9 +1,7 @@
 ﻿Public Class ListaProductos
     Dim cont As New Controladora
-    Dim col_productos As New ArrayList
-    Dim col_fuentes As New ArrayList
-    Dim col_categorias As New ArrayList
     Dim un_id As Integer 'ID DEL PRODUCTO USADA POR TODO EL FORMULARIO
+    Dim filtros = "default"
 
 
 
@@ -33,7 +31,14 @@
     End Sub
     Public Sub cargarListView() 'Limpia el listado de productos y lo vuelve a rellenar con informacion actualizada
         Me.lstProductos.Items.Clear()
-        col_productos = cont.listadoproducto
+        Dim col_productos As New ArrayList
+        Select Case filtros
+            Case "default"
+                col_productos = cont.listadoproducto 'Sin filtro
+            Case "que_comprar"
+                col_productos = cont.queProductosComprar 'Productos de los cuales tenemos NADA o POCO y son importantes
+        End Select
+
         Dim lista As New ListViewItem
         For Each p As Producto In col_productos
             Dim strImportante As String
@@ -63,9 +68,9 @@
     End Sub
 
     Private Sub cargarListas() 'Rellena las listas que usan los combo boxes y tambien los menu strips con las listas de la controladora
-        col_fuentes = cont.listadofuente
-        col_categorias = cont.listadocategoria
-        col_productos = cont.listadoproducto
+        Dim col_fuentes = cont.listadofuente
+        Dim col_categorias = cont.listadocategoria
+        Dim col_productos = cont.listadoproducto
         Dim bs_fuentes As New BindingSource
         Dim bs_categorias As New BindingSource
         bs_fuentes.DataSource = col_fuentes
@@ -336,5 +341,15 @@
         visibilidadRadioButtons(hayProducto)
         btnImportante.Visible = b
         btnHay.Visible = b
+    End Sub
+
+    Private Sub btnReiniciarFiltros_Click(sender As Object, e As EventArgs) Handles btnReiniciarFiltros.Click
+        filtros = "default"
+        cargarListView()
+    End Sub
+
+    Private Sub btnQueComprar_Click(sender As Object, e As EventArgs) Handles btnQueComprar.Click
+        filtros = "que_comprar"
+        cargarListView()
     End Sub
 End Class
