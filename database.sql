@@ -28,7 +28,7 @@ CREATE TABLE `categoria` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (21,'Crear nueva...'),(22,'Bebida'),(23,'Comida'),(24,'Producto de limpieza'),(25,'Postre'),(26,'Comida chatarra'),(27,'Condimento'),(28,'Congelado'),(29,'Alcohol'),(30,'Verdura'),(31,'Fruta'),(32,'Embutido'),(33,'Papeleria'),(34,'Bazar'),(35,'Higiene personal'),(36,'Mascotas'),(37,'Fiambreria'),(38,'Ferreteria'),(39,'Maquillaje'),(40,'Medicamento'),(41,'Tecnologia'),(42,'Aderezo');
+INSERT INTO `categoria` VALUES (21,'Crear nueva...'),(22,'Cualquiera'),(23,'Comida'),(24,'Producto de limpieza'),(25,'Postre'),(26,'Comida chatarra'),(27,'Condimento'),(28,'Congelado'),(29,'Alcohol'),(30,'Verdura'),(31,'Fruta'),(32,'Embutido'),(33,'Papeleria'),(34,'Bazar'),(35,'Higiene personal'),(36,'Mascotas'),(37,'Fiambreria'),(38,'Ferreteria'),(39,'Maquillaje'),(40,'Medicamento'),(41,'Tecnologia'),(42,'Aderezo'),(43,'Bebida');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,7 @@ CREATE TABLE `fuente` (
   `aceptan_tarjeta` tinyint DEFAULT NULL,
   `telefono` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `fuente` (
 
 LOCK TABLES `fuente` WRITE;
 /*!40000 ALTER TABLE `fuente` DISABLE KEYS */;
-INSERT INTO `fuente` VALUES (1,'El Economico',1,45227298),(2,'La pañalera',0,45227418),(4,'Ta-Ta',0,92953181),(5,'Micro Macro Tigre 1',1,45225084),(6,'Super USA',1,45228422);
+INSERT INTO `fuente` VALUES (1,'Cualquiera',0,0),(2,'La pañalera',0,45227418),(4,'Ta-Ta',0,92953181),(5,'Micro Macro Tigre 1',1,45225084),(6,'Super USA',1,45228422),(7,'Polleria A Comer!',1,99599067),(8,'El Economico',1,45227298);
 /*!40000 ALTER TABLE `fuente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,8 +87,8 @@ CREATE TABLE `producto` (
   KEY `id_fuente_idx` (`id_fuente`),
   KEY `id_categoria_idx` (`id_categoria`),
   CONSTRAINT `id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_fuente` FOREIGN KEY (`id_fuente`) REFERENCES `fuente` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `id_fuente` FOREIGN KEY (`id_fuente`) REFERENCES `fuente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (20,1,23,'VIENAS CORTAS X4',64,'NADA',0,'');
+INSERT INTO `producto` VALUES (23,2,25,'DANETTE X4',120,'NADA',0,''),(25,2,23,'Arroz 5k',300,'BIEN',1,''),(26,2,43,'Fagar Cola 2 Litros',92,'NADA',1,'imagenes/productos/Fagar 2L.png'),(27,7,43,'Fagar Cola 2 Litros',95,'NADA',1,'imagenes/productos/Fagar 2L.png');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-12  3:45:16
+-- Dump completed on 2024-06-13 12:01:01

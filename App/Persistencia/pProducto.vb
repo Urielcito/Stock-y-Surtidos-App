@@ -53,56 +53,51 @@ Public Class pProducto
         Return False
     End Function
 
-    Public Function MostrarProductos() As ArrayList
+    Private Function extraerProductosAColeccion(ByVal dt As DataTable, ByVal col_productos As ArrayList, ByVal strSelect As String)
         Dim p_fuente As New pFuente
         Dim p_categoria As New pCategoria
-        Dim col_fuentes As New ArrayList
-        Dim col_categorias As New ArrayList
-        Dim dt As DataTable = Nothing
-        Dim strSelect As String
+        Dim col_fuentes As ArrayList
+        Dim col_categorias As ArrayList
         Dim un_producto As Producto
-        Dim col_producto As New ArrayList
-
-
-
-
-        strSelect = "select * from producto"
-        Try
-            Dim una_fuente = New Fuente
-            Dim una_categoria = New Categoria
-
-            col_fuentes = p_fuente.MostrarFuentes
-            col_categorias = p_categoria.MostrarCategorias
-            unaconexion.AbrirConexion()
-            dt = unaconexion.TraerDatos(strSelect)
-            For i As Integer = 0 To dt.Rows.Count - 1
-                un_producto = New Producto
-                un_producto.id = CInt(dt(i).Item("id"))
-                Dim id_fuente = CInt(dt(i).Item("id_fuente"))
-                Dim id_categoria = CInt(dt(i).Item("id_categoria"))
-                un_producto.fuente = New Fuente
-                un_producto.categoria = New Categoria
-                For Each una_fuente In col_fuentes
-                    If (una_fuente.id = id_fuente) Then
-                        un_producto.fuente = una_fuente
-                        Exit For
-                    End If
-                Next
-                For Each una_categoria In col_categorias
-                    If (una_categoria.id = id_categoria) Then
-                        un_producto.categoria = una_categoria
-                        Exit For
-                    End If
-                Next
-
-                un_producto.nombre = dt(i).Item("nombre")
-                un_producto.precio = CDbl(dt(i).Item("precio"))
-                un_producto.cuanto_tenemos = dt(i).Item("cuanto_tenemos")
-                un_producto.importante = CBool(dt(i).Item("importante"))
-                un_producto.nombre_imagen = dt(i).Item("nombre_imagen")
-                col_producto.Add(un_producto)
+        col_fuentes = p_fuente.MostrarFuentes
+        col_categorias = p_categoria.MostrarCategorias
+        dt = unaconexion.TraerDatos(strSelect)
+        For i As Integer = 0 To dt.Rows.Count - 1
+            un_producto = New Producto
+            un_producto.id = CInt(dt(i).Item("id"))
+            Dim id_fuente = CInt(dt(i).Item("id_fuente"))
+            Dim id_categoria = CInt(dt(i).Item("id_categoria"))
+            un_producto.fuente = New Fuente
+            un_producto.categoria = New Categoria
+            For Each una_fuente In col_fuentes
+                If (una_fuente.id = id_fuente) Then
+                    un_producto.fuente = una_fuente
+                    Exit For
+                End If
             Next
-            Return col_producto
+            For Each una_categoria In col_categorias
+                If (una_categoria.id = id_categoria) Then
+                    un_producto.categoria = una_categoria
+                    Exit For
+                End If
+            Next
+
+            un_producto.nombre = dt(i).Item("nombre")
+            un_producto.precio = CDbl(dt(i).Item("precio"))
+            un_producto.cuanto_tenemos = dt(i).Item("cuanto_tenemos")
+            un_producto.importante = CBool(dt(i).Item("importante"))
+            un_producto.nombre_imagen = dt(i).Item("nombre_imagen")
+            col_productos.Add(un_producto)
+        Next
+        Return col_productos
+    End Function
+    Public Function MostrarProductos() As ArrayList
+        Dim strSelect = "select * from producto order by nombre"
+        Dim col_producto As New ArrayList
+        Dim dt As DataTable = Nothing
+        Try
+            unaconexion.AbrirConexion()
+            Return extraerProductosAColeccion(dt, col_producto, strSelect)
         Catch ex As Exception
             Throw ex
         Finally
@@ -112,58 +107,45 @@ Public Class pProducto
 
     'FUNCIONES DE LAS DISTINTAS VISTAS
     Public Function queComprar() As ArrayList
-        Dim strVista As String
-        Dim p_fuente As New pFuente
-        Dim p_categoria As New pCategoria
-        Dim col_fuentes As New ArrayList
-        Dim col_categorias As New ArrayList
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and p1.importante = '1' and (p1.cuanto_tenemos = 'NADA' or p1.cuanto_tenemos = 'POCO')"
         Dim dt As DataTable = Nothing
-        Dim un_producto As Producto
         Dim col_vista As New ArrayList
-
-        strVista = "select p.id, p.nombre,  p.id_fuente, p.id_categoria, p.precio, p.importante, p.cuanto_tenemos, p.nombre_imagen FROM producto p where p.importante = '1' and p.cuanto_tenemos = 'NADA' or p.cuanto_tenemos = 'POCO' order by p.id_fuente"
-
         Try
-            Dim una_fuente = New Fuente
-            Dim una_categoria = New Categoria
-
-            col_fuentes = p_fuente.MostrarFuentes
-            col_categorias = p_categoria.MostrarCategorias
             unaconexion.AbrirConexion()
-            dt = unaconexion.TraerDatos(strVista)
-            For i As Integer = 0 To dt.Rows.Count - 1
-                un_producto = New Producto
-                un_producto.id = CInt(dt(i).Item("id"))
-                Dim id_fuente = CInt(dt(i).Item("id_fuente"))
-                Dim id_categoria = CInt(dt(i).Item("id_categoria"))
-                un_producto.fuente = New Fuente
-                un_producto.categoria = New Categoria
-                For Each una_fuente In col_fuentes
-                    If (una_fuente.id = id_fuente) Then
-                        un_producto.fuente = una_fuente
-                        Exit For
-                    End If
-                Next
-                For Each una_categoria In col_categorias
-                    If (una_categoria.id = id_categoria) Then
-                        un_producto.categoria = una_categoria
-                        Exit For
-                    End If
-                Next
-
-                un_producto.nombre = dt(i).Item("nombre")
-                un_producto.precio = CDbl(dt(i).Item("precio"))
-                un_producto.cuanto_tenemos = dt(i).Item("cuanto_tenemos")
-                un_producto.importante = CBool(dt(i).Item("importante"))
-                un_producto.nombre_imagen = dt(i).Item("nombre_imagen")
-                col_vista.Add(un_producto)
-            Next
-            Return col_vista
+            Return extraerProductosAColeccion(dt, col_vista, strVista)
         Catch ex As Exception
             Throw ex
         Finally
             unaconexion.CerrarConexion()
         End Try
 
+    End Function
+
+    Public Function productosAlMejorPrecio() As ArrayList
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio"
+        Dim dt As DataTable = Nothing
+        Dim col_vista As New ArrayList
+        Try
+            unaconexion.AbrirConexion()
+            Return extraerProductosAColeccion(dt, col_vista, strVista)
+        Catch ex As Exception
+            Throw ex
+        Finally
+            unaconexion.CerrarConexion()
+        End Try
+    End Function
+
+    Public Function queFaltaEnCasa() As ArrayList
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and (p1.cuanto_tenemos = 'NADA')"
+        Dim dt As DataTable = Nothing
+        Dim col_vista As New ArrayList
+        Try
+            unaconexion.AbrirConexion()
+            Return extraerProductosAColeccion(dt, col_vista, strVista)
+        Catch ex As Exception
+            Throw ex
+        Finally
+            unaconexion.CerrarConexion()
+        End Try
     End Function
 End Class

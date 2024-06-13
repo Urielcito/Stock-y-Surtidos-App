@@ -42,11 +42,17 @@
             End If
             Dim col_productos_actualizada = Me.listadoproducto
             For Each otro_producto As Producto In col_productos_actualizada
-                If (otro_producto.nombre = un_producto.nombre) Then
-                    un_producto.id = otro_producto.id
-                    un_producto.precio = otro_producto.precio
-                    un_producto.fuente = otro_producto.fuente
+                If (otro_producto.id <> un_producto.id And otro_producto.nombre = un_producto.nombre) Then
+                    Dim id_original = un_producto.id
+                    Dim precio_original = un_producto.precio
+                    Dim fuente_original = un_producto.fuente
+
+                    un_producto = otro_producto
+                    un_producto.id = id_original
+                    un_producto.precio = precio_original
+                    un_producto.fuente = fuente_original
                     p_producto.ModificarProducto(un_producto)
+                    Exit For
                 End If
             Next
         Catch ex As Exception
@@ -211,8 +217,15 @@
 
     'FUNCIONES QUE TRAEN LAS VISTAS DE LA BASE DE DATOS PARA REALIZAR LISTAS PERSONALIZADAS DE DISTINTOS OBJETOS
     Public Function queProductosComprar() As ArrayList
-        Dim col_vista = p_producto.queComprar()
-        Return col_vista
+        Return p_producto.queComprar()
+    End Function
+
+    Public Function productosAlMejorPrecio() As ArrayList
+        Return p_producto.productosAlMejorPrecio()
+    End Function
+
+    Public Function queFaltaEnCasa() As ArrayList
+        Return p_producto.queFaltaEnCasa()
     End Function
 
 End Class

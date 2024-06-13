@@ -37,6 +37,12 @@
             Case "que_comprar"
                 lblFiltro.Text = "Filtro: Que deberiamos comprar"
                 col_productos = cont.queProductosComprar 'Productos de los cuales tenemos NADA o POCO y son importantes
+            Case "mejores_precios"
+                lblFiltro.Text = "Filtro: Los mejores precios"
+                col_productos = cont.productosAlMejorPrecio
+            Case "no_tenemos"
+                lblFiltro.Text = "Filtro: No hay en casa"
+                col_productos = cont.queFaltaEnCasa
         End Select
 
         Dim lista As New ListViewItem
@@ -353,5 +359,15 @@
     Private Sub txtBuscar_Click(sender As Object, e As EventArgs) Handles txtBuscar.MouseClick
         txtBuscar.Text = ""
         txtBuscar.ForeColor = SystemColors.WindowText
+    End Sub
+
+    Private Sub btnMejoresPrecios_Click(sender As Object, e As EventArgs) Handles btnMejoresPrecios.Click
+        filtros = "mejores_precios"
+        cargarListView()
+    End Sub
+
+    Private Sub lblNoTenemos_Click(sender As Object, e As EventArgs) Handles lblNoTenemos.Click
+        filtros = "no_tenemos"
+        cargarListView()
     End Sub
 End Class

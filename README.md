@@ -21,14 +21,15 @@ Se puede ver, agregar, modificar y eliminar Productos.
 
 TO-DO: Se pueden ver, agregar, modificar y eliminar Fuentes, una Fuente representa a un local/supermercado/sucursal en la que se pueden comprar bienes
 
-## Listados por implementar:
-
-- Productos duplicados mas baratos de cada tienda
-	- SQL Query: select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Mejor precio', f.nombre As 'Lugar' FROM producto p, producto p2, fuente f WHERE p.id_fuente = f.id and p.nombre = p2.nombre and p.precio < p2.precio order by p.precio
-- Productos de los cuales tenemos NADA o POCO
-	- SQL Query: select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Precio', f.nombre As 'Se compra en', p.cuanto_tenemos as 'Cantidad' FROM producto p, fuente f WHERE p.id_fuente = f.id and p.cuanto_tenemos = 'NADA' or p.cuanto_tenemos = 'POCO' order by p.cuanto_tenemos
+## Listados Implementados:
 - Productos seleccionados de diversas empresas que el programa nos recomienda comprar (Tenemos NADA/POCO del producto + el producto es importante)
-	- SQL Query: select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Precio', f.nombre As 'Se compra en', p.cuanto_tenemos as 'Cantidad' FROM producto p, fuente f WHERE p.id_fuente = f.id and p.importante = '1' and p.cuanto_tenemos = 'NADA' or p.cuanto_tenemos = 'POCO' order by p.cuanto_tenemos
+	- SQL Query: select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and p1.importante = '1' and (p1.cuanto_tenemos = 'NADA' or p1.cuanto_tenemos = 'POCO')
+- Productos unicos y duplicados mas baratos de todas las tiendas
+	- SQL Query: select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio
+- Productos de los cuales no tenemos en casa
+	- SQL Query: select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and (p1.cuanto_tenemos = 'NADA')
+
+## Listados por implementar:
 
 - Productos de X categoria e Y fuente ordenados por Z cosa (Lo que esta encerrado en {} se modifica por medio del codigo)
   	-SQL Query:  select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Precio', f.nombre as 'Lugar', c.nombre as 'Categoria' from producto p, fuente f, categoria c where {p.id_fuente = f.id and p.id_categoria = c.id and c.nombre = 'comida' order by p.precio} Como hacer en el codigo: Puedo hacer una strVista = strQuery + condicionesWhere:

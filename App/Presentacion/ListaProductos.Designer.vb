@@ -58,6 +58,8 @@ Partial Class ListaProductos
         Me.btnReiniciarFiltros = New System.Windows.Forms.Button()
         Me.txtBuscar = New System.Windows.Forms.TextBox()
         Me.lblFiltro = New System.Windows.Forms.Label()
+        Me.btnMejoresPrecios = New System.Windows.Forms.Button()
+        Me.lblNoTenemos = New System.Windows.Forms.Button()
         Me.menuProducto.SuspendLayout()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menuImagen.SuspendLayout()
@@ -379,11 +381,33 @@ Partial Class ListaProductos
         Me.lblFiltro.TabIndex = 21
         Me.lblFiltro.Text = "Filtro: Ninguno"
         '
+        'btnMejoresPrecios
+        '
+        Me.btnMejoresPrecios.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMejoresPrecios.Location = New System.Drawing.Point(16, 374)
+        Me.btnMejoresPrecios.Name = "btnMejoresPrecios"
+        Me.btnMejoresPrecios.Size = New System.Drawing.Size(197, 66)
+        Me.btnMejoresPrecios.TabIndex = 22
+        Me.btnMejoresPrecios.Text = "Los mejores precios"
+        Me.btnMejoresPrecios.UseVisualStyleBackColor = True
+        '
+        'lblNoTenemos
+        '
+        Me.lblNoTenemos.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNoTenemos.Location = New System.Drawing.Point(16, 446)
+        Me.lblNoTenemos.Name = "lblNoTenemos"
+        Me.lblNoTenemos.Size = New System.Drawing.Size(197, 66)
+        Me.lblNoTenemos.TabIndex = 23
+        Me.lblNoTenemos.Text = "Que no tenemos"
+        Me.lblNoTenemos.UseVisualStyleBackColor = True
+        '
         'ListaProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1584, 861)
+        Me.Controls.Add(Me.lblNoTenemos)
+        Me.Controls.Add(Me.btnMejoresPrecios)
         Me.Controls.Add(Me.lblFiltro)
         Me.Controls.Add(Me.txtBuscar)
         Me.Controls.Add(Me.btnReiniciarFiltros)
@@ -451,4 +475,6 @@ Partial Class ListaProductos
     Friend WithEvents btnReiniciarFiltros As Button
     Friend WithEvents txtBuscar As TextBox
     Friend WithEvents lblFiltro As Label
+    Friend WithEvents btnMejoresPrecios As Button
+    Friend WithEvents lblNoTenemos As Button
 End Class
