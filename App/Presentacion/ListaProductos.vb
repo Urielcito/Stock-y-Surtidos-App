@@ -289,7 +289,6 @@
                 System.IO.Directory.CreateDirectory("imagenes/productos/")
             End If
             ruta_imagen = "imagenes/productos/" & el_producto.nombre & "." & ext
-            MessageBox.Show("lector.FileName:" & lector.FileName & ", ruta_imagen: " & ruta_imagen)
 
             If (System.IO.File.Exists(ruta_imagen)) Then
                 System.IO.File.Delete(ruta_imagen)
