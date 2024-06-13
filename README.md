@@ -25,13 +25,39 @@ TO-DO: Se pueden ver, agregar, modificar y eliminar Fuentes, una Fuente represen
 
 ## Listados por implementar:
 
-- Productos mas baratos de cada tienda
-	- SQL Query:
+- Productos duplicados mas baratos de cada tienda
+	- SQL Query: select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Mejor precio', f.nombre As 'Lugar' FROM producto p, producto p2, fuente f WHERE p.id_fuente = f.id and p.nombre = p2.nombre and p.precio < p2.precio order by p.precio
 - Productos de los cuales tenemos NADA o POCO
-	- SQL Query:
+	- SQL Query: select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Precio', f.nombre As 'Se compra en', p.cuanto_tenemos as 'Cantidad' FROM producto p, fuente f WHERE p.id_fuente = f.id and p.cuanto_tenemos = 'NADA' or p.cuanto_tenemos = 'POCO' order by p.cuanto_tenemos
 - Productos seleccionados de diversas empresas que el programa nos recomienda comprar (Tenemos NADA/POCO del producto + el producto es importante)
-	- SQL Query:
-	
+	- SQL Query: select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Precio', f.nombre As 'Se compra en', p.cuanto_tenemos as 'Cantidad' FROM producto p, fuente f WHERE p.id_fuente = f.id and p.importante = '1' and p.cuanto_tenemos = 'NADA' or p.cuanto_tenemos = 'POCO' order by p.cuanto_tenemos
+
+- Productos de X categoria e Y fuente ordenados por Z cosa (Lo que esta encerrado en {} se modifica por medio del codigo)
+  	-SQL Query:  select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Precio', f.nombre as 'Lugar', c.nombre as 'Categoria' from producto p, fuente f, categoria c where {p.id_fuente = f.id and p.id_categoria = c.id and c.nombre = 'comida' order by p.precio} Como hacer en el codigo: Puedo hacer una strVista = strQuery + condicionesWhere:
+
+strQuery = "select p.id as 'ID', p.nombre as 'Nombre', p,precio as 'Precio', f.nombre as 'Lugar', c.nombre as 'Categoria' from producto p, fuente f, categoria c
+condicionesWhere = ""
+strFuente = ""
+strCategoria = ""
+strOrderBy = global, modificada por hacer click en los headers
+strAnd = ""
+If(cmbFuentes.SelectedIndex <> 0) Then
+	strAnd = "and "
+  	' conseguir id_fuente ' 
+  	strFuente = "p.id_fuente = f.id and f.id = " & id_fuente
+End If
+If(cmbCategorias.SelectedIndex <> 0) Then
+	' conseguir id_categoria '
+ 	strCategoria = strAnd & "p.id_categoria = c.id and c.id = "&id_categoria
+End If
+
+If(strFuente <> "" Or strCategoria <> "") Then
+	condicionesWhere = "where " & strFuente & "" & strCategoria 
+End If
+
+strVista = strQuery + condicionesWhere + strOrderBy
+
+' ES MAS O MENOS UNA IDEA DEL CODIGO, NO CREO QUE SEA TAN FACIL DE HACER, ALGO QUE PENSAR ES SI QUIERO HACERLO EN LA LISTA DE PRODUCTOS PARA MANTENER LA FUNCIONALIDAD DE LA LISTA O HACER UN LISTADO APARTE PARA ESTO QUE SOLO SIRVA PARA VER Y NO MODIFICAR NI ANADIR NI VER INFORMACION DETALLADA DE NADA
 # Futuro:
 
 ## Agregar tres entidades nuevas 
