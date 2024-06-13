@@ -146,10 +146,10 @@ Public Class AgregarProducto
         Dim ruta_imagen = ""
         If (lector.ShowDialog <> DialogResult.Cancel) Then
             Dim ext = extraerExtension(lector.FileName)
-            If (System.IO.Directory.Exists("imagenes/productos/")) Then
-                System.IO.Directory.CreateDirectory("imagenes/productos/")
+            If (Not (System.IO.Directory.Exists("/imagenes/productos/"))) Then
+                System.IO.Directory.CreateDirectory("/imagenes/productos/")
             End If
-            ruta_imagen = "imagenes/productos/" & txtNombre.Text & "." & ext
+            ruta_imagen = "/imagenes/productos/" & txtNombre.Text & "." & ext
 
             FileSystem.FileCopy(lector.FileName, ruta_imagen)
             pbImagen.SizeMode = PictureBoxSizeMode.Zoom

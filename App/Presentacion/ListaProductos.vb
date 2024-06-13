@@ -285,10 +285,12 @@
         Dim ruta_imagen = ""
         If (lector.ShowDialog <> DialogResult.Cancel) Then
             Dim ext = extraerExtension(lector.FileName)
-            If (System.IO.Directory.Exists("imagenes/productos/")) Then
+            If (Not (System.IO.Directory.Exists("imagenes/productos/"))) Then
                 System.IO.Directory.CreateDirectory("imagenes/productos/")
             End If
             ruta_imagen = "imagenes/productos/" & el_producto.nombre & "." & ext
+            MessageBox.Show("lector.FileName:" & lector.FileName & ", ruta_imagen: " & ruta_imagen)
+
             If (System.IO.File.Exists(ruta_imagen)) Then
                 System.IO.File.Delete(ruta_imagen)
             End If
