@@ -41,6 +41,7 @@
         Dim bs_fuentes As New BindingSource
         Dim col_fuentes = cont.listadofuente
         bs_fuentes.DataSource = col_fuentes
+        bs_fuentes.RemoveAt(0)
         cargarListView()
     End Sub
 

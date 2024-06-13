@@ -32,6 +32,8 @@ Public Class AgregarProducto
 
         bs_fuentes.DataSource = col_fuentes
         bs_categorias.DataSource = col_categorias
+        bs_fuentes.RemoveAt(0)
+        bs_categorias.RemoveAt(1)
 
         With cmbFuentes
             .DisplayMember = "nombre"

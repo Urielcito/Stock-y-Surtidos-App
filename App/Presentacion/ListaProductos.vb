@@ -9,8 +9,6 @@
     Private Sub ListaProductos_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Lo que sucede al cargar el formulario
         visibilidadInformacion(False, False)
         cargarListas()
-        cmbFuentes.SelectedItem = Nothing
-        cmbCategorias.SelectedItem = Nothing
     End Sub
 
     Private Sub btnAgregarProducto_Click(sender As Object, e As EventArgs) Handles btnAgregarProducto.Click 'Abre la ventana para agregar un producto
@@ -34,8 +32,10 @@
         Dim col_productos As New ArrayList
         Select Case filtros
             Case "default"
+                lblFiltro.Text = "Filtro: Ninguno"
                 col_productos = cont.listadoproducto 'Sin filtro
             Case "que_comprar"
+                lblFiltro.Text = "Filtro: Que deberiamos comprar"
                 col_productos = cont.queProductosComprar 'Productos de los cuales tenemos NADA o POCO y son importantes
         End Select
 
@@ -75,18 +75,14 @@
         Dim bs_categorias As New BindingSource
         bs_fuentes.DataSource = col_fuentes
         bs_categorias.DataSource = col_categorias
-        cmbFuentes.SelectedItem = Nothing
-        cmbCategorias.SelectedItem = Nothing
         bs_categorias.RemoveAt(0)
         With cmbFuentes
             .DisplayMember = "nombre"
             .DataSource = bs_fuentes
-            .SelectedItem = Nothing
         End With
         With cmbCategorias
             .DisplayMember = "nombre"
             .DataSource = bs_categorias
-            .SelectedItem = Nothing
         End With
         cargarMenuStrips(col_categorias, col_fuentes)
         cargarListView()
@@ -351,5 +347,10 @@
     Private Sub btnQueComprar_Click(sender As Object, e As EventArgs) Handles btnQueComprar.Click
         filtros = "que_comprar"
         cargarListView()
+    End Sub
+
+    Private Sub txtBuscar_Click(sender As Object, e As EventArgs) Handles txtBuscar.MouseClick
+        txtBuscar.Text = ""
+        txtBuscar.ForeColor = SystemColors.WindowText
     End Sub
 End Class

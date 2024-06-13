@@ -56,6 +56,8 @@ Partial Class ListaProductos
         Me.tooltip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnQueComprar = New System.Windows.Forms.Button()
         Me.btnReiniciarFiltros = New System.Windows.Forms.Button()
+        Me.txtBuscar = New System.Windows.Forms.TextBox()
+        Me.lblFiltro = New System.Windows.Forms.Label()
         Me.menuProducto.SuspendLayout()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menuImagen.SuspendLayout()
@@ -119,10 +121,10 @@ Partial Class ListaProductos
         Me.lstProductos.GridLines = True
         Me.lstProductos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.lstProductos.HideSelection = False
-        Me.lstProductos.Location = New System.Drawing.Point(231, 55)
+        Me.lstProductos.Location = New System.Drawing.Point(231, 92)
         Me.lstProductos.MultiSelect = False
         Me.lstProductos.Name = "lstProductos"
-        Me.lstProductos.Size = New System.Drawing.Size(940, 794)
+        Me.lstProductos.Size = New System.Drawing.Size(940, 757)
         Me.lstProductos.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.lstProductos.TabIndex = 5
         Me.lstProductos.UseCompatibleStateImageBehavior = False
@@ -356,11 +358,34 @@ Partial Class ListaProductos
         Me.btnReiniciarFiltros.Text = "Reiniciar filtros"
         Me.btnReiniciarFiltros.UseVisualStyleBackColor = True
         '
+        'txtBuscar
+        '
+        Me.txtBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBuscar.ForeColor = System.Drawing.SystemColors.WindowFrame
+        Me.txtBuscar.Location = New System.Drawing.Point(434, 14)
+        Me.txtBuscar.Name = "txtBuscar"
+        Me.txtBuscar.Size = New System.Drawing.Size(736, 35)
+        Me.txtBuscar.TabIndex = 20
+        Me.txtBuscar.Text = "Buscar..."
+        '
+        'lblFiltro
+        '
+        Me.lblFiltro.AutoSize = True
+        Me.lblFiltro.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.lblFiltro.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFiltro.Location = New System.Drawing.Point(224, 52)
+        Me.lblFiltro.Name = "lblFiltro"
+        Me.lblFiltro.Size = New System.Drawing.Size(243, 37)
+        Me.lblFiltro.TabIndex = 21
+        Me.lblFiltro.Text = "Filtro: Ninguno"
+        '
         'ListaProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1584, 861)
+        Me.Controls.Add(Me.lblFiltro)
+        Me.Controls.Add(Me.txtBuscar)
         Me.Controls.Add(Me.btnReiniciarFiltros)
         Me.Controls.Add(Me.btnQueComprar)
         Me.Controls.Add(Me.lblCategoria)
@@ -424,4 +449,6 @@ Partial Class ListaProductos
     Friend WithEvents tooltip1 As ToolTip
     Friend WithEvents btnQueComprar As Button
     Friend WithEvents btnReiniciarFiltros As Button
+    Friend WithEvents txtBuscar As TextBox
+    Friend WithEvents lblFiltro As Label
 End Class
