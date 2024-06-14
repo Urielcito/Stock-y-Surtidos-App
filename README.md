@@ -1,7 +1,7 @@
 # Stock-y-Surtidos-App
 
 ## Para no olvidarme:
-- Hice lo de buscar en todos los listados que hay, tambien se puede filtrar por categoria Y fuente en el listado por defecto, lo siguiente para hacer es implementar eso mismo en el resto de los listados :D
+- Falta modificar los metodos de los listados personalizados para que también acepten filtrar por categoria/fuente al mismo tiempo que filtran los datos con sus propias condiciones
 
 ## Ventanas
 
@@ -29,35 +29,7 @@ TO-DO: Se pueden ver, agregar, modificar y eliminar Fuentes, una Fuente represen
 	- SQL Query: select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio
 - Productos de los cuales no tenemos en casa
 	- SQL Query: select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and (p1.cuanto_tenemos = 'NADA')
-
-## Listados por implementar:
-
-- Productos de X categoria e Y fuente ordenados por Z cosa (Lo que esta encerrado en {} se modifica por medio del codigo)
-  	-SQL Query:  select p.id as 'ID', p.nombre as 'Nombre', p.precio as 'Precio', f.nombre as 'Lugar', c.nombre as 'Categoria' from producto p, fuente f, categoria c where {p.id_fuente = f.id and p.id_categoria = c.id and c.nombre = 'comida' order by p.precio} Como hacer en el codigo: Puedo hacer una strVista = strQuery + condicionesWhere:
-
-strQuery = "select p.id as 'ID', p.nombre as 'Nombre', p,precio as 'Precio', f.nombre as 'Lugar', c.nombre as 'Categoria' from producto p, fuente f, categoria c
-condicionesWhere = ""
-strFuente = ""
-strCategoria = ""
-strOrderBy = global, modificada por hacer click en los headers
-strAnd = ""
-If(cmbFuentes.SelectedIndex <> 0) Then
-	strAnd = "and "
-  	' conseguir id_fuente ' 
-  	strFuente = "p.id_fuente = f.id and f.id = " & id_fuente
-End If
-If(cmbCategorias.SelectedIndex <> 0) Then
-	' conseguir id_categoria '
- 	strCategoria = strAnd & "p.id_categoria = c.id and c.id = "&id_categoria
-End If
-
-If(strFuente <> "" Or strCategoria <> "") Then
-	condicionesWhere = "where " & strFuente & "" & strCategoria 
-End If
-
-strVista = strQuery + condicionesWhere + strOrderBy
-
-' ES MAS O MENOS UNA IDEA DEL CODIGO, NO CREO QUE SEA TAN FACIL DE HACER, ALGO QUE PENSAR ES SI QUIERO HACERLO EN LA LISTA DE PRODUCTOS PARA MANTENER LA FUNCIONALIDAD DE LA LISTA O HACER UN LISTADO APARTE PARA ESTO QUE SOLO SIRVA PARA VER Y NO MODIFICAR NI ANADIR NI VER INFORMACION DETALLADA DE NADA
+ - 
 # Futuro:
 
 ## Agregar tres entidades nuevas 
