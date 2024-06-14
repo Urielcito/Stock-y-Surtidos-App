@@ -1,7 +1,11 @@
-﻿Public Class ListaProductos
+﻿Imports System.Drawing.Imaging
+
+Public Class ListaProductos
     Dim cont As New Controladora
     Dim un_id As Integer 'ID DEL PRODUCTO USADA POR TODO EL FORMULARIO
     Dim filtros = "default"
+    Dim id_categoria = 0
+    Dim id_fuente = 0
 
 
 
@@ -30,19 +34,23 @@
     Public Sub cargarListView() 'Limpia el listado de productos y lo vuelve a rellenar con informacion actualizada
         Me.lstProductos.Items.Clear()
         Dim col_productos As New ArrayList
+        Dim buscando As Boolean = False
+        If (txtBuscar.Text <> "" And txtBuscar.Text <> "Buscar...") Then
+            buscando = True
+        End If
         Select Case filtros
             Case "default"
-                lblFiltro.Text = "Filtro: Ninguno"
-                col_productos = cont.listadoproducto 'Sin filtro
+                lblFiltro.Text = "Mostrando todos los productos"
+                col_productos = cont.listadoproducto(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Sin filtro
             Case "que_comprar"
-                lblFiltro.Text = "Filtro: Que deberiamos comprar"
-                col_productos = cont.queProductosComprar 'Productos de los cuales tenemos NADA o POCO y son importantes
+                lblFiltro.Text = "Mostrando que deberiamos comprar"
+                col_productos = cont.queProductosComprar(buscando, txtBuscar.Text) 'Productos de los cuales tenemos NADA o POCO y son importantes
             Case "mejores_precios"
-                lblFiltro.Text = "Filtro: Los mejores precios"
-                col_productos = cont.productosAlMejorPrecio
+                lblFiltro.Text = "Mostrando los mejores precios"
+                col_productos = cont.productosAlMejorPrecio(buscando, txtBuscar.Text)
             Case "no_tenemos"
-                lblFiltro.Text = "Filtro: No hay en casa"
-                col_productos = cont.queFaltaEnCasa
+                lblFiltro.Text = "Mostrando lo que no hay en casa"
+                col_productos = cont.queFaltaEnCasa(buscando, txtBuscar.Text)
         End Select
 
         Dim lista As New ListViewItem
@@ -76,7 +84,6 @@
     Private Sub cargarListas() 'Rellena las listas que usan los combo boxes y tambien los menu strips con las listas de la controladora
         Dim col_fuentes = cont.listadofuente
         Dim col_categorias = cont.listadocategoria
-        Dim col_productos = cont.listadoproducto
         Dim bs_fuentes As New BindingSource
         Dim bs_categorias As New BindingSource
         bs_fuentes.DataSource = col_fuentes
@@ -91,7 +98,6 @@
             .DataSource = bs_categorias
         End With
         cargarMenuStrips(col_categorias, col_fuentes)
-        cargarListView()
     End Sub
 
     Private Sub cambiarBtnHay(ByVal hay As String, ByVal importante As Boolean) 'Cambia el color y el texto del boton encargado de la existencia del producto en la casa
@@ -305,6 +311,24 @@
 
 
     'Utilidades
+    Private Sub chequearComboBoxes()
+        If (cmbFuentes.SelectedIndex = 0) Then
+            id_fuente = 0
+        ElseIf Not (cmbFuentes.SelectedItem Is Nothing) Then
+            Dim una_fuente As New Fuente
+            una_fuente = cmbFuentes.SelectedItem
+            id_fuente = una_fuente.id
+        End If
+        If (cmbCategorias.SelectedIndex = 0) Then
+            id_categoria = 0
+        ElseIf Not (cmbCategorias.SelectedItem Is Nothing) Then
+            Dim una_categoria As New Categoria
+            una_categoria = cmbCategorias.SelectedItem
+            id_categoria = una_categoria.id
+        End If
+
+        cargarListView()
+    End Sub
     Private Function extraerExtension(ByVal ruta_archivo As String) As String 'Extrae la extension de un archivo dada su ruta
         Dim extension = ""
         Dim c_anterior As Char
@@ -357,9 +381,11 @@
         cargarListView()
     End Sub
 
-    Private Sub txtBuscar_Click(sender As Object, e As EventArgs) Handles txtBuscar.MouseClick
-        txtBuscar.Text = ""
-        txtBuscar.ForeColor = SystemColors.WindowText
+    Private Sub txtBuscar_MouseClick(sender As Object, e As EventArgs) Handles txtBuscar.MouseClick
+        If (txtBuscar.Text = "Buscar...") Then
+            txtBuscar.Text = ""
+            txtBuscar.ForeColor = SystemColors.WindowText
+        End If
     End Sub
 
     Private Sub btnMejoresPrecios_Click(sender As Object, e As EventArgs) Handles btnMejoresPrecios.Click
@@ -370,5 +396,17 @@
     Private Sub lblNoTenemos_Click(sender As Object, e As EventArgs) Handles lblNoTenemos.Click
         filtros = "no_tenemos"
         cargarListView()
+    End Sub
+
+    Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
+        cargarListView()
+    End Sub
+
+    Private Sub cmbFuentes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFuentes.SelectedIndexChanged
+        chequearComboBoxes()
+    End Sub
+
+    Private Sub cmbCategorias_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCategorias.SelectedIndexChanged
+        chequearComboBoxes()
     End Sub
 End Class

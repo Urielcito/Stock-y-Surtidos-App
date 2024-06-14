@@ -40,7 +40,7 @@
                 MessageBox.Show("Producto añadido con exito")
                 Return True
             End If
-            Dim col_productos_actualizada = Me.listadoproducto
+            Dim col_productos_actualizada = Me.listadoproducto(False, "", "", "")
             For Each otro_producto As Producto In col_productos_actualizada
                 If (otro_producto.id <> un_producto.id And otro_producto.nombre = un_producto.nombre) Then
                     Dim id_original = un_producto.id
@@ -116,7 +116,7 @@
 
         Dim salio_bien = True
         salio_bien = p_producto.ModificarProducto(un_producto)
-        Dim col_productos_actualizada = Me.listadoproducto
+        Dim col_productos_actualizada = Me.listadoproducto(False, "", "", "")
         For Each otro_producto As Producto In col_productos_actualizada
             If (otro_producto.nombre = un_producto.nombre) Then
                 un_producto.precio = otro_producto.precio
@@ -142,7 +142,7 @@
 
         Dim salio_bien = True
         salio_bien = p_producto.ModificarProducto(un_producto)
-        Dim col_productos_actualizada = Me.listadoproducto
+        Dim col_productos_actualizada = Me.listadoproducto(False, "", 0, 0)
         For Each otro_producto As Producto In col_productos_actualizada
             If (otro_producto.nombre = nombre_original) Then
                 un_producto.precio = otro_producto.precio
@@ -166,8 +166,8 @@
         Return col_categoria
     End Function
 
-    Public Function listadoproducto() As ArrayList
-        col_producto = p_producto.MostrarProductos
+    Public Function listadoproducto(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal de_fuente As String, ByVal de_categoria As String) As ArrayList
+        col_producto = p_producto.MostrarProductos(buscando, txt_busqueda, de_fuente, de_categoria)
         Return col_producto
     End Function
     'FUNCIONES QUE DEVUELVEN AL OBJETO O ALGO QUE TENGA QUE VER CON EL OBJETO
@@ -216,16 +216,16 @@
     End Function
 
     'FUNCIONES QUE TRAEN LAS VISTAS DE LA BASE DE DATOS PARA REALIZAR LISTAS PERSONALIZADAS DE DISTINTOS OBJETOS
-    Public Function queProductosComprar() As ArrayList
-        Return p_producto.queComprar()
+    Public Function queProductosComprar(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
+        Return p_producto.queComprar(buscando, txt_busqueda)
     End Function
 
-    Public Function productosAlMejorPrecio() As ArrayList
-        Return p_producto.productosAlMejorPrecio()
+    Public Function productosAlMejorPrecio(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
+        Return p_producto.productosAlMejorPrecio(buscando, txt_busqueda)
     End Function
 
-    Public Function queFaltaEnCasa() As ArrayList
-        Return p_producto.queFaltaEnCasa()
+    Public Function queFaltaEnCasa(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
+        Return p_producto.queFaltaEnCasa(buscando, txt_busqueda)
     End Function
 
 End Class

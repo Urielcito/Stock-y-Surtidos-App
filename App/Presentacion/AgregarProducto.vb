@@ -24,7 +24,7 @@ Public Class AgregarProducto
     Private Sub cargarListas() 'Campos o Datos
         col_fuentes = cont.listadofuente
         col_categorias = cont.listadocategoria
-        col_prod = cont.listadoproducto
+        col_prod = cont.listadoproducto(False, "", 0, 0)
 
         Dim bs_fuentes As New BindingSource
         Dim bs_categorias As New BindingSource

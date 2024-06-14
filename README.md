@@ -1,7 +1,7 @@
 # Stock-y-Surtidos-App
 
 ## Para no olvidarme:
-- Implementar ese listado sin implementar
+- Hice lo de buscar en todos los listados que hay, tambien se puede filtrar por categoria Y fuente en el listado por defecto, lo siguiente para hacer es implementar eso mismo en el resto de los listados :D
 
 ## Ventanas
 

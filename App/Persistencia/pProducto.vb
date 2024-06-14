@@ -90,9 +90,31 @@ Public Class pProducto
             col_productos.Add(un_producto)
         Next
         Return col_productos
+
     End Function
-    Public Function MostrarProductos() As ArrayList
-        Dim strSelect = "select * from producto order by nombre"
+    Public Function MostrarProductos(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+        Dim stringBusqueda As String = ""
+        Dim stringDeFuente As String = ""
+        Dim stringDeCategoria As String = ""
+        If (id_fuente <> 0) Then
+            stringDeFuente = "where producto.id_fuente = '" & id_fuente & "' "
+        End If
+        If (id_categoria <> 0) Then
+            stringDeCategoria = "where producto.id_categoria = '" & id_categoria & "' "
+        End If
+        If (id_fuente <> 0 And id_categoria <> 0) Then
+            stringDeFuente = "where producto.id_fuente = '" & id_fuente & "' "
+            stringDeCategoria = "and producto.id_categoria = '" & id_categoria & "' "
+        End If
+        If (buscando) Then
+            If (id_categoria <> 0 Or id_fuente <> 0) Then
+                stringBusqueda = "and producto.nombre like '%" & txt_busqueda & "%' "
+            Else
+                stringBusqueda = "where producto.nombre like '%" & txt_busqueda & "%' "
+            End If
+
+        End If
+        Dim strSelect = "select * from producto " & stringDeFuente & stringDeCategoria & stringBusqueda & "order by nombre"
         Dim col_producto As New ArrayList
         Dim dt As DataTable = Nothing
         Try
@@ -106,8 +128,12 @@ Public Class pProducto
     End Function
 
     'FUNCIONES DE LAS DISTINTAS VISTAS
-    Public Function queComprar() As ArrayList
-        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and p1.importante = '1' and (p1.cuanto_tenemos = 'NADA' or p1.cuanto_tenemos = 'POCO')"
+    Public Function queComprar(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
+        Dim stringBusqueda As String = ""
+        If (buscando) Then
+            stringBusqueda = "p1.nombre like '%" & txt_busqueda & "%' and "
+        End If
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on " & stringBusqueda & "p1.nombre = t2.nombre and p1.precio = t2.min_precio and p1.importante = '1' and (p1.cuanto_tenemos = 'NADA' or p1.cuanto_tenemos = 'POCO')"
         Dim dt As DataTable = Nothing
         Dim col_vista As New ArrayList
         Try
@@ -121,8 +147,12 @@ Public Class pProducto
 
     End Function
 
-    Public Function productosAlMejorPrecio() As ArrayList
-        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio"
+    Public Function productosAlMejorPrecio(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
+        Dim stringBusqueda As String = ""
+        If (buscando) Then
+            stringBusqueda = "p1.nombre like '%" & txt_busqueda & "%' and "
+        End If
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on " & stringBusqueda & "p1.nombre = t2.nombre and p1.precio = t2.min_precio"
         Dim dt As DataTable = Nothing
         Dim col_vista As New ArrayList
         Try
@@ -135,8 +165,12 @@ Public Class pProducto
         End Try
     End Function
 
-    Public Function queFaltaEnCasa() As ArrayList
-        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and (p1.cuanto_tenemos = 'NADA')"
+    Public Function queFaltaEnCasa(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
+        Dim stringBusqueda As String = ""
+        If (buscando) Then
+            stringBusqueda = "p1.nombre like '%" & txt_busqueda & "%' and "
+        End If
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on " & stringBusqueda & "p1.nombre = t2.nombre and p1.precio = t2.min_precio and (p1.cuanto_tenemos = 'NADA')"
         Dim dt As DataTable = Nothing
         Dim col_vista As New ArrayList
         Try
