@@ -74,10 +74,14 @@ Public Class ListaProductos
 
     Private Sub cargarMenuStrips(ByVal col_categorias As ArrayList, ByVal col_fuentes As ArrayList) 'Rellena los menu strips con las listas de la controladora
         For Each cat As Categoria In col_categorias
-            Me.menuCategorias.Items.Add(cat.nombre)
+            If (cat.nombre <> "Cualquiera") Then
+                Me.menuCategorias.Items.Add(cat.nombre)
+            End If
         Next
         For Each fuente As Fuente In col_fuentes
-            Me.menuFuentes.Items.Add(fuente.nombre)
+            If (fuente.nombre <> "Cualquiera") Then
+                Me.menuFuentes.Items.Add(fuente.nombre)
+            End If
         Next
     End Sub
 

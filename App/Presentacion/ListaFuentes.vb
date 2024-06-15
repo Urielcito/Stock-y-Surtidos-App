@@ -66,7 +66,7 @@
         End With
     End Sub
     Private Sub lstFuentes_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstFuentes.ItemSelectionChanged 'Despliega la informacion de una fuente
-        Dim col_productos = cont.listadoproducto(False, "", "", "")
+        Dim col_productos = cont.listadoproducto(False, "", 0, 0)
         If lstFuentes.SelectedItems.Count > 0 Then
             id_fuente = lstFuentes.SelectedItems(0).Text
             Dim la_fuente = cont.devolverFuente(id_fuente)

@@ -116,7 +116,7 @@
 
         Dim salio_bien = True
         salio_bien = p_producto.ModificarProducto(un_producto)
-        Dim col_productos_actualizada = Me.listadoproducto(False, "", "", "")
+        Dim col_productos_actualizada = Me.listadoproducto(False, "", 0, 0)
         For Each otro_producto As Producto In col_productos_actualizada
             If (otro_producto.nombre = un_producto.nombre) Then
                 un_producto.precio = otro_producto.precio
@@ -166,8 +166,8 @@
         Return col_categoria
     End Function
 
-    Public Function listadoproducto(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal de_fuente As String, ByVal de_categoria As String) As ArrayList
-        col_producto = p_producto.MostrarProductos(buscando, txt_busqueda, de_fuente, de_categoria)
+    Public Function listadoproducto(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+        col_producto = p_producto.MostrarProductos(buscando, txt_busqueda, id_fuente, id_categoria)
         Return col_producto
     End Function
     'FUNCIONES QUE DEVUELVEN AL OBJETO O ALGO QUE TENGA QUE VER CON EL OBJETO
