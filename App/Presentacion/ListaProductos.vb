@@ -44,13 +44,13 @@ Public Class ListaProductos
                 col_productos = cont.listadoproducto(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Sin filtro
             Case "que_comprar"
                 lblFiltro.Text = "Mostrando que deberiamos comprar"
-                col_productos = cont.queProductosComprar(buscando, txtBuscar.Text) 'Productos de los cuales tenemos NADA o POCO y son importantes
+                col_productos = cont.queProductosComprar(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Productos de los cuales tenemos NADA o POCO y son importantes
             Case "mejores_precios"
                 lblFiltro.Text = "Mostrando los mejores precios"
-                col_productos = cont.productosAlMejorPrecio(buscando, txtBuscar.Text)
+                col_productos = cont.productosAlMejorPrecio(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Todos los productos, devuelve los productos mas baratos si existen en mas de una tienda
             Case "no_tenemos"
                 lblFiltro.Text = "Mostrando lo que no hay en casa"
-                col_productos = cont.queFaltaEnCasa(buscando, txtBuscar.Text)
+                col_productos = cont.queFaltaEnCasa(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Todos los productos cuya variable cuanto_tenemos = NADA o POCO
         End Select
 
         Dim lista As New ListViewItem

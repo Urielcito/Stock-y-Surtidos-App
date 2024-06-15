@@ -216,16 +216,16 @@
     End Function
 
     'FUNCIONES QUE TRAEN LAS VISTAS DE LA BASE DE DATOS PARA REALIZAR LISTAS PERSONALIZADAS DE DISTINTOS OBJETOS
-    Public Function queProductosComprar(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
-        Return p_producto.queComprar(buscando, txt_busqueda)
+    Public Function queProductosComprar(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+        Return p_producto.queComprar(buscando, txt_busqueda, id_fuente, id_categoria)
     End Function
 
-    Public Function productosAlMejorPrecio(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
-        Return p_producto.productosAlMejorPrecio(buscando, txt_busqueda)
+    Public Function productosAlMejorPrecio(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+        Return p_producto.productosAlMejorPrecio(buscando, txt_busqueda, id_fuente, id_categoria)
     End Function
 
-    Public Function queFaltaEnCasa(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
-        Return p_producto.queFaltaEnCasa(buscando, txt_busqueda)
+    Public Function queFaltaEnCasa(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+        Return p_producto.queFaltaEnCasa(buscando, txt_busqueda, id_fuente, id_categoria)
     End Function
 
 End Class
