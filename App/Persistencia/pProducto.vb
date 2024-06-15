@@ -95,7 +95,9 @@ Public Class pProducto
 
     Public Sub calcularStringsQuery(ByVal defaultSelect As Boolean, ByRef stringBusqueda As String, ByRef stringDeFuente As String, ByRef stringDeCategoria As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer, ByVal buscando As Boolean, ByVal txt_busqueda As String)
         Dim primerPalabra As String = "and "
-        If (defaultSelect) Then
+        If (defaultSelect And id_fuente = 0 And id_fuente = 0) Then
+            primerPalabra = "where "
+        ElseIf defaultSelect Then
             primerPalabra = "where "
         End If
         If (id_fuente <> 0) Then
@@ -106,13 +108,13 @@ Public Class pProducto
         End If
         If (id_fuente <> 0 And id_categoria <> 0) Then
             stringDeFuente = primerPalabra & "p1.id_fuente = '" & id_fuente & "'"
-            stringDeCategoria = primerPalabra & "p1.id_categoria = '" & id_categoria & "'"
+            stringDeCategoria = " and p1.id_categoria = '" & id_categoria & "'"
         End If
         If (buscando) Then
-            If (id_categoria <> 0 Or id_fuente <> 0) Then
-                stringBusqueda = primerPalabra & "p1.nombre like '%" & txt_busqueda & "%'"
+            If (id_categoria = 0 And id_fuente = 0) Then
+                stringBusqueda = " where p1.nombre like '%" & txt_busqueda & "%'"
             Else
-                stringBusqueda = primerPalabra & "p1.nombre like '%" & txt_busqueda & "%'"
+                stringBusqueda = " and p1.nombre like '%" & txt_busqueda & "%'"
             End If
         End If
     End Sub
@@ -129,6 +131,8 @@ Public Class pProducto
             unaconexion.AbrirConexion()
             Return extraerProductosAColeccion(dt, col_producto, strSelect)
         Catch ex As Exception
+
+            MessageBox.Show(strSelect)
             Throw ex
         Finally
             unaconexion.CerrarConexion()
