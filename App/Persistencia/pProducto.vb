@@ -133,6 +133,7 @@ Public Class pProducto
 
     'FUNCIONES DE LAS DISTINTAS VISTAS
     Public Function queComprar(ByVal buscando As Boolean, ByVal txt_busqueda As String) As ArrayList
+        'q onda
         Dim stringBusqueda As String = ""
         If (buscando) Then
             stringBusqueda = "p1.nombre like '%" & txt_busqueda & "%' and "
