@@ -92,10 +92,8 @@ Public Class pProducto
         Return col_productos
 
     End Function
-    Public Function MostrarProductos(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
-        Dim stringBusqueda As String = ""
-        Dim stringDeFuente As String = ""
-        Dim stringDeCategoria As String = ""
+
+    Public Sub calcularStringsQuery(ByRef stringBusqueda As String, ByRef stringDeFuente As String, ByRef stringDeCategoria As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer, ByVal buscando As Boolean, ByVal txt_busqueda As String)
         If (id_fuente <> 0) Then
             stringDeFuente = "where producto.id_fuente = '" & id_fuente & "' "
         End If
@@ -112,8 +110,14 @@ Public Class pProducto
             Else
                 stringBusqueda = "where producto.nombre like '%" & txt_busqueda & "%' "
             End If
-
         End If
+    End Sub
+    Public Function MostrarProductos(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+        Dim stringBusqueda As String = ""
+        Dim stringDeFuente As String = ""
+        Dim stringDeCategoria As String = ""
+        calcularStringsQuery(stringBusqueda, stringDeFuente, stringDeCategoria, id_fuente, id_categoria, buscando, txt_busqueda)
+
         Dim strSelect = "select * from producto " & stringDeFuente & stringDeCategoria & stringBusqueda & "order by nombre"
         Dim col_producto As New ArrayList
         Dim dt As DataTable = Nothing
