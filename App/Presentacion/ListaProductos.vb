@@ -86,7 +86,7 @@ Public Class ListaProductos
     End Sub
 
     Private Sub cargarListas() 'Rellena las listas que usan los combo boxes y tambien los menu strips con las listas de la controladora
-        Dim col_fuentes = cont.listadofuente
+        Dim col_fuentes = cont.listadofuente("id")
         Dim col_categorias = cont.listadocategoria
         Dim bs_fuentes As New BindingSource
         Dim bs_categorias As New BindingSource
@@ -248,7 +248,7 @@ Public Class ListaProductos
 
     Private Sub menuFuentes_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuFuentes.ItemClicked 'Modifica la fuente del producto seleccionado
         Dim el_producto = cont.devolverProducto(un_id)
-        Dim col_fuentes = cont.listadofuente
+        Dim col_fuentes = cont.listadofuente("id")
         Dim nombre_fuente = e.ClickedItem.ToString()
         Dim la_fuente As New Fuente()
         For Each una_fuente As Fuente In col_fuentes

@@ -52,12 +52,12 @@
         Return False
     End Function
 
-    Public Function MostrarFuentes() As ArrayList
+    Public Function MostrarFuentes(ByVal orden As String) As ArrayList
         Dim dt As DataTable = Nothing
         Dim strSelect As String
         Dim una_fuente As Fuente
         Dim col_fuente As New ArrayList
-        strSelect = "select * from fuente order by aceptan_tarjeta"
+        strSelect = "select * from fuente order by " & orden
         Try
             unaconexion.AbrirConexion()
             dt = unaconexion.TraerDatos(strSelect)

@@ -59,7 +59,7 @@ Public Class pProducto
         Dim col_fuentes As ArrayList
         Dim col_categorias As ArrayList
         Dim un_producto As Producto
-        col_fuentes = p_fuente.MostrarFuentes
+        col_fuentes = p_fuente.MostrarFuentes("id")
         col_categorias = p_categoria.MostrarCategorias
         dt = unaconexion.TraerDatos(strSelect)
         For i As Integer = 0 To dt.Rows.Count - 1

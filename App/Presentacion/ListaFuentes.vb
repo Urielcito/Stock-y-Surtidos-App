@@ -1,6 +1,7 @@
 ﻿Public Class ListaFuentes
     Dim cont As New Controladora
     Dim id_fuente As Integer
+    Dim orden = "nombre ASC"
 
     'Formulario
     Private Sub ListaFuentes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -21,27 +22,28 @@
 
     'Campos o Datos
     Private Sub cargarListView() 'Actualiza la lista de fuentes
-        Dim col_fuentes = cont.listadofuente
+        Dim col_fuentes = cont.listadofuente(orden)
         Me.lstFuentes.Items.Clear()
         Dim lista As ListViewItem
         For Each una_fuente As Fuente In col_fuentes
-            lista = New ListViewItem(una_fuente.id)
-            lista.SubItems.Add(una_fuente.nombre)
-            Dim aceptan_tarjeta = "NO"
-            If (una_fuente.aceptan_tarjeta) Then
-                aceptan_tarjeta = "SI"
+            If (una_fuente.nombre <> "Cualquiera") Then
+                lista = New ListViewItem(una_fuente.id)
+                lista.SubItems.Add(una_fuente.nombre)
+                Dim aceptan_tarjeta = "NO"
+                If (una_fuente.aceptan_tarjeta) Then
+                    aceptan_tarjeta = "SI"
+                End If
+                lista.SubItems.Add(aceptan_tarjeta)
+                lista.SubItems.Add(una_fuente.telefono)
+                Me.lstFuentes.Items.Add(lista)
             End If
-            lista.SubItems.Add(aceptan_tarjeta)
-            lista.SubItems.Add(una_fuente.telefono)
-            Me.lstFuentes.Items.Add(lista)
         Next
     End Sub
 
     Private Sub cargarListas() 'Rellena los binding sources
         Dim bs_fuentes As New BindingSource
-        Dim col_fuentes = cont.listadofuente
+        Dim col_fuentes = cont.listadofuente(orden)
         bs_fuentes.DataSource = col_fuentes
-        bs_fuentes.RemoveAt(0)
         cargarListView()
     End Sub
 
@@ -127,6 +129,21 @@
         Else
             MessageBox.Show("El telefono no puede incluir letras ni simbolos.")
         End If
+        cargarListView()
+    End Sub
+
+    Private Sub lstFuentes_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles lstFuentes.ColumnClick
+        Dim ordenes As String() = {"nombre", "aceptan_tarjeta", "telefono"}
+        Dim asc_desc = " ASC"
+        Dim columna = e.Column
+        If orden = ordenes(columna - 1) & " ASC" Then
+            If asc_desc = " ASC" Then
+                asc_desc = " DESC"
+            Else
+                asc_desc = " ASC"
+            End If
+        End If
+        orden = ordenes(columna - 1) & asc_desc
         cargarListView()
     End Sub
 End Class

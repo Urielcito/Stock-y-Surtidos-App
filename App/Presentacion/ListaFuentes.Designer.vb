@@ -47,7 +47,6 @@ Partial Class ListaFuentes
         Me.lstFuentes.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstFuentes.FullRowSelect = True
         Me.lstFuentes.GridLines = True
-        Me.lstFuentes.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.lstFuentes.HideSelection = False
         Me.lstFuentes.Location = New System.Drawing.Point(231, 12)
         Me.lstFuentes.Name = "lstFuentes"
@@ -86,7 +85,7 @@ Partial Class ListaFuentes
         'eliminarProducto
         '
         Me.eliminarProducto.Name = "eliminarProducto"
-        Me.eliminarProducto.Size = New System.Drawing.Size(180, 22)
+        Me.eliminarProducto.Size = New System.Drawing.Size(117, 22)
         Me.eliminarProducto.Text = "Eliminar"
         '
         'btnAgregarFuente

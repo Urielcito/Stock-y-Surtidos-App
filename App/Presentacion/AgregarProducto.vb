@@ -22,7 +22,7 @@ Public Class AgregarProducto
 
     End Sub
     Private Sub cargarListas() 'Campos o Datos
-        col_fuentes = cont.listadofuente
+        col_fuentes = cont.listadofuente("id")
         col_categorias = cont.listadocategoria
         col_prod = cont.listadoproducto("p1.nombre", False, "", 0, 0)
 

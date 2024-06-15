@@ -157,8 +157,8 @@
     End Function
 
     'FUNCIONES PARA LISTAR LOS OBJETOS PROVENIENTES DIRECTAMENTE DESDE LA BASE DE DATOS
-    Public Function listadofuente() As ArrayList
-        col_fuente = p_fuente.MostrarFuentes
+    Public Function listadofuente(ByVal orden As String) As ArrayList
+        col_fuente = p_fuente.MostrarFuentes(orden)
         Return col_fuente
     End Function
     Public Function listadocategoria() As ArrayList
