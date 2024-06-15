@@ -57,7 +57,7 @@
         Dim strSelect As String
         Dim una_fuente As Fuente
         Dim col_fuente As New ArrayList
-        strSelect = "select * from fuente"
+        strSelect = "select * from fuente order by aceptan_tarjeta"
         Try
             unaconexion.AbrirConexion()
             dt = unaconexion.TraerDatos(strSelect)
