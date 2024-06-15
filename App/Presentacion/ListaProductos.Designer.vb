@@ -121,13 +121,11 @@ Partial Class ListaProductos
         Me.lstProductos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstProductos.FullRowSelect = True
         Me.lstProductos.GridLines = True
-        Me.lstProductos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.lstProductos.HideSelection = False
         Me.lstProductos.Location = New System.Drawing.Point(231, 92)
         Me.lstProductos.MultiSelect = False
         Me.lstProductos.Name = "lstProductos"
         Me.lstProductos.Size = New System.Drawing.Size(940, 757)
-        Me.lstProductos.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.lstProductos.TabIndex = 5
         Me.lstProductos.UseCompatibleStateImageBehavior = False
         Me.lstProductos.View = System.Windows.Forms.View.Details

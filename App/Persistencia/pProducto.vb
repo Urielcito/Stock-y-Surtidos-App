@@ -116,20 +116,19 @@ Public Class pProducto
             End If
         End If
     End Sub
-    Public Function MostrarProductos(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+    Public Function MostrarProductos(ByVal orden As String, ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
         Dim defaultSelect = True
         Dim stringBusqueda As String = ""
         Dim stringDeFuente As String = ""
         Dim stringDeCategoria As String = ""
         calcularStringsQuery(defaultSelect, stringBusqueda, stringDeFuente, stringDeCategoria, id_fuente, id_categoria, buscando, txt_busqueda)
-        Dim strSelect = "select * from producto as p1 " & stringDeFuente & stringDeCategoria & stringBusqueda & " order by nombre"
+        Dim strSelect = "select * from producto as p1 " & stringDeFuente & stringDeCategoria & stringBusqueda & "order by " & orden
         Dim col_producto As New ArrayList
         Dim dt As DataTable = Nothing
         Try
             unaconexion.AbrirConexion()
             Return extraerProductosAColeccion(dt, col_producto, strSelect)
         Catch ex As Exception
-            MessageBox.Show(strSelect)
             Throw ex
         Finally
             unaconexion.CerrarConexion()
@@ -137,13 +136,12 @@ Public Class pProducto
     End Function
 
     'FUNCIONES DE LAS DISTINTAS VISTAS
-    Public Function queComprar(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
-        'q onda
+    Public Function queComprar(ByVal orden As String, ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
         Dim stringBusqueda As String = ""
         Dim stringDeFuente As String = ""
         Dim stringDeCategoria As String = ""
         calcularStringsQuery(False, stringBusqueda, stringDeFuente, stringDeCategoria, id_fuente, id_categoria, buscando, txt_busqueda)
-        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and p1.importante = '1' and (p1.cuanto_tenemos = 'NADA' or p1.cuanto_tenemos = 'POCO') " & stringDeFuente & stringDeCategoria & stringBusqueda
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and p1.importante = '1' and (p1.cuanto_tenemos = 'NADA' or p1.cuanto_tenemos = 'POCO') " & stringDeFuente & stringDeCategoria & stringBusqueda & " order by " & orden
         Dim dt As DataTable = Nothing
         Dim col_vista As New ArrayList
         Try
@@ -157,12 +155,12 @@ Public Class pProducto
 
     End Function
 
-    Public Function productosAlMejorPrecio(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+    Public Function productosAlMejorPrecio(ByVal orden As String, ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
         Dim stringBusqueda As String = ""
         Dim stringDeFuente As String = ""
         Dim stringDeCategoria As String = ""
         calcularStringsQuery(False, stringBusqueda, stringDeFuente, stringDeCategoria, id_fuente, id_categoria, buscando, txt_busqueda)
-        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio " & stringDeFuente & stringDeCategoria & stringBusqueda
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio " & stringDeFuente & stringDeCategoria & stringBusqueda & " order by " & orden
         Dim dt As DataTable = Nothing
         Dim col_vista As New ArrayList
         Try
@@ -176,19 +174,18 @@ Public Class pProducto
         End Try
     End Function
 
-    Public Function queFaltaEnCasa(ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
+    Public Function queFaltaEnCasa(ByVal orden As String, ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
         Dim stringBusqueda As String = ""
         Dim stringDeFuente As String = ""
         Dim stringDeCategoria As String = ""
         calcularStringsQuery(False, stringBusqueda, stringDeFuente, stringDeCategoria, id_fuente, id_categoria, buscando, txt_busqueda)
-        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and (p1.cuanto_tenemos = 'NADA') " & stringDeFuente & stringDeCategoria & stringBusqueda
+        Dim strVista = "select p1.id, p1.id_fuente, p1.id_categoria, t2.nombre, t2.min_precio as precio, p1.importante, p1.cuanto_tenemos, p1.nombre_imagen from producto as p1 join (select min(p2.precio) as min_precio, p2.nombre from producto as p2 group by nombre) as t2 on p1.nombre = t2.nombre and p1.precio = t2.min_precio and (p1.cuanto_tenemos = 'NADA') " & stringDeFuente & stringDeCategoria & stringBusqueda & "order by " & orden
         Dim dt As DataTable = Nothing
         Dim col_vista As New ArrayList
         Try
             unaconexion.AbrirConexion()
             Return extraerProductosAColeccion(dt, col_vista, strVista)
         Catch ex As Exception
-            Console.WriteLine(strVista)
             Throw ex
         Finally
             unaconexion.CerrarConexion()

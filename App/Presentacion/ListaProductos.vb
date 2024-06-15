@@ -6,7 +6,7 @@ Public Class ListaProductos
     Dim filtros = "default"
     Dim id_categoria = 0
     Dim id_fuente = 0
-
+    Dim orden = "p1.nombre ASC"
 
 
     'Formulario 
@@ -41,16 +41,16 @@ Public Class ListaProductos
         Select Case filtros
             Case "default"
                 lblFiltro.Text = "Mostrando todos los productos"
-                col_productos = cont.listadoproducto(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Sin filtro
+                col_productos = cont.listadoproducto(orden, buscando, txtBuscar.Text, id_fuente, id_categoria) 'Sin filtro
             Case "que_comprar"
                 lblFiltro.Text = "Mostrando que deberiamos comprar"
-                col_productos = cont.queProductosComprar(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Productos de los cuales tenemos NADA o POCO y son importantes
+                col_productos = cont.queProductosComprar(orden, buscando, txtBuscar.Text, id_fuente, id_categoria) 'Productos de los cuales tenemos NADA o POCO y son importantes
             Case "mejores_precios"
                 lblFiltro.Text = "Mostrando los mejores precios"
-                col_productos = cont.productosAlMejorPrecio(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Todos los productos, devuelve los productos mas baratos si existen en mas de una tienda
+                col_productos = cont.productosAlMejorPrecio(orden, buscando, txtBuscar.Text, id_fuente, id_categoria) 'Todos los productos, devuelve los productos mas baratos si existen en mas de una tienda
             Case "no_tenemos"
                 lblFiltro.Text = "Mostrando lo que no hay en casa"
-                col_productos = cont.queFaltaEnCasa(buscando, txtBuscar.Text, id_fuente, id_categoria) 'Todos los productos cuya variable cuanto_tenemos = NADA o POCO
+                col_productos = cont.queFaltaEnCasa(orden, buscando, txtBuscar.Text, id_fuente, id_categoria) 'Todos los productos cuya variable cuanto_tenemos = NADA o POCO
         End Select
 
         Dim lista As New ListViewItem
@@ -412,5 +412,20 @@ Public Class ListaProductos
 
     Private Sub cmbCategorias_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCategorias.SelectedIndexChanged
         chequearComboBoxes()
+    End Sub
+
+    Private Sub lstProductos_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles lstProductos.ColumnClick
+        Dim columnIndex = e.Column
+        Dim ordenes As String() = {"p1.nombre", "p1.id_fuente", "p1.id_categoria", "p1.precio", "p1.importante", "p1.cuanto_tenemos", "p1.nombre_imagen"}
+        Dim asc_desc = " ASC"
+        If (orden = ordenes(columnIndex - 1) & " ASC") Then
+            If (asc_desc = " ASC") Then
+                asc_desc = " DESC"
+            Else
+                asc_desc = " ASC"
+            End If
+        End If
+        orden = ordenes(columnIndex - 1) & asc_desc
+        cargarListView()
     End Sub
 End Class
