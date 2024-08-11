@@ -37,7 +37,6 @@
             Dim un_producto As Producto
             un_producto = New Producto(0, una_fuente, una_categoria, un_nombre, un_precio, un_cuanto_tenemos, un_importante, un_nombre_imagen)
             If p_producto.AgregarProducto(un_producto) = True Then
-                MessageBox.Show("Producto añadido con exito")
                 Return True
             End If
             Dim col_productos_actualizada = Me.listadoproducto("p1.nombre", False, "", 0, 0)

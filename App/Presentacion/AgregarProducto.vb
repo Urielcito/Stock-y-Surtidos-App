@@ -16,9 +16,13 @@ Public Class AgregarProducto
     Private Sub limpiarCampos() 'Campos o Datos
         pbImagen.Image = Nothing
         txtNombre.Text = ""
-        cmbCategorias.SelectedItem = Nothing
-        cmbFuentes.SelectedItem = Nothing
+        'cmbCategorias.SelectedItem = Nothing // naty quiere que no se cambien
+        'cmbFuentes.SelectedItem = Nothing //
         txtPrecio.Text = ""
+
+        rbPoco.Checked = False
+        rbNada.Checked = False
+        rbBien.Checked = False
 
     End Sub
     Private Sub cargarListas() 'Campos o Datos
@@ -54,19 +58,24 @@ Public Class AgregarProducto
         cmbCategorias.SelectedItem = Nothing
     End Sub
 
-    Private Sub chequearCampos() 'Campos o Datos
+    Private Function chequearCampos() As Boolean 'Campos o Datos
         Dim d As Double
+        Dim todoBien = False
         Dim combosRellenados = cmbCategorias.Text <> "" And cmbFuentes.Text <> ""
         Dim textosRellenados = txtNombre.Text <> "" And Double.TryParse(txtPrecio.Text, d) And cantidad <> "" And chequearRoundButtons()
-
         If (combosRellenados And textosRellenados) Then
+            lblError.Visible = False
+            todoBien = True
             btnImagen.Enabled = True
             btnAgregar.Enabled = True
         Else
             btnAgregar.Enabled = False
             btnImagen.Enabled = False
         End If
-    End Sub
+
+        lblInfo.Visible = False
+        Return todoBien
+    End Function
 
     Private Function chequearRoundButtons() As Boolean 'Campos o Datos
         Return rbNada.Checked Or rbPoco.Checked Or rbBien.Checked Or rbSobra.Checked
@@ -105,14 +114,18 @@ Public Class AgregarProducto
 
     Private Sub agregarProducto(ByVal una_fuente As Fuente, ByVal una_categoria As Categoria, ByVal nombre As String, ByVal precio As String, ByVal cuanto_tenemos As String, ByVal importante As Boolean, ByVal nombre_imagen As String) 'Agregar producto segundo paso
         cont.AgregarProducto(una_fuente, una_categoria, nombre, CDbl(precio), cuanto_tenemos, chkImportante.Checked, nombre_imagen)
-        Me.Dispose()
     End Sub
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click 'Agregar producto primer paso
         Dim ruta_imagen = pbImagen.ImageLocation
         Dim la_fuente = cmbFuentes.SelectedItem
         Dim la_categoria = cmbCategorias.SelectedItem
-        agregarProducto(la_fuente, la_categoria, txtNombre.Text, txtPrecio.Text, cantidad, chkImportante.Checked, ruta_imagen)
-        limpiarCampos()
+        If (chequearCampos()) Then
+            agregarProducto(la_fuente, la_categoria, txtNombre.Text, txtPrecio.Text, cantidad, chkImportante.Checked, ruta_imagen)
+            limpiarCampos()
+            lblInfo.Visible = True
+        Else
+            lblError.Visible = True
+        End If
     End Sub
 
 
@@ -174,8 +187,13 @@ Public Class AgregarProducto
         chequearCampos()
     End Sub
 
+    Private Sub cargarListView()
+        Dim col_productos As New ArrayList
+        col_productos = cont.listadoproducto("p1.nombre ASC", True, txtNombre.Text, id_fuente, id_categoria)
+    End Sub
     Private Sub txtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged 'UPDATERS
         chequearCampos()
+        cargarListView()
     End Sub
 
     Private Sub numPrecio_KeyPress(sender As Object, e As KeyPressEventArgs) 'UPDATERS
@@ -217,5 +235,11 @@ Public Class AgregarProducto
 
     Private Sub rbSobra_MouseClick(sender As Object, e As MouseEventArgs) Handles rbSobra.MouseClick
         chequearCampos()
+    End Sub
+
+    Private Sub AgregarProducto_Click(sender As Object, e As EventArgs) Handles MyBase.Click
+        If (Not chequearCampos()) Then
+            lblError.Visible = True
+        End If
     End Sub
 End Class

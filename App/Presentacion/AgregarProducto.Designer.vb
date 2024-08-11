@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class AgregarProducto
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class AgregarProducto
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.lblFuente = New System.Windows.Forms.Label()
         Me.cmbFuentes = New System.Windows.Forms.ComboBox()
@@ -39,6 +39,8 @@ Partial Class AgregarProducto
         Me.chkImportante = New System.Windows.Forms.CheckBox()
         Me.btnImagen = New System.Windows.Forms.Button()
         Me.pbImagen = New System.Windows.Forms.PictureBox()
+        Me.lblError = New System.Windows.Forms.Label()
+        Me.lblInfo = New System.Windows.Forms.Label()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -54,9 +56,11 @@ Partial Class AgregarProducto
         '
         'cmbFuentes
         '
+        Me.cmbFuentes.DropDownHeight = 100
         Me.cmbFuentes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbFuentes.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbFuentes.FormattingEnabled = True
+        Me.cmbFuentes.IntegralHeight = False
         Me.cmbFuentes.Items.AddRange(New Object() {""})
         Me.cmbFuentes.Location = New System.Drawing.Point(12, 36)
         Me.cmbFuentes.Name = "cmbFuentes"
@@ -75,9 +79,12 @@ Partial Class AgregarProducto
         '
         'cmbCategorias
         '
+        Me.cmbCategorias.DropDownHeight = 300
         Me.cmbCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCategorias.DropDownWidth = 346
         Me.cmbCategorias.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbCategorias.FormattingEnabled = True
+        Me.cmbCategorias.IntegralHeight = False
         Me.cmbCategorias.Items.AddRange(New Object() {""})
         Me.cmbCategorias.Location = New System.Drawing.Point(12, 98)
         Me.cmbCategorias.Name = "cmbCategorias"
@@ -203,11 +210,11 @@ Partial Class AgregarProducto
         'btnImagen
         '
         Me.btnImagen.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnImagen.Location = New System.Drawing.Point(610, 267)
+        Me.btnImagen.Location = New System.Drawing.Point(567, 261)
         Me.btnImagen.Name = "btnImagen"
-        Me.btnImagen.Size = New System.Drawing.Size(116, 30)
+        Me.btnImagen.Size = New System.Drawing.Size(159, 36)
         Me.btnImagen.TabIndex = 17
-        Me.btnImagen.Text = "Examinar..."
+        Me.btnImagen.Text = "Añadir imagen"
         Me.btnImagen.UseVisualStyleBackColor = True
         '
         'pbImagen
@@ -220,11 +227,37 @@ Partial Class AgregarProducto
         Me.pbImagen.TabIndex = 18
         Me.pbImagen.TabStop = False
         '
+        'lblError
+        '
+        Me.lblError.AutoSize = True
+        Me.lblError.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblError.ForeColor = System.Drawing.Color.Red
+        Me.lblError.Location = New System.Drawing.Point(172, 276)
+        Me.lblError.Name = "lblError"
+        Me.lblError.Size = New System.Drawing.Size(322, 24)
+        Me.lblError.TabIndex = 19
+        Me.lblError.Text = "* Rellene los campos obligatorios"
+        Me.lblError.Visible = False
+        '
+        'lblInfo
+        '
+        Me.lblInfo.AutoSize = True
+        Me.lblInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblInfo.ForeColor = System.Drawing.Color.Lime
+        Me.lblInfo.Location = New System.Drawing.Point(172, 282)
+        Me.lblInfo.Name = "lblInfo"
+        Me.lblInfo.Size = New System.Drawing.Size(181, 24)
+        Me.lblInfo.TabIndex = 20
+        Me.lblInfo.Text = "Producto añadido."
+        Me.lblInfo.Visible = False
+        '
         'AgregarProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(889, 309)
+        Me.Controls.Add(Me.lblInfo)
+        Me.Controls.Add(Me.lblError)
         Me.Controls.Add(Me.pbImagen)
         Me.Controls.Add(Me.btnImagen)
         Me.Controls.Add(Me.chkImportante)
@@ -268,4 +301,6 @@ Partial Class AgregarProducto
     Friend WithEvents chkImportante As CheckBox
     Friend WithEvents btnImagen As Button
     Friend WithEvents pbImagen As PictureBox
+    Friend WithEvents lblError As Label
+    Friend WithEvents lblInfo As Label
 End Class
