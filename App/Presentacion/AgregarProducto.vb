@@ -8,6 +8,8 @@ Public Class AgregarProducto
     Dim col_categorias As New ArrayList
     Dim col_prod As New ArrayList
     Dim cantidad = ""
+    Dim id_fuente = 0
+    Dim id_categoria = 0
 
 
 
@@ -56,6 +58,25 @@ Public Class AgregarProducto
         cargarListas()
         cmbFuentes.SelectedItem = Nothing
         cmbCategorias.SelectedItem = Nothing
+    End Sub
+
+    Private Sub chequearComboBoxes()
+        If (cmbFuentes.SelectedIndex = 0) Then
+            id_fuente = 0
+        ElseIf Not (cmbFuentes.SelectedItem Is Nothing) Then
+            Dim una_fuente As New Fuente
+            una_fuente = cmbFuentes.SelectedItem
+            id_fuente = una_fuente.id
+        End If
+        If (cmbCategorias.SelectedIndex = 0) Then
+            id_categoria = 0
+        ElseIf Not (cmbCategorias.SelectedItem Is Nothing) Then
+            Dim una_categoria As New Categoria
+            una_categoria = cmbCategorias.SelectedItem
+            id_categoria = una_categoria.id
+        End If
+
+        cargarListView()
     End Sub
 
     Private Function chequearCampos() As Boolean 'Campos o Datos
@@ -188,12 +209,24 @@ Public Class AgregarProducto
     End Sub
 
     Private Sub cargarListView()
+        Me.lstProductos.Items.Clear()
         Dim col_productos As New ArrayList
-        col_productos = cont.listadoproducto("p1.nombre ASC", True, txtNombre.Text, id_fuente, id_categoria)
+        Dim buscando As Boolean = False
+        If (txtNombre.Text <> "") Then
+            buscando = True
+        End If
+        col_productos = cont.listadoproducto("p1.nombre ASC", buscando, txtNombre.Text, id_fuente, id_categoria)
+
+        ' CARGAR LA FUTURA LIST VIEW
+        Dim lista As New ListViewItem
+        For Each p As Producto In col_productos
+            lista = New ListViewItem(p.nombre)
+            Me.lstProductos.Items.Add(lista)
+        Next
     End Sub
     Private Sub txtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged 'UPDATERS
-        chequearCampos()
         cargarListView()
+        chequearCampos()
     End Sub
 
     Private Sub numPrecio_KeyPress(sender As Object, e As KeyPressEventArgs) 'UPDATERS

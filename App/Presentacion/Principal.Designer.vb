@@ -30,7 +30,7 @@ Partial Class Principal
         '
         'btnListaProductos
         '
-        Me.btnListaProductos.Font = New System.Drawing.Font("High Tower Text", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnListaProductos.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnListaProductos.Location = New System.Drawing.Point(12, 12)
         Me.btnListaProductos.Name = "btnListaProductos"
         Me.btnListaProductos.Size = New System.Drawing.Size(776, 78)
@@ -40,7 +40,7 @@ Partial Class Principal
         '
         'btnListaFuentes
         '
-        Me.btnListaFuentes.Font = New System.Drawing.Font("High Tower Text", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnListaFuentes.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnListaFuentes.Location = New System.Drawing.Point(12, 96)
         Me.btnListaFuentes.Name = "btnListaFuentes"
         Me.btnListaFuentes.Size = New System.Drawing.Size(776, 78)
@@ -56,7 +56,7 @@ Partial Class Principal
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(61, 13)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "v0.1-beta"
+        Me.Label1.Text = "v0.2-beta"
         '
         'Label2
         '

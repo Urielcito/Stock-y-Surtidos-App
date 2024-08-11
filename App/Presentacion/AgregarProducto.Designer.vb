@@ -41,6 +41,9 @@ Partial Class AgregarProducto
         Me.pbImagen = New System.Windows.Forms.PictureBox()
         Me.lblError = New System.Windows.Forms.Label()
         Me.lblInfo = New System.Windows.Forms.Label()
+        Me.lstProductos = New System.Windows.Forms.ListView()
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.lblSimilares = New System.Windows.Forms.Label()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -106,7 +109,7 @@ Partial Class AgregarProducto
         Me.txtNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombre.Location = New System.Drawing.Point(399, 36)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(356, 29)
+        Me.txtNombre.Size = New System.Drawing.Size(658, 29)
         Me.txtNombre.TabIndex = 5
         '
         'lblPrecio
@@ -133,7 +136,7 @@ Partial Class AgregarProducto
         '
         Me.btnAgregar.Enabled = False
         Me.btnAgregar.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAgregar.Location = New System.Drawing.Point(761, 33)
+        Me.btnAgregar.Location = New System.Drawing.Point(1108, 33)
         Me.btnAgregar.Name = "btnAgregar"
         Me.btnAgregar.Size = New System.Drawing.Size(116, 94)
         Me.btnAgregar.TabIndex = 10
@@ -210,9 +213,9 @@ Partial Class AgregarProducto
         'btnImagen
         '
         Me.btnImagen.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnImagen.Location = New System.Drawing.Point(567, 261)
+        Me.btnImagen.Location = New System.Drawing.Point(1079, 269)
         Me.btnImagen.Name = "btnImagen"
-        Me.btnImagen.Size = New System.Drawing.Size(159, 36)
+        Me.btnImagen.Size = New System.Drawing.Size(145, 36)
         Me.btnImagen.TabIndex = 17
         Me.btnImagen.Text = "Añadir imagen"
         Me.btnImagen.UseVisualStyleBackColor = True
@@ -220,7 +223,7 @@ Partial Class AgregarProducto
         'pbImagen
         '
         Me.pbImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pbImagen.Location = New System.Drawing.Point(732, 167)
+        Me.pbImagen.Location = New System.Drawing.Point(1079, 133)
         Me.pbImagen.Name = "pbImagen"
         Me.pbImagen.Size = New System.Drawing.Size(145, 130)
         Me.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -251,11 +254,44 @@ Partial Class AgregarProducto
         Me.lblInfo.Text = "Producto añadido."
         Me.lblInfo.Visible = False
         '
+        'lstProductos
+        '
+        Me.lstProductos.Alignment = System.Windows.Forms.ListViewAlignment.Left
+        Me.lstProductos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader2})
+        Me.lstProductos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lstProductos.FullRowSelect = True
+        Me.lstProductos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
+        Me.lstProductos.Location = New System.Drawing.Point(687, 133)
+        Me.lstProductos.MultiSelect = False
+        Me.lstProductos.Name = "lstProductos"
+        Me.lstProductos.Size = New System.Drawing.Size(370, 164)
+        Me.lstProductos.TabIndex = 21
+        Me.lstProductos.UseCompatibleStateImageBehavior = False
+        Me.lstProductos.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "Nombre"
+        Me.ColumnHeader2.Width = 366
+        '
+        'lblSimilares
+        '
+        Me.lblSimilares.AutoSize = True
+        Me.lblSimilares.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSimilares.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.lblSimilares.Location = New System.Drawing.Point(770, 106)
+        Me.lblSimilares.Name = "lblSimilares"
+        Me.lblSimilares.Size = New System.Drawing.Size(198, 24)
+        Me.lblSimilares.TabIndex = 22
+        Me.lblSimilares.Text = "Productos similares:"
+        '
         'AgregarProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(889, 309)
+        Me.ClientSize = New System.Drawing.Size(1236, 309)
+        Me.Controls.Add(Me.lblSimilares)
+        Me.Controls.Add(Me.lstProductos)
         Me.Controls.Add(Me.lblInfo)
         Me.Controls.Add(Me.lblError)
         Me.Controls.Add(Me.pbImagen)
@@ -303,4 +339,7 @@ Partial Class AgregarProducto
     Friend WithEvents pbImagen As PictureBox
     Friend WithEvents lblError As Label
     Friend WithEvents lblInfo As Label
+    Friend WithEvents lstProductos As ListView
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents lblSimilares As Label
 End Class

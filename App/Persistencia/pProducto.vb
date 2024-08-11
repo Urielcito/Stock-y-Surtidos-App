@@ -124,7 +124,7 @@ Public Class pProducto
         Dim stringDeFuente As String = ""
         Dim stringDeCategoria As String = ""
         calcularStringsQuery(defaultSelect, stringBusqueda, stringDeFuente, stringDeCategoria, id_fuente, id_categoria, buscando, txt_busqueda)
-        Dim strSelect = "select * from producto as p1 " & stringDeFuente & stringDeCategoria & stringBusqueda & "order by " & orden
+        Dim strSelect = "select * from producto as p1 " & stringDeFuente & stringDeCategoria & stringBusqueda & " order by " & orden
         Dim col_producto As New ArrayList
         Dim dt As DataTable = Nothing
         Try
