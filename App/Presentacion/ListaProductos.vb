@@ -1,7 +1,8 @@
 ﻿Imports System.Drawing.Imaging
 
 Public Class ListaProductos
-    Dim cont As New Controladora
+    Dim cont As New Controladora()
+    Dim listaCompra As New ListaCompra()
     Dim un_id As Integer 'ID DEL PRODUCTO USADA POR TODO EL FORMULARIO
     Dim filtros = "default"
     Dim id_categoria = 0
@@ -428,5 +429,9 @@ Public Class ListaProductos
         End If
         orden = ordenes(columnIndex - 1) & asc_desc
         cargarListView()
+    End Sub
+
+    Private Sub msAgregar_Click(sender As Object, e As EventArgs) Handles msAgregar.Click
+        listaCompra.addIDToCSV(un_id, "productlist.csv")
     End Sub
 End Class

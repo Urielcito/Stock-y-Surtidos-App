@@ -112,6 +112,7 @@
     <Compile Include="Dominio\Categoria.vb" />
     <Compile Include="Dominio\Controladora.vb" />
     <Compile Include="Dominio\Fuente.vb" />
+    <Compile Include="Dominio\ListaCompra.vb" />
     <Compile Include="Dominio\Producto.vb" />
     <Compile Include="Persistencia\Conexion.vb" />
     <Compile Include="Persistencia\pCategoria.vb" />

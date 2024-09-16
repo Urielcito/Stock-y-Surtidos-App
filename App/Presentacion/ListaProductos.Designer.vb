@@ -37,6 +37,7 @@ Partial Class ListaProductos
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.menuProducto = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.msAgregar = New System.Windows.Forms.ToolStripMenuItem()
         Me.eliminarProducto = New System.Windows.Forms.ToolStripMenuItem()
         Me.pbImagen = New System.Windows.Forms.PictureBox()
         Me.menuImagen = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -60,6 +61,7 @@ Partial Class ListaProductos
         Me.lblFiltro = New System.Windows.Forms.Label()
         Me.btnMejoresPrecios = New System.Windows.Forms.Button()
         Me.lblNoTenemos = New System.Windows.Forms.Button()
+        Me.msEliminar = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuProducto.SuspendLayout()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menuImagen.SuspendLayout()
@@ -167,15 +169,21 @@ Partial Class ListaProductos
         '
         'menuProducto
         '
-        Me.menuProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.eliminarProducto})
+        Me.menuProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.msAgregar, Me.msEliminar, Me.eliminarProducto})
         Me.menuProducto.Name = "menuProducto"
-        Me.menuProducto.Size = New System.Drawing.Size(118, 26)
+        Me.menuProducto.Size = New System.Drawing.Size(235, 92)
         Me.menuProducto.Text = "Eliminar Producto"
+        '
+        'msAgregar
+        '
+        Me.msAgregar.Name = "msAgregar"
+        Me.msAgregar.Size = New System.Drawing.Size(234, 22)
+        Me.msAgregar.Text = "Agregar a la lista de compras"
         '
         'eliminarProducto
         '
         Me.eliminarProducto.Name = "eliminarProducto"
-        Me.eliminarProducto.Size = New System.Drawing.Size(117, 22)
+        Me.eliminarProducto.Size = New System.Drawing.Size(234, 22)
         Me.eliminarProducto.Text = "Eliminar"
         '
         'pbImagen
@@ -399,6 +407,12 @@ Partial Class ListaProductos
         Me.lblNoTenemos.Text = "Que no tenemos"
         Me.lblNoTenemos.UseVisualStyleBackColor = True
         '
+        'msEliminar
+        '
+        Me.msEliminar.Name = "msEliminar"
+        Me.msEliminar.Size = New System.Drawing.Size(234, 22)
+        Me.msEliminar.Text = "Eliminar de la lista de compras"
+        '
         'ListaProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -475,4 +489,6 @@ Partial Class ListaProductos
     Friend WithEvents lblFiltro As Label
     Friend WithEvents btnMejoresPrecios As Button
     Friend WithEvents lblNoTenemos As Button
+    Friend WithEvents msAgregar As ToolStripMenuItem
+    Friend WithEvents msEliminar As ToolStripMenuItem
 End Class

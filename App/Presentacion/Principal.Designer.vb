@@ -26,6 +26,7 @@ Partial Class Principal
         Me.btnListaFuentes = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.btnListas = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnListaProductos
@@ -52,27 +53,38 @@ Partial Class Principal
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(9, 185)
+        Me.Label1.Location = New System.Drawing.Point(9, 276)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(61, 13)
+        Me.Label1.Size = New System.Drawing.Size(64, 13)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "v0.2-beta"
+        Me.Label1.Text = "v0.21-dev"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(688, 185)
+        Me.Label2.Location = New System.Drawing.Point(688, 276)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(96, 13)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Hecho por Uriel"
         '
+        'btnListas
+        '
+        Me.btnListas.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnListas.Location = New System.Drawing.Point(12, 180)
+        Me.btnListas.Name = "btnListas"
+        Me.btnListas.Size = New System.Drawing.Size(776, 78)
+        Me.btnListas.TabIndex = 4
+        Me.btnListas.Text = "MANEJAR LISTAS"
+        Me.btnListas.UseVisualStyleBackColor = True
+        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(796, 207)
+        Me.ClientSize = New System.Drawing.Size(796, 298)
+        Me.Controls.Add(Me.btnListas)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnListaFuentes)
@@ -89,4 +101,5 @@ Partial Class Principal
     Friend WithEvents btnListaFuentes As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
+    Friend WithEvents btnListas As Button
 End Class
