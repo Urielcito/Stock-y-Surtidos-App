@@ -435,7 +435,6 @@ Public Class ListaProductos
     Private Sub msAgregar_Click(sender As Object, e As EventArgs) Handles msAgregar.Click
         Dim elProducto = cont.devolverProducto(un_id)
         listaCompra.addIDToCSV(elProducto, "productlist.csv")
-        MessageBox.Show("count ( fuera ) = " & listaCompra.mproductos.Count())
     End Sub
 
     Private Sub msEliminar_Click(sender As Object, e As EventArgs) Handles msEliminar.Click

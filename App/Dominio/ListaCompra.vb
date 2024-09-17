@@ -19,7 +19,6 @@ Public Class ListaCompra
                     mproductos.Add(elProducto)
                 End While
             End Using
-            MessageBox.Show("CSV Cargado")
         Catch ex As Exception
             MessageBox.Show("Error al leer el archivo CSV: " & ex.Message)
         End Try
@@ -32,7 +31,6 @@ Public Class ListaCompra
                 sw.WriteLine(elProducto.id().ToString())
             End Using
             mproductos.Add(elProducto)
-            MessageBox.Show("Producto agregado a la lista, count = " & mproductos.Count)
         Catch ex As Exception
             MessageBox.Show("Error al escribir al archivo CSV: " & ex.Message)
         End Try
@@ -40,14 +38,19 @@ Public Class ListaCompra
 
     Public Sub saveToCSV(filePath As String)
         clearCSV(filePath)
-        MessageBox.Show("mproductos.count = " & mproductos.Count())
-        Dim listaIDs As List(Of String)
-        For i As Integer = 0 To mproductos.Count - 1
-            Dim unProducto = mproductos.ElementAt(i)
-            Dim idProducto = unProducto.id()
-            listaIDs.Append(idProducto)
-        Next
-        File.WriteAllLines(filePath, listaIDs)
+        Try
+            Dim listaIDs As New List(Of String)
+            For i As Integer = 0 To mproductos.Count - 1
+                Dim unProducto = mproductos.ElementAt(i)
+                Dim idProducto = unProducto.id()
+                listaIDs.Append(idProducto)
+            Next
+            File.WriteAllLines(filePath, listaIDs) ' NO SE PUEDE HACER ESTO CON FILE = EMPTY, SOLUCION: USAR STREAMWRITER ITERANDO SOBRE MPRODUCTOS.
+        Catch ex As Exception
+            MessageBox.Show("Error al guardar toda la lista al CSV: " & ex.Message)
+        End Try
+
+
     End Sub
     Public Sub removeFromCSV(elProducto As Producto, filePath As String)
         Try
