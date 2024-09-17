@@ -171,13 +171,15 @@
     End Function
     'FUNCIONES QUE DEVUELVEN AL OBJETO O ALGO QUE TENGA QUE VER CON EL OBJETO
     Public Function devolverProducto(ByVal un_id As Integer) As Producto
+        Dim elProducto As New Producto()
         For Each p As Producto In col_producto
             If (p.id = un_id) Then
+                elProducto = p
                 Return p
                 Exit For
             End If
         Next
-        MessageBox.Show("No hay un producto con tal id.")
+        MessageBox.Show("No hay un producto con tal id " & un_id & ": col_productos contiene el producto: " & col_producto.ToArray().ToString)
         Return Nothing
     End Function
 

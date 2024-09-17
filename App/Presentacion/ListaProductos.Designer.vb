@@ -38,6 +38,7 @@ Partial Class ListaProductos
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.menuProducto = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.msAgregar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.msEliminar = New System.Windows.Forms.ToolStripMenuItem()
         Me.eliminarProducto = New System.Windows.Forms.ToolStripMenuItem()
         Me.pbImagen = New System.Windows.Forms.PictureBox()
         Me.menuImagen = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -61,7 +62,6 @@ Partial Class ListaProductos
         Me.lblFiltro = New System.Windows.Forms.Label()
         Me.btnMejoresPrecios = New System.Windows.Forms.Button()
         Me.lblNoTenemos = New System.Windows.Forms.Button()
-        Me.msEliminar = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuProducto.SuspendLayout()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menuImagen.SuspendLayout()
@@ -179,6 +179,12 @@ Partial Class ListaProductos
         Me.msAgregar.Name = "msAgregar"
         Me.msAgregar.Size = New System.Drawing.Size(234, 22)
         Me.msAgregar.Text = "Agregar a la lista de compras"
+        '
+        'msEliminar
+        '
+        Me.msEliminar.Name = "msEliminar"
+        Me.msEliminar.Size = New System.Drawing.Size(234, 22)
+        Me.msEliminar.Text = "Eliminar de la lista de compras"
         '
         'eliminarProducto
         '
@@ -406,12 +412,6 @@ Partial Class ListaProductos
         Me.lblNoTenemos.TabIndex = 23
         Me.lblNoTenemos.Text = "Que no tenemos"
         Me.lblNoTenemos.UseVisualStyleBackColor = True
-        '
-        'msEliminar
-        '
-        Me.msEliminar.Name = "msEliminar"
-        Me.msEliminar.Size = New System.Drawing.Size(234, 22)
-        Me.msEliminar.Text = "Eliminar de la lista de compras"
         '
         'ListaProductos
         '

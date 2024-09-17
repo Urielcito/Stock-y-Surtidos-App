@@ -87,6 +87,7 @@ Public Class ListaProductos
     End Sub
 
     Private Sub cargarListas() 'Rellena las listas que usan los combo boxes y tambien los menu strips con las listas de la controladora
+        listaCompra.loadFromCSV(cont, "productlist.csv")
         Dim col_fuentes = cont.listadofuente("id")
         Dim col_categorias = cont.listadocategoria
         Dim bs_fuentes As New BindingSource
@@ -432,6 +433,13 @@ Public Class ListaProductos
     End Sub
 
     Private Sub msAgregar_Click(sender As Object, e As EventArgs) Handles msAgregar.Click
-        listaCompra.addIDToCSV(un_id, "productlist.csv")
+        Dim elProducto = cont.devolverProducto(un_id)
+        listaCompra.addIDToCSV(elProducto, "productlist.csv")
+        MessageBox.Show("count ( fuera ) = " & listaCompra.mproductos.Count())
+    End Sub
+
+    Private Sub msEliminar_Click(sender As Object, e As EventArgs) Handles msEliminar.Click
+        Dim elProducto = cont.devolverProducto(un_id)
+        listaCompra.removeFromCSV(elProducto, "productlist.csv")
     End Sub
 End Class
