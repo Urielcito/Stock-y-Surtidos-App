@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `stockysurtidosapp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `stockysurtidosapp`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: stockysurtidosapp
 -- ------------------------------------------------------
--- Server version	8.3.0
+-- Server version	8.4.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +26,7 @@ CREATE TABLE `categoria` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +35,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (21,'Crear nueva...'),(22,'Cualquiera'),(23,'Comida'),(24,'Producto de limpieza'),(25,'Postre'),(26,'Comida chatarra'),(27,'Condimento'),(28,'Congelado'),(29,'Alcohol'),(30,'Verdura'),(31,'Fruta'),(32,'Embutido'),(33,'Papeleria'),(34,'Bazar'),(35,'Higiene personal'),(36,'Mascotas'),(37,'Fiambreria'),(38,'Ferreteria'),(39,'Maquillaje'),(40,'Medicamento'),(41,'Tecnologia'),(42,'Aderezo'),(43,'Bebida');
+INSERT INTO `categoria` VALUES (21,'Crear nueva...'),(22,'Cualquiera'),(23,'Comida'),(24,'Producto de limpieza'),(25,'Postre'),(26,'Comida chatarra'),(27,'Condimento'),(28,'Congelado'),(29,'Alcohol'),(30,'Verdura'),(31,'Fruta'),(32,'Embutido'),(33,'Papeleria'),(34,'Bazar'),(35,'Higiene personal'),(36,'Mascotas'),(37,'Fiambreria'),(38,'Ferreteria'),(39,'Maquillaje'),(40,'Medicamento'),(41,'Tecnologia'),(42,'Aderezo'),(43,'Bebida'),(44,'SNACK'),(46,'Aromatizantes');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +86,7 @@ CREATE TABLE `producto` (
   KEY `id_categoria_idx` (`id_categoria`),
   CONSTRAINT `id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_fuente` FOREIGN KEY (`id_fuente`) REFERENCES `fuente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +95,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (23,2,25,'DANETTE X4',120,'NADA',0,''),(25,2,23,'Arroz 5k',300,'BIEN',1,''),(26,2,43,'Fagar Cola 2 Litros',92,'NADA',1,'imagenes/productos/Fagar 2L.png'),(27,7,43,'Fagar Cola 2 Litros',95,'NADA',1,'imagenes/productos/Fagar 2L.png');
+INSERT INTO `producto` VALUES (34,2,24,'PERFUMOL CRISTAL 3 LTS',130,'BIEN',0,''),(35,2,24,'ROLLO COCINA MAXI 200 H',70,'BIEN',0,''),(36,2,24,'DENTRIFICO PERIODONT 90 G',290,'BIEN',0,''),(37,2,24,'AGUA LAVANDINA SELLO ROJO 2 LTS',120,'BIEN',0,''),(38,2,24,'JABON ASTRAL 125 G',40,'BIEN',0,''),(39,2,24,'BOLSAS RESIDUO NARANJA X 30',80,'BIEN',0,''),(40,2,35,'ENJUAGUE LISTERINE CUIDADO TOTAL 1 LTS',500,'BIEN',0,''),(41,2,24,'PAPEL HIGIENICO HIGIENOL 12 UN',280,'BIEN',0,''),(42,2,23,'DULCE MEMBRILLO 4 KG EL RETOÑO',355,'BIEN',0,''),(43,2,23,'PULPA DE TOMATE QUALITAS 1 KG',46,'BIEN',0,''),(44,2,23,'GRASA COLOLO 400 GR',37,'BIEN',0,''),(45,2,46,'VAINILLA MONTE CUDINE 120 ML',140,'BIEN',0,''),(46,2,27,'CALDOS MAGGI VERD 12 UN',48,'BIEN',0,''),(47,2,23,'QUESO MAGNOLIA FINO 200 GR',175,'BIEN',0,''),(48,2,23,'MAICENA REVELACION 1 KG',68,'BIEN',0,''),(49,2,23,'POLVO DE HORNEAR ROYAL 100 GR',60,'BIEN',0,''),(50,2,43,'TÉ HORNIMANS 50 UN',167,'BIEN',0,''),(51,2,23,'COCOA VASCOLET 1 KG',330,'BIEN',0,''),(52,2,23,'AZUCAR AZUCARLITO 2 KG',105,'BIEN',0,''),(53,2,23,'ACEITE URUGUAY 0,9 LITROS',75,'POCO',1,''),(54,2,23,'HARINA URUGUAY 0000 1 KG',38,'BIEN',0,''),(55,2,24,'PERFUMOL FABULOSO 2 LTS',157,'BIEN',0,''),(56,2,35,'ACONDICIONADOR FRUCTIS 350 ML',280,'BIEN',0,''),(57,2,27,'PIMENTON MONTE CUDINE 25 GR',32,'BIEN',0,'');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-13 12:01:01
+-- Dump completed on 2024-10-08 18:30:00
