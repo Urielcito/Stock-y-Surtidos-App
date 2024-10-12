@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing.Imaging
+Imports System.IO
 
 Public Class ListaProductos
     Dim cont As New Controladora()
@@ -14,6 +15,8 @@ Public Class ListaProductos
     Private Sub ListaProductos_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'Lo que sucede al cargar el formulario
         visibilidadInformacion(False, False)
         cargarListas()
+        cargarListaCompra()
+
     End Sub
 
     Private Sub btnAgregarProducto_Click(sender As Object, e As EventArgs) Handles btnAgregarProducto.Click 'Abre la ventana para agregar un producto
@@ -22,6 +25,7 @@ Public Class ListaProductos
     End Sub
 
     Private Sub ListaProductos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed 'Cuando cerramos esta ventana, muestra la ventana Principal
+        listaCompra.clearList()
         Dim princi As New Principal
         princi.Visible = True
     End Sub
@@ -87,7 +91,6 @@ Public Class ListaProductos
     End Sub
 
     Private Sub cargarListas() 'Rellena las listas que usan los combo boxes y tambien los menu strips con las listas de la controladora
-        listaCompra.loadFromCSV(cont, "productlist.csv")
         Dim col_fuentes = cont.listadofuente("id")
         Dim col_categorias = cont.listadocategoria
         Dim bs_fuentes As New BindingSource
@@ -147,9 +150,13 @@ Public Class ListaProductos
         End Select
     End Sub
 
-    Private Sub lstProductos_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstProductos.ItemSelectionChanged 'Despliega la informacion del producto seleccionado
+    Private Sub lstProductos_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstProductos.ItemSelectionChanged, lstCompras.ItemSelectionChanged 'Despliega la informacion del producto seleccionado
         If lstProductos.SelectedItems.Count > 0 Then
             un_id = lstProductos.SelectedItems(0).Text
+        ElseIf lstCompras.SelectedItems.Count > 0 Then
+            un_id = lstCompras.SelectedItems(0).Text
+        End If
+        If un_id Then
             Dim un_producto = cont.devolverProducto(un_id)
             lblNombre.Text = un_producto.nombre
             lblPrecio.Text = "$ " & un_producto.precio
@@ -172,6 +179,7 @@ Public Class ListaProductos
         Else
             visibilidadInformacion(False, False)
         End If
+
     End Sub
 
 
@@ -181,6 +189,9 @@ Public Class ListaProductos
         Dim un_producto = cont.devolverProducto(un_id)
         Dim nombre_original = un_producto.nombre
         Dim nuevo_nombre = InputBox("Ingrese el nuevo nombre del producto: ", "Nuevo nombre", un_producto.nombre)
+        If nuevo_nombre = "" Then
+            nuevo_nombre = nombre_original
+        End If
         un_producto.nombre = nuevo_nombre
         If (cont.ModificarNombreProducto(un_id, un_producto, nombre_original)) Then
             lblNombre.Text = nuevo_nombre
@@ -191,14 +202,15 @@ Public Class ListaProductos
     Private Sub lblPrecio_Click(sender As Object, e As EventArgs) Handles lblPrecio.Click 'Modifica el precio del producto seleccionado
         Dim un_producto = cont.devolverProducto(un_id)
         Dim d As Double
-        Dim nuevo_precio As Double = InputBox("Ingrese el nuevo precio del producto: ", "Nuevo precio", un_producto.precio)
-        If (Double.TryParse(nuevo_precio, d)) Then
-            un_producto.precio = nuevo_precio
+        Dim nuevoPrecioString As String = InputBox("Ingrese el nuevo precio del producto: ", "Nuevo precio", un_producto.precio)
+        If (Double.TryParse(nuevoPrecioString, d)) Then
+            Dim nuevoPrecio As Double = Double.Parse(nuevoPrecioString)
+            un_producto.precio = nuevoPrecio
             If (cont.ModificarProducto(un_id, un_producto)) Then
-                lblPrecio.Text = "$ " & nuevo_precio
+                lblPrecio.Text = "$ " & nuevoPrecioString
             End If
         Else
-            MessageBox.Show("El precio no puede contener ni simbolos ni letras.")
+            MessageBox.Show("El precio no puede contener simbolos o letras y tampoco puede estar vacio")
         End If
         cargarListView()
     End Sub
@@ -432,13 +444,65 @@ Public Class ListaProductos
         cargarListView()
     End Sub
 
+    Public Sub cargarListaCompra()
+        Me.lstCompras.Items.Clear()
+        Dim lista As New ListViewItem
+        Dim precioTotal As Integer = 0
+        listaCompra.loadFromCSV(cont)
+        For Each p As Producto In listaCompra.mproductos
+            lista = New ListViewItem(p.id)
+            lista.SubItems.Add(p.nombre)
+            lista.SubItems.Add(p.fuente.nombre)
+            Dim cant = listaCompra.mcantidades.ElementAt(listaCompra.mproductos.IndexOf(p))
+            lista.SubItems.Add(cant)
+            lista.SubItems.Add(p.precio * cant)
+            precioTotal += p.precio * cant
+            lista.SubItems.Add(p.precio)
+            Me.lstCompras.Items.Add(lista)
+        Next
+        Me.lblPrecioTotal.Text = "$" & precioTotal
+    End Sub
+
     Private Sub msAgregar_Click(sender As Object, e As EventArgs) Handles msAgregar.Click
         Dim elProducto = cont.devolverProducto(un_id)
-        listaCompra.addIDToCSV(elProducto, "productlist.csv")
+        If (Not listaCompra.existsInCSV(cont, un_id)) Then
+            Dim cant As Integer = 0
+            Dim cantString As String = ""
+            Dim incorrecto As Boolean = True
+            cantString = InputBox("Ingrese cantidad a agregar", "Ingresar", 0)
+            If (Integer.TryParse(cantString, cant) = True) Then
+                If (cant > 0) Then
+                    listaCompra.addIDToCSV(elProducto, cant)
+                    cargarListaCompra()
+                End If
+            End If
+
+        Else
+            MessageBox.Show("Ya existe este producto en la lista de compras")
+        End If
     End Sub
 
     Private Sub msEliminar_Click(sender As Object, e As EventArgs) Handles msEliminar.Click
         Dim elProducto = cont.devolverProducto(un_id)
-        listaCompra.removeFromCSV(elProducto, "productlist.csv")
+        listaCompra.removeFromCSV(elProducto)
+        cargarListaCompra()
+    End Sub
+
+    Private Sub lcEliminar_Click(sender As Object, e As EventArgs) Handles lcEliminar.Click
+        msEliminar_Click(sender, e)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnLimpiarListaCompra.Click
+        listaCompra.clearList()
+        cargarListaCompra()
+    End Sub
+
+    Private Sub btnGuardarListaCompra_Click(sender As Object, e As EventArgs) Handles btnGuardarListaCompra.Click
+        Dim filePath As String = ""
+        filePath = InputBox("Ingrese nombre de la lista", "Nombre de la lista", "")
+        If (Not filePath.Equals("")) Then
+            filePath = filePath & ".csv"
+            listaCompra.saveToNewCSV(filePath)
+        End If
     End Sub
 End Class

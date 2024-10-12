@@ -7,7 +7,7 @@ Public Class Conexion
         'ip = My.Computer.FileSystem.ReadAllText("C:\CUNT TimeSheet Manager\ipaddress.txt")
         'user = My.Computer.FileSystem.ReadAllText("C:\CUNT TimeSheet Manager\user.txt")
         Try
-            Dim MysqlConnString As String = "server=localhost; port=3306;user id=root;password=kuro234098576;database=stockysurtidosapp;Convert Zero Datetime=True"
+            Dim MysqlConnString As String = "server=localhost; port=3306;user id=root;password=root;database=stockysurtidosapp;Convert Zero Datetime=True"
 
             conexion = New MySqlConnection(MysqlConnString)
             conexion.Open()

@@ -62,9 +62,24 @@ Partial Class ListaProductos
         Me.lblFiltro = New System.Windows.Forms.Label()
         Me.btnMejoresPrecios = New System.Windows.Forms.Button()
         Me.lblNoTenemos = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lstCompras = New System.Windows.Forms.ListView()
+        Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader14 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.menuListaCompra = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.lcEliminar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btnLimpiarListaCompra = New System.Windows.Forms.Button()
+        Me.ColumnHeader15 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.lblTotal = New System.Windows.Forms.Label()
+        Me.lblPrecioTotal = New System.Windows.Forms.Label()
+        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btnGuardarListaCompra = New System.Windows.Forms.Button()
         Me.menuProducto.SuspendLayout()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menuImagen.SuspendLayout()
+        Me.menuListaCompra.SuspendLayout()
         Me.SuspendLayout()
         '
         'cmbFuentes
@@ -127,7 +142,7 @@ Partial Class ListaProductos
         Me.lstProductos.Location = New System.Drawing.Point(231, 92)
         Me.lstProductos.MultiSelect = False
         Me.lstProductos.Name = "lstProductos"
-        Me.lstProductos.Size = New System.Drawing.Size(940, 757)
+        Me.lstProductos.Size = New System.Drawing.Size(940, 441)
         Me.lstProductos.TabIndex = 5
         Me.lstProductos.UseCompatibleStateImageBehavior = False
         Me.lstProductos.View = System.Windows.Forms.View.Details
@@ -171,7 +186,7 @@ Partial Class ListaProductos
         '
         Me.menuProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.msAgregar, Me.msEliminar, Me.eliminarProducto})
         Me.menuProducto.Name = "menuProducto"
-        Me.menuProducto.Size = New System.Drawing.Size(235, 92)
+        Me.menuProducto.Size = New System.Drawing.Size(235, 70)
         Me.menuProducto.Text = "Eliminar Producto"
         '
         'msAgregar
@@ -311,7 +326,7 @@ Partial Class ListaProductos
         Me.lblFuente.ContextMenuStrip = Me.menuFuentes
         Me.lblFuente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblFuente.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFuente.Location = New System.Drawing.Point(1177, 825)
+        Me.lblFuente.Location = New System.Drawing.Point(1177, 728)
         Me.lblFuente.Name = "lblFuente"
         Me.lblFuente.Size = New System.Drawing.Size(137, 24)
         Me.lblFuente.TabIndex = 16
@@ -332,7 +347,7 @@ Partial Class ListaProductos
         Me.lblCategoria.ContextMenuStrip = Me.menuCategorias
         Me.lblCategoria.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblCategoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCategoria.Location = New System.Drawing.Point(1177, 770)
+        Me.lblCategoria.Location = New System.Drawing.Point(1177, 673)
         Me.lblCategoria.Name = "lblCategoria"
         Me.lblCategoria.Size = New System.Drawing.Size(99, 24)
         Me.lblCategoria.TabIndex = 17
@@ -413,11 +428,130 @@ Partial Class ListaProductos
         Me.lblNoTenemos.Text = "Que no tenemos"
         Me.lblNoTenemos.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(563, 568)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(278, 37)
+        Me.Label1.TabIndex = 24
+        Me.Label1.Text = "Lista de compras"
+        '
+        'lstCompras
+        '
+        Me.lstCompras.Alignment = System.Windows.Forms.ListViewAlignment.Left
+        Me.lstCompras.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader11, Me.ColumnHeader14, Me.ColumnHeader15, Me.ColumnHeader10})
+        Me.lstCompras.ContextMenuStrip = Me.menuListaCompra
+        Me.lstCompras.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lstCompras.FullRowSelect = True
+        Me.lstCompras.GridLines = True
+        Me.lstCompras.HideSelection = False
+        Me.lstCompras.Location = New System.Drawing.Point(230, 608)
+        Me.lstCompras.MultiSelect = False
+        Me.lstCompras.Name = "lstCompras"
+        Me.lstCompras.Size = New System.Drawing.Size(940, 240)
+        Me.lstCompras.TabIndex = 25
+        Me.lstCompras.UseCompatibleStateImageBehavior = False
+        Me.lstCompras.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader8
+        '
+        Me.ColumnHeader8.Text = "ID"
+        Me.ColumnHeader8.Width = 0
+        '
+        'ColumnHeader9
+        '
+        Me.ColumnHeader9.Text = "Nombre"
+        Me.ColumnHeader9.Width = 325
+        '
+        'ColumnHeader11
+        '
+        Me.ColumnHeader11.Text = "Fuente"
+        Me.ColumnHeader11.Width = 300
+        '
+        'ColumnHeader14
+        '
+        Me.ColumnHeader14.Text = "Cantidad"
+        Me.ColumnHeader14.Width = 100
+        '
+        'menuListaCompra
+        '
+        Me.menuListaCompra.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lcEliminar})
+        Me.menuListaCompra.Name = "menuProducto"
+        Me.menuListaCompra.Size = New System.Drawing.Size(235, 26)
+        Me.menuListaCompra.Text = "Eliminar Producto"
+        '
+        'lcEliminar
+        '
+        Me.lcEliminar.Name = "lcEliminar"
+        Me.lcEliminar.Size = New System.Drawing.Size(234, 22)
+        Me.lcEliminar.Text = "Eliminar de la lista de compras"
+        '
+        'btnLimpiarListaCompra
+        '
+        Me.btnLimpiarListaCompra.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLimpiarListaCompra.Location = New System.Drawing.Point(16, 612)
+        Me.btnLimpiarListaCompra.Name = "btnLimpiarListaCompra"
+        Me.btnLimpiarListaCompra.Size = New System.Drawing.Size(197, 66)
+        Me.btnLimpiarListaCompra.TabIndex = 26
+        Me.btnLimpiarListaCompra.Text = "Limpiar lista de compras"
+        Me.btnLimpiarListaCompra.UseVisualStyleBackColor = True
+        '
+        'ColumnHeader15
+        '
+        Me.ColumnHeader15.Text = "Precio Total"
+        Me.ColumnHeader15.Width = 120
+        '
+        'lblTotal
+        '
+        Me.lblTotal.AutoSize = True
+        Me.lblTotal.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.lblTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotal.Location = New System.Drawing.Point(12, 681)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(80, 29)
+        Me.lblTotal.TabIndex = 27
+        Me.lblTotal.Text = "Total:"
+        '
+        'lblPrecioTotal
+        '
+        Me.lblPrecioTotal.AutoSize = True
+        Me.lblPrecioTotal.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.lblPrecioTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrecioTotal.Location = New System.Drawing.Point(83, 681)
+        Me.lblPrecioTotal.Name = "lblPrecioTotal"
+        Me.lblPrecioTotal.Size = New System.Drawing.Size(41, 29)
+        Me.lblPrecioTotal.TabIndex = 28
+        Me.lblPrecioTotal.Text = "$0"
+        '
+        'ColumnHeader10
+        '
+        Me.ColumnHeader10.Text = "Precio Unit."
+        Me.ColumnHeader10.Width = 120
+        '
+        'btnGuardarListaCompra
+        '
+        Me.btnGuardarListaCompra.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGuardarListaCompra.Location = New System.Drawing.Point(12, 774)
+        Me.btnGuardarListaCompra.Name = "btnGuardarListaCompra"
+        Me.btnGuardarListaCompra.Size = New System.Drawing.Size(197, 66)
+        Me.btnGuardarListaCompra.TabIndex = 29
+        Me.btnGuardarListaCompra.Text = "Guardar lista de compras"
+        Me.btnGuardarListaCompra.UseVisualStyleBackColor = True
+        '
         'ListaProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1584, 861)
+        Me.ClientSize = New System.Drawing.Size(1584, 852)
+        Me.Controls.Add(Me.btnGuardarListaCompra)
+        Me.Controls.Add(Me.lblPrecioTotal)
+        Me.Controls.Add(Me.lblTotal)
+        Me.Controls.Add(Me.btnLimpiarListaCompra)
+        Me.Controls.Add(Me.lstCompras)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblNoTenemos)
         Me.Controls.Add(Me.btnMejoresPrecios)
         Me.Controls.Add(Me.lblFiltro)
@@ -447,6 +581,7 @@ Partial Class ListaProductos
         Me.menuProducto.ResumeLayout(False)
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).EndInit()
         Me.menuImagen.ResumeLayout(False)
+        Me.menuListaCompra.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -491,4 +626,18 @@ Partial Class ListaProductos
     Friend WithEvents lblNoTenemos As Button
     Friend WithEvents msAgregar As ToolStripMenuItem
     Friend WithEvents msEliminar As ToolStripMenuItem
+    Friend WithEvents Label1 As Label
+    Friend WithEvents lstCompras As ListView
+    Friend WithEvents ColumnHeader8 As ColumnHeader
+    Friend WithEvents ColumnHeader9 As ColumnHeader
+    Friend WithEvents ColumnHeader11 As ColumnHeader
+    Friend WithEvents ColumnHeader14 As ColumnHeader
+    Friend WithEvents menuListaCompra As ContextMenuStrip
+    Friend WithEvents lcEliminar As ToolStripMenuItem
+    Friend WithEvents btnLimpiarListaCompra As Button
+    Friend WithEvents ColumnHeader15 As ColumnHeader
+    Friend WithEvents lblTotal As Label
+    Friend WithEvents lblPrecioTotal As Label
+    Friend WithEvents ColumnHeader10 As ColumnHeader
+    Friend WithEvents btnGuardarListaCompra As Button
 End Class
