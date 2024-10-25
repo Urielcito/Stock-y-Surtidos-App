@@ -26,6 +26,7 @@ En esta ventana se pueden listar, agregar, modificar y eliminar fuentes.
 
 ## TO-DO: 
 
+- Diseñar un icono para el programa
 - Ventana de MANEJAR LISTAS que facilite detalles acerca de la lista de compras
 
 ### Productos
@@ -45,6 +46,10 @@ Se puede ver, agregar, modificar y eliminar Fuentes
 - Reescribir todo el proyecto y repositorio en Inglés
 
 # Lista de cambios
+
+## v0.3.2-dev
+
+- Ya no se necesita tener creada la carpeta credentials antes de abrir el programa por primera vez
 
 ## v0.3.1-dev
 

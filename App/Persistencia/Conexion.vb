@@ -3,15 +3,18 @@ Imports System.IO
 Public Class Conexion
     Private MysqlCommand As New MySqlCommand
     Private conexion As MySqlConnection
-    Private ip As String = File.ReadAllText("credentials\ip.txt")
-    Private user As String = File.ReadAllText("credentials\user.txt")
-    Private pass As String = File.ReadAllText("credentials\pass.txt")
+    Private ip As String = ""
+    Private user As String = ""
+    Private pass As String = ""
 
     Public Function AbrirConexion() As Boolean
         Dim conectado As Boolean = True
         'ip = InputBox("Escribe la ip del servidor de la base de datos, sea localhost o la ip de un servidor CENTOS", "ip")
         'ip = My.Computer.FileSystem.ReadAllText("C:\CUNT TimeSheet Manager\ipaddress.txt")
         'user = My.Computer.FileSystem.ReadAllText("C:\CUNT TimeSheet Manager\user.txt")
+        ip = File.ReadAllText("credentials\ip.txt")
+        user = File.ReadAllText("credentials\user.txt")
+        pass = File.ReadAllText("credentials\pass.txt")
         Try
             Dim MysqlConnString As String = "server=" + ip + "; port=3306;user id=" + user + ";password=" + pass + ";database=stockysurtidosapp;Convert Zero Datetime=True"
             conexion = New MySqlConnection(MysqlConnString)
