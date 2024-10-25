@@ -2,9 +2,25 @@
 
 ## Ventanas
 
+### Log-In
+
+En esta ventana se especifica el usuario, contraseña e ip para ingresar a la base de datos principal, el programa abre primero esta ventana antes de abrir la ventana principal.
+![Ventana de Log-In](login.png)
+
 ### Principal
 
-Cuando abre el programa abre aca, esta ventana no tiene nada mas que botones para ir al listado de productos y el listado de fuentes.
+En esta ventana hay botones para ir al listado de productos, de fuentes, de listas (si, una lista de listas).
+![Ventana principal](principal.png)
+
+### Lista Productos
+
+En esta ventana se pueden listar, agregar, modificar y eliminar productos de cualquier fuente.
+![Ventana de lista de productos](listaproductos.png) 
+
+### Lista Fuentes
+
+En esta ventana se pueden listar, agregar, modificar y eliminar fuentes.
+![Ventana de lista de fuentes](listafuentes.png)
 
 ## TO-DO: 
 
@@ -20,15 +36,11 @@ Se puede ver, agregar, modificar y eliminar Productos.
 Una Fuente representa a un local/supermercado/sucursal en la que se pueden comprar bienes
 Se puede ver, agregar, modificar y eliminar Fuentes
 
-# Futuro: 
+# Roadmap: 
 - Surtido realizado (una lista de compras y una fecha)
 - Boton para generar un Excel conteniendo: productos que tenemos bien en una columna, otra columna con productos que no tenemos o tenemos poco, una columna con los gastos de cada producto que nos recomienda comprar en los lugares donde sale mas barato, con una columna al lado que especifique de que lugar hay que comprarlo (agrupado por eso) y otra columna que haga lo mismo pero con los productos mas caros, entonces se consigue un presupuesto minimo y presupuesto maximo. Los productos caros obviamente se tienen que conseguir por la comparacion de productos de la misma categoria y no de distinta tienda, a parte de ser distintos productos obviamente
 
 - Reescribir todo el proyecto y repositorio en Inglés
-	
-## Funcionalidades:
-- Para cada producto el cual aparezca en minimo 2 surtidos, calcular la duracion entre una compra y otra, sumarla con el resto de duraciones calculadas en caso de ser mas de una y calcular una duracion promedio.
-- Mostrar en la pantalla principal los productos que estan cerca del fin de su duracion en rojo, como una prediccion de que se esta por acabar, que diga, por ejemplo: Probablemente se acaben: y abajo la lista de productos
 
 # Lista de cambios
 
