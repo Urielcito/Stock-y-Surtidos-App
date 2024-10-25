@@ -9,8 +9,6 @@ Cuando abre el programa abre aca, esta ventana no tiene nada mas que botones par
 ## TO-DO: 
 
 - Ventana de MANEJAR LISTAS que facilite detalles acerca de la lista de compras
-- Importar el database.sql actualizado.
-- Buscar una manera de que el programa se conecte solo a la base de datos de mi pc de torre, para que natalia pueda usarlo desde la laptop y que los cambios se vean reflejados en ambas plataformas.
 
 ### Productos
 
@@ -33,6 +31,10 @@ Se puede ver, agregar, modificar y eliminar Fuentes
 - Mostrar en la pantalla principal los productos que estan cerca del fin de su duracion en rojo, como una prediccion de que se esta por acabar, que diga, por ejemplo: Probablemente se acaben: y abajo la lista de productos
 
 # Lista de cambios
+
+## v0.3.1-dev
+
+- Ahora se puede elegir el nombre y contraseña para conectarse a la base de datos desde la laptop
 
 ## v0.3-dev
 
