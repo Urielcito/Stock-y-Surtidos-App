@@ -25,7 +25,6 @@ Public Class ListaProductos
     End Sub
 
     Private Sub ListaProductos_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed 'Cuando cerramos esta ventana, muestra la ventana Principal
-        listaCompra.clearList()
         Dim princi As New Principal
         princi.Visible = True
     End Sub

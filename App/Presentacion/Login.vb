@@ -1,5 +1,4 @@
 ﻿Imports System.IO
-Imports System.Net
 
 Public Class Login
 
@@ -8,6 +7,8 @@ Public Class Login
     Private user As String = ""
     Private pass As String = ""
     Private local As String = "192.168.1."
+
+
     Private Function txtVacio(t As TextBox) As Boolean
         Return t.Text.Equals("")
     End Function
