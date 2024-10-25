@@ -5,6 +5,8 @@
 ### Log-In
 
 En esta ventana se especifica el usuario, contraseña e ip para ingresar a la base de datos principal, el programa abre primero esta ventana antes de abrir la ventana principal.
+
+
 ![Ventana de Log-In](login.png)
 
 ### Principal
