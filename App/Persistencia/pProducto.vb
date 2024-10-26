@@ -118,6 +118,21 @@ Public Class pProducto
             End If
         End If
     End Sub
+
+    Public Function MostrarProductos()
+        Dim strSelect = "select * from producto"
+        Dim col_producto As New ArrayList
+        Dim dt As DataTable = Nothing
+        Try
+            unaconexion.AbrirConexion()
+            Return extraerProductosAColeccion(dt, col_producto, strSelect)
+        Catch ex As Exception
+            MessageBox.Show(strSelect)
+            Throw ex
+        Finally
+            unaconexion.CerrarConexion()
+        End Try
+    End Function
     Public Function MostrarProductos(ByVal orden As String, ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
         Dim defaultSelect = True
         Dim stringBusqueda As String = ""

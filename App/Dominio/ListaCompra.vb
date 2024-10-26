@@ -1,6 +1,9 @@
 ﻿Imports System.IO
+Imports ClosedXML.Excel
+
 Public Class ListaCompra
-    Private ruta As String = "lists\productlist.csv"
+    Private ruta As String = "lists\lista temporal.csv"
+
     Public Property mproductos As List(Of Producto)
     Public Property mcantidades As List(Of Integer)
 
@@ -16,6 +19,32 @@ Public Class ListaCompra
         If (Not Directory.Exists("lists")) Then
             Directory.CreateDirectory("lists")
         End If
+        Try
+            If (Not File.Exists(ruta)) Then
+                File.Create(ruta).Dispose()
+            End If
+            Using sr As New StreamReader(ruta)
+                Dim line As String
+                While (sr.Peek() >= 0)
+                    line = sr.ReadLine()
+                    Dim parts As String() = line.Split(","c) ' Dividir la línea en ID y cantidad
+                    Dim idProducto As Integer = Convert.ToInt32(parts(0))
+                    Dim cantidad As Integer = Convert.ToInt32(parts(1))
+                    Dim elProducto = cont.devolverProducto(idProducto)
+                    If elProducto IsNot Nothing Then
+                        mproductos.Add(elProducto)
+                        mcantidades.Add(cantidad)
+                    End If
+                End While
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error al leer el archivo CSV: " & ex.Message)
+        End Try
+    End Sub
+
+    Public Sub loadFromCSV(cont As Controladora, ruta As String)
+        Me.mproductos.Clear()
+        Me.mcantidades.Clear()
         Try
             If (Not File.Exists(ruta)) Then
                 File.Create(ruta).Dispose()
@@ -116,7 +145,9 @@ Public Class ListaCompra
         Return exists
     End Function
 
-
+    Public Sub deleteCSV(ruta As String)
+        File.Delete(ruta)
+    End Sub
     Public Sub clearList()
         Try
             File.WriteAllText(ruta, String.Empty)

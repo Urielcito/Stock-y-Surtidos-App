@@ -13,16 +13,28 @@ Public Class Login
         Return t.Text.Equals("")
     End Function
 
-    Private Sub chequearCampos()
+    Private Function chequearCampos() As Boolean
+        Dim permitir = False
         If Not txtVacio(txtIp3) And Not txtVacio(txtUser) And Not txtVacio(txtPass) Then
             ip = txtIp3.Text
             user = txtUser.Text
             pass = txtUser.Text
             btnConectar.Enabled = True
+            permitir = True
+        Else
+            permitir = False
         End If
-    End Sub
-    Private Sub txtIp_TextChanged(sender As Object, e As EventArgs) Handles txtIp3.TextChanged
+        Return permitir
+    End Function
+    Private Sub txtIp3_TextChanged(sender As Object, e As EventArgs) Handles txtIp3.TextChanged
         chequearCampos()
+        If txtIp3.Text.Contains("l") Then
+            'Me.local = ""
+            'txtIp3.Text = "localhost"
+            'abrirPrograma()
+            lblLocalhost_Click(sender, e)
+        End If
+
     End Sub
 
     Private Sub txtUser_TextChanged(sender As Object, e As EventArgs) Handles txtUser.TextChanged
@@ -37,7 +49,7 @@ Public Class Login
         MessageBox.Show("Usuario en laptop: laptop. " + Environment.NewLine + "Contraseña en laptop: laptop." + Environment.NewLine + "IP de la PC: cmd -> ipconfig -> iPv4 :)")
     End Sub
 
-    Private Sub btnConectar_Click(sender As Object, e As EventArgs) Handles btnConectar.Click
+    Private Sub abrirPrograma()
         If (Not Directory.Exists("credentials")) Then
             Directory.CreateDirectory("credentials")
         End If
@@ -63,10 +75,14 @@ Public Class Login
         File.WriteAllText("credentials\pass.txt", pass)
 
         If (unaConexion.AbrirConexion()) Then
+            unaConexion.CerrarConexion()
             Dim princi As New Principal()
             princi.Show()
             Me.Hide()
         End If
+    End Sub
+    Private Sub btnConectar_Click(sender As Object, e As EventArgs) Handles btnConectar.Click
+        abrirPrograma()
     End Sub
 
     Private Sub lblLocalhost_Click(sender As Object, e As EventArgs) Handles lblLocalhost.Click
@@ -97,5 +113,27 @@ Public Class Login
         lblIp1.Visible = True
         lblIp2.Visible = True
         txtIp3.Text = ""
+    End Sub
+
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim ruta As String = "credentials\ip.txt"
+        Dim ultimaIp As String = ""
+        If File.Exists(ruta) Then
+            ultimaIp = File.ReadAllText(ruta)
+        End If
+        If (Not ultimaIp.Equals("localhost")) Then
+            ultimaIp = ultimaIp.Split(".").Last()
+            txtIp3.Text = ultimaIp
+            txtIp3.ForeColor = Color.Gray
+        Else
+            lblUltimaIp.Text = "Ultima IP usada: localhost"
+        End If
+
+    End Sub
+
+    Private Sub txtPass_KeyDown(sender As Object, e As KeyEventArgs) Handles txtPass.KeyDown, txtIp3.KeyDown
+        If e.KeyCode = Keys.Enter And chequearCampos() Then
+            abrirPrograma()
+        End If
     End Sub
 End Class

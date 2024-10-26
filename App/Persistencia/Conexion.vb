@@ -21,8 +21,12 @@ Public Class Conexion
             conexion.Open()
         Catch ex As MySqlException
             conectado = Not conectado
-            MessageBox.Show(ex.Message)
-            Throw ex
+            If (ex.Message.StartsWith("Authentication to host")) Then
+                MessageBox.Show("La IP o contraseña son incorrectos, o el usuario no existe.")
+            Else
+                MessageBox.Show(ex.Message)
+            End If
+
         End Try
 
         Return conectado

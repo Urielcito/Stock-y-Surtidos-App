@@ -37,6 +37,7 @@ Partial Class Login
         Me.lblIp2 = New System.Windows.Forms.Label()
         Me.btnConectar = New System.Windows.Forms.Button()
         Me.lblLocalhost = New System.Windows.Forms.Label()
+        Me.lblUltimaIp = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -74,7 +75,7 @@ Partial Class Login
         Me.txtPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPass.Location = New System.Drawing.Point(19, 121)
         Me.txtPass.Name = "txtPass"
-        Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9829)
+        Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
         Me.txtPass.Size = New System.Drawing.Size(238, 29)
         Me.txtPass.TabIndex = 28
         '
@@ -136,6 +137,7 @@ Partial Class Login
         Me.btnOlvide.Name = "btnOlvide"
         Me.btnOlvide.Size = New System.Drawing.Size(128, 23)
         Me.btnOlvide.TabIndex = 34
+        Me.btnOlvide.TabStop = False
         Me.btnOlvide.Text = "Olvide mi contraseña"
         Me.btnOlvide.UseVisualStyleBackColor = True
         '
@@ -191,11 +193,21 @@ Partial Class Login
         Me.lblLocalhost.TabIndex = 39
         Me.lblLocalhost.Text = "localhost"
         '
+        'lblUltimaIp
+        '
+        Me.lblUltimaIp.AutoSize = True
+        Me.lblUltimaIp.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUltimaIp.Location = New System.Drawing.Point(12, 328)
+        Me.lblUltimaIp.Name = "lblUltimaIp"
+        Me.lblUltimaIp.Size = New System.Drawing.Size(0, 16)
+        Me.lblUltimaIp.TabIndex = 40
+        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(269, 331)
+        Me.ClientSize = New System.Drawing.Size(269, 350)
+        Me.Controls.Add(Me.lblUltimaIp)
         Me.Controls.Add(Me.lblLocalhost)
         Me.Controls.Add(Me.btnConectar)
         Me.Controls.Add(Me.lblIp2)
@@ -212,6 +224,7 @@ Partial Class Login
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Name = "Login"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -233,4 +246,5 @@ Partial Class Login
     Friend WithEvents lblIp2 As Label
     Friend WithEvents btnConectar As Button
     Friend WithEvents lblLocalhost As Label
+    Friend WithEvents lblUltimaIp As Label
 End Class

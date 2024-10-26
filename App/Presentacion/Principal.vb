@@ -10,7 +10,11 @@
         lf.Show()
         Me.Hide()
     End Sub
-
+    Private Sub btnListas_Click(sender As Object, e As EventArgs) Handles btnListas.Click
+        Dim ll As New ListaListas
+        ll.Show()
+        Me.Hide()
+    End Sub
     Private Sub Principal_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         End
     End Sub
@@ -18,4 +22,6 @@
     Private Sub Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+
 End Class

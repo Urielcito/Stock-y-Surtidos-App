@@ -16,7 +16,8 @@ En esta ventana hay botones para ir al listado de productos, de fuentes, de list
 
 ### Lista Productos
 
-En esta ventana se pueden listar, agregar, modificar y eliminar productos de cualquier fuente.
+En esta ventana se pueden listar, agregar, modificar y eliminar productos de cualquier fuente, tambien se pueden crear listas de compras personalizadas.
+
 ![Ventana de lista de productos](listaproductos.png) 
 
 ### Lista Fuentes
@@ -24,10 +25,11 @@ En esta ventana se pueden listar, agregar, modificar y eliminar productos de cua
 En esta ventana se pueden listar, agregar, modificar y eliminar fuentes.
 ![Ventana de lista de fuentes](listafuentes.png)
 
-## TO-DO: 
+### Lista de Listas
 
-- Diseñar un icono para el programa
-- Ventana de MANEJAR LISTAS que facilite detalles acerca de la lista de compras
+En esta ventana se pueden ver con mas detalle las distintas listas de compra creadas en la ventana de productos.
+
+![Ventana de lista de listas](listalistas.png)
 
 ### Productos
 
@@ -39,13 +41,24 @@ Se puede ver, agregar, modificar y eliminar Productos.
 Una Fuente representa a un local/supermercado/sucursal en la que se pueden comprar bienes
 Se puede ver, agregar, modificar y eliminar Fuentes
 
+## TO-DO: 
+
+- Diseñar un icono para el programa
+- Lograr exportar datos de una lista de compra hacia un archivo excel para convertirlo a pdf o imprimirlo directamente.
+
 # Roadmap: 
+
 - Surtido realizado (una lista de compras y una fecha)
 - Boton para generar un Excel conteniendo: productos que tenemos bien en una columna, otra columna con productos que no tenemos o tenemos poco, una columna con los gastos de cada producto que nos recomienda comprar en los lugares donde sale mas barato, con una columna al lado que especifique de que lugar hay que comprarlo (agrupado por eso) y otra columna que haga lo mismo pero con los productos mas caros, entonces se consigue un presupuesto minimo y presupuesto maximo. Los productos caros obviamente se tienen que conseguir por la comparacion de productos de la misma categoria y no de distinta tienda, a parte de ser distintos productos obviamente
 
 - Reescribir todo el proyecto y repositorio en Inglés
 
 # Lista de cambios
+
+## v0.4-alpha
+
+- El programa ya satisface todas las necesidades basicas, por lo que voy a marcar esta version como una version [alpha].
+- Nueva ventana de listas donde se muestra en detalle las listas creadas en la ventana de lista de productos, hasta ahora solo despliega 3 datos basicos (total, total en efectivo, y total en debito)
 
 ## v0.3.2-dev
 

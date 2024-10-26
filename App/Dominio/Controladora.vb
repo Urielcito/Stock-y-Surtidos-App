@@ -165,6 +165,11 @@
         Return col_categoria
     End Function
 
+    Public Function listadoproducto() As ArrayList
+        col_producto = p_producto.MostrarProductos()
+        Return col_producto
+    End Function
+
     Public Function listadoproducto(ByVal orden As String, ByVal buscando As Boolean, ByVal txt_busqueda As String, ByVal id_fuente As Integer, ByVal id_categoria As Integer) As ArrayList
         col_producto = p_producto.MostrarProductos(orden, buscando, txt_busqueda, id_fuente, id_categoria)
         Return col_producto
