@@ -116,7 +116,7 @@ Public Class Login
     End Sub
 
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim ruta As String = "credentials\ip.txt"
+        Dim ruta As String = "\credentials\ip.txt"
         Dim ultimaIp As String = ""
         If File.Exists(ruta) Then
             ultimaIp = File.ReadAllText(ruta)
