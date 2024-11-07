@@ -55,6 +55,16 @@ Se puede ver, agregar, modificar y eliminar Fuentes
 
 # Lista de cambios
 
+## v0.4.1-alpha
+- Added some QoL Features:
+    - Product List Window
+        - Add an individual product into the temporal list just by double-clicking the product in the main product list.
+        - Remove an individual product from the temporal list just by double-clicking the product in the temporal product list
+        - If the product already exists inside the csv file, it will up the quantity by one (1) instead of giving a useless error message
+        - "Are you sure?" pop up when clearing the whole temporal list
+    - List of lists Window
+        - Now it's possible to save the temporal product list into a new .csv file
+
 ## v0.4-alpha
 
 - El programa ya satisface todas las necesidades basicas, por lo que voy a marcar esta version como una version [alpha].

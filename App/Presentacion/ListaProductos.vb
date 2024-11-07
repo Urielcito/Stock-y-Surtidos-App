@@ -149,10 +149,37 @@ Public Class ListaProductos
         End Select
     End Sub
 
-    Private Sub lstProductos_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstProductos.ItemSelectionChanged, lstCompras.ItemSelectionChanged 'Despliega la informacion del producto seleccionado
+    Private Sub lstProductos_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstProductos.ItemSelectionChanged 'Despliega la informacion del producto seleccionado
         If lstProductos.SelectedItems.Count > 0 Then
             un_id = lstProductos.SelectedItems(0).Text
-        ElseIf lstCompras.SelectedItems.Count > 0 Then
+        End If
+        If un_id Then
+            Dim un_producto = cont.devolverProducto(un_id)
+            lblNombre.Text = un_producto.nombre
+            lblPrecio.Text = "$ " & un_producto.precio
+            lblFuente.Text = "Se compra en: " & un_producto.fuente.nombre
+            lblCategoria.Text = "Categoria: " & un_producto.categoria.nombre
+            chequearRadioButtons(un_producto.cuanto_tenemos)
+            cambiarBtnHay(un_producto.cuanto_tenemos, un_producto.importante)
+            cambiarBtnImportante(un_producto.importante)
+            Dim ruta = un_producto.nombre_imagen
+            If (ruta <> "") Then
+                pbImagen.ImageLocation = ruta
+            Else
+                pbImagen.Image = Nothing
+            End If
+            Dim hayProducto = True
+            If (un_producto.cuanto_tenemos = "NADA") Then
+                hayProducto = False
+            End If
+            visibilidadInformacion(True, hayProducto)
+        Else
+            visibilidadInformacion(False, False)
+        End If
+    End Sub
+
+    Private Sub lstCompras_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lstCompras.ItemSelectionChanged
+        If lstCompras.SelectedItems.Count > 0 Then
             un_id = lstCompras.SelectedItems(0).Text
         End If
         If un_id Then
@@ -178,11 +205,7 @@ Public Class ListaProductos
         Else
             visibilidadInformacion(False, False)
         End If
-
     End Sub
-
-
-
     'ABM
     Private Sub lblNombre_Click(sender As Object, e As EventArgs) Handles lblNombre.Click 'Modifica el nombre del producto seleccionado
         Dim un_producto = cont.devolverProducto(un_id)
@@ -464,21 +487,22 @@ Public Class ListaProductos
 
     Private Sub msAgregar_Click(sender As Object, e As EventArgs) Handles msAgregar.Click
         Dim elProducto = cont.devolverProducto(un_id)
-        If (Not listaCompra.existsInCSV(cont, un_id)) Then
+        Dim indexProductoCSV = listaCompra.existsInCSV(un_id)
+        If (indexProductoCSV = -1) Then ' el producto no fue encontrado, "no existe" en el csv
             Dim cant As Integer = 0
             Dim cantString As String = ""
             Dim incorrecto As Boolean = True
-            cantString = InputBox("Ingrese cantidad a agregar", "Ingresar", 0)
+            cantString = InputBox("Ingrese cantidad a agregar", "Ingresar", 1)
             If (Integer.TryParse(cantString, cant) = True) Then
                 If (cant > 0) Then
                     listaCompra.addIDToCSV(elProducto, cant)
-                    cargarListaCompra()
                 End If
             End If
-
         Else
-            MessageBox.Show("Ya existe este producto en la lista de compras")
+            'el producto esta presente en el csv
+            listaCompra.changeProductQuantityInCSV(indexProductoCSV, 1)
         End If
+        cargarListaCompra()
     End Sub
 
     Private Sub msEliminar_Click(sender As Object, e As EventArgs) Handles msEliminar.Click
@@ -492,8 +516,11 @@ Public Class ListaProductos
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnLimpiarListaCompra.Click
-        listaCompra.clearList()
-        cargarListaCompra()
+        Dim result As DialogResult = MessageBox.Show("¿Estás seguro que quieres limpiar TODA la lista de compras?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If result = DialogResult.Yes Then
+            listaCompra.clearList()
+            cargarListaCompra()
+        End If
     End Sub
 
     Private Sub btnGuardarListaCompra_Click(sender As Object, e As EventArgs) Handles btnGuardarListaCompra.Click
@@ -504,4 +531,31 @@ Public Class ListaProductos
             listaCompra.saveToNewCSV(filePath)
         End If
     End Sub
+
+    Private Sub lstProductos_DoubleClick(sender As Object, e As EventArgs) Handles lstProductos.DoubleClick
+        Dim elProducto = cont.devolverProducto(un_id)
+        Dim indexProductoCSV = listaCompra.existsInCSV(un_id)
+        If (indexProductoCSV = -1) Then
+            listaCompra.addIDToCSV(elProducto, 1)
+        Else
+            listaCompra.changeProductQuantityInCSV(indexProductoCSV, 1)
+        End If
+        cargarListaCompra()
+    End Sub
+
+    Private Sub lstCompras_DoubleClick(sender As Object, e As EventArgs) Handles lstCompras.DoubleClick
+        listaCompra.loadFromCSV(cont)
+        Dim elProducto = cont.devolverProducto(un_id)
+        Dim indexProductoCSV = listaCompra.existsInCSV(un_id)
+        Dim cantProductoCSV = listaCompra.mcantidades(indexProductoCSV)
+        If (cantProductoCSV = 1) Then
+            msEliminar_Click(sender, e)
+        ElseIf (cantProductoCSV > 1) Then
+            listaCompra.changeProductQuantityInCSV(indexProductoCSV, -1)
+            cargarListaCompra()
+
+        End If
+    End Sub
+
+
 End Class

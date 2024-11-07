@@ -68,13 +68,13 @@ Partial Class ListaProductos
         Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader14 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader15 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.menuListaCompra = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.lcEliminar = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnLimpiarListaCompra = New System.Windows.Forms.Button()
-        Me.ColumnHeader15 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.lblTotal = New System.Windows.Forms.Label()
         Me.lblPrecioTotal = New System.Windows.Forms.Label()
-        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btnGuardarListaCompra = New System.Windows.Forms.Button()
         Me.menuProducto.SuspendLayout()
         CType(Me.pbImagen, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -433,7 +433,7 @@ Partial Class ListaProductos
         Me.Label1.AutoSize = True
         Me.Label1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(563, 568)
+        Me.Label1.Location = New System.Drawing.Point(565, 536)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(278, 37)
         Me.Label1.TabIndex = 24
@@ -448,10 +448,10 @@ Partial Class ListaProductos
         Me.lstCompras.FullRowSelect = True
         Me.lstCompras.GridLines = True
         Me.lstCompras.HideSelection = False
-        Me.lstCompras.Location = New System.Drawing.Point(230, 608)
+        Me.lstCompras.Location = New System.Drawing.Point(230, 576)
         Me.lstCompras.MultiSelect = False
         Me.lstCompras.Name = "lstCompras"
-        Me.lstCompras.Size = New System.Drawing.Size(940, 240)
+        Me.lstCompras.Size = New System.Drawing.Size(940, 272)
         Me.lstCompras.TabIndex = 25
         Me.lstCompras.UseCompatibleStateImageBehavior = False
         Me.lstCompras.View = System.Windows.Forms.View.Details
@@ -476,6 +476,16 @@ Partial Class ListaProductos
         Me.ColumnHeader14.Text = "Cantidad"
         Me.ColumnHeader14.Width = 100
         '
+        'ColumnHeader15
+        '
+        Me.ColumnHeader15.Text = "Precio Total"
+        Me.ColumnHeader15.Width = 120
+        '
+        'ColumnHeader10
+        '
+        Me.ColumnHeader10.Text = "Precio Unit."
+        Me.ColumnHeader10.Width = 120
+        '
         'menuListaCompra
         '
         Me.menuListaCompra.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lcEliminar})
@@ -499,11 +509,6 @@ Partial Class ListaProductos
         Me.btnLimpiarListaCompra.Text = "Limpiar lista de compras"
         Me.btnLimpiarListaCompra.UseVisualStyleBackColor = True
         '
-        'ColumnHeader15
-        '
-        Me.ColumnHeader15.Text = "Precio Total"
-        Me.ColumnHeader15.Width = 120
-        '
         'lblTotal
         '
         Me.lblTotal.AutoSize = True
@@ -525,11 +530,6 @@ Partial Class ListaProductos
         Me.lblPrecioTotal.Size = New System.Drawing.Size(41, 29)
         Me.lblPrecioTotal.TabIndex = 28
         Me.lblPrecioTotal.Text = "$0"
-        '
-        'ColumnHeader10
-        '
-        Me.ColumnHeader10.Text = "Precio Unit."
-        Me.ColumnHeader10.Width = 120
         '
         'btnGuardarListaCompra
         '

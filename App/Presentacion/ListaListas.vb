@@ -69,16 +69,22 @@ Public Class ListaListas
         lblPrecioDebito.Visible = b
         lblPrecioTotal.Visible = b
         btnEliminar.Visible = b
+        btnGuardar.Visible = b
+        If (nombreLista = "lista temporal") Then
+            btnGuardar.Text = "Guardar..."
+        Else
+            btnGuardar.Text = "Cambiar nombre..."
+        End If
         If (b = False) Then
             Me.lstCompras.Items.Clear()
         End If
     End Sub
 
     Private Sub lstListas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstListas.SelectedIndexChanged
-        visibilidadInformacion(True)
         If lstListas.SelectedItems.Count > 0 Then
             nombreLista = lstListas.SelectedItems(0).Text
         End If
+        visibilidadInformacion(True)
 
         Dim ruta As String = "lists\" + (nombreLista) + ".csv"
 
@@ -93,6 +99,23 @@ Public Class ListaListas
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
         Dim ruta As String = "lists\" + (nombreLista) + ".csv"
         listaCompra.deleteCSV(ruta)
+        cargarListaListas()
+        visibilidadInformacion(False)
+    End Sub
+
+    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+        Dim originalPath As String = "lists\" + (nombreLista) + ".csv"
+        Dim filePath As String = InputBox("Ingrese nombre de la lista", "Nombre de la lista", "")
+        If Not filePath.Equals("") Then
+            filePath &= ".csv"
+            If nombreLista.Equals("lista temporal") Then
+                ' Guarda la lista en un nuevo archivo
+                listaCompra.saveToNewCSV(filePath)
+            Else
+                listaCompra.deleteCSV(originalPath)
+                listaCompra.saveToNewCSV(filePath)
+            End If
+        End If
         cargarListaListas()
         visibilidadInformacion(False)
     End Sub

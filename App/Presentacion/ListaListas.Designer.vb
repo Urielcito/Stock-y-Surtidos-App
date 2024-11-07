@@ -40,6 +40,7 @@ Partial Class ListaListas
         Me.lblPrecioEfectivo = New System.Windows.Forms.Label()
         Me.lblEfectivo = New System.Windows.Forms.Label()
         Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lstCompras
@@ -207,11 +208,21 @@ Partial Class ListaListas
         Me.btnEliminar.Text = "Eliminar"
         Me.btnEliminar.UseVisualStyleBackColor = True
         '
+        'btnGuardar
+        '
+        Me.btnGuardar.Location = New System.Drawing.Point(349, 45)
+        Me.btnGuardar.Name = "btnGuardar"
+        Me.btnGuardar.Size = New System.Drawing.Size(167, 23)
+        Me.btnGuardar.TabIndex = 37
+        Me.btnGuardar.Text = "Guardar..."
+        Me.btnGuardar.UseVisualStyleBackColor = True
+        '
         'ListaListas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1584, 861)
+        Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.lblPrecioEfectivo)
         Me.Controls.Add(Me.lblEfectivo)
@@ -249,4 +260,5 @@ Partial Class ListaListas
     Friend WithEvents lblPrecioEfectivo As Label
     Friend WithEvents lblEfectivo As Label
     Friend WithEvents btnEliminar As Button
+    Friend WithEvents btnGuardar As Button
 End Class

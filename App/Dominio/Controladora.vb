@@ -177,6 +177,7 @@
     'FUNCIONES QUE DEVUELVEN AL OBJETO O ALGO QUE TENGA QUE VER CON EL OBJETO
     Public Function devolverProducto(ByVal un_id As Integer) As Producto
         Dim elProducto As New Producto()
+        col_producto = listadoproducto()
         For Each p As Producto In col_producto
             If (p.id = un_id) Then
                 elProducto = p
